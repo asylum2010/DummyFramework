@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Include", "vc90\Include.vcproj", "{281AB309-2127-4C67-8017-15740F68E610}"
+EndProject
+Project("{9AC620E6-58E3-4BA9-BDA4-0A75378309AE}") = "DummyFramework", "vc90\DummyFramework.vcproj", "{9AC620E6-58E3-4BA9-BDA4-0A75378309AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}.Debug|Win32.Build.0 = Debug|Win32
+		{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}.Release|Win32.ActiveCfg = Release|Win32
+		{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}.Release|Win32.Build.0 = Release|Win32
+		{9AC620E6-58E3-4BA9-BDA4-0A75378309AE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9AC620E6-58E3-4BA9-BDA4-0A75378309AE}.Debug|Win32.Build.0 = Debug|Win32
+		{9AC620E6-58E3-4BA9-BDA4-0A75378309AE}.Release|Win32.ActiveCfg = Release|Win32
+		{9AC620E6-58E3-4BA9-BDA4-0A75378309AE}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,50 @@
+
+settings [speed = 27, layers = 4]
+{
+    layer("stars.txt", 10%);
+    layer("planets1.txt", "planets2.txt", 15%);
+    layer("asteroids.txt", 30%);
+    layer("junk1.txt", "junk2.txt", 55%);
+}
+
+animation
+{
+    title("Chapter 2: Inverse of opposite of...");
+}
+
+game
+{
+    tutorial("Pick up powerups to gain advantages!");
+    
+    enemy(bomb, 2, 3, center, 15);
+    message("These guys doesn't look\nvery stable...");
+    wait(enemyonscreen);
+    
+    enemy(regular, 3, 1, center, 20);
+    wait(enemyonscreen);
+    
+    enemy(bomb, 2, 3, top, 20);
+    enemy(regular, 1, 2, center, 20);
+    wait(enemyonscreen);
+    
+    message("Hmmm theres something\non the radar...");
+    wait(10);
+    
+    invert(xy);
+    message("Whoah...what the...");
+    
+    enemy(regular, 2, 3, top, 20);
+    wait(enemyonscreen);
+    
+    enemy(bomb, 3, 2, center, 15);
+    wait(enemyonscreen);
+
+    invert();
+    
+    enemy(razor, 1, 1, center, 80);
+    wait(enemyonscreen);
+    
+    message("Hate to say cliches, but I have\n a bad feeling about this...");
+    message("I have to go to the planet immediately...");
+}
+

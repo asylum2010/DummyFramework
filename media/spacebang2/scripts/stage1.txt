@@ -1,0 +1,46 @@
+
+settings [speed = 27, layers = 4, powerups = no]
+{
+    layer("stars.txt", 10%);
+    layer("planets1.txt", "planets2.txt", 15%);
+    layer("asteroids.txt", 30%);
+    layer("junk1.txt", "junk2.txt", 55%);
+}
+
+animation
+{
+    title("Chapter 1: Fiery welcome");
+
+    message("What happened here?");
+    message("Let's see if the radio works...");
+    message("XZ-16Q to UFO base...come in...");
+    message("UFO base...respond...");
+    message("Weird...oh there comes the welcome party...");
+    message("Uh...", 5);
+    message("Vaaaaaaah!", 1);
+    
+    enemy(regular, 2, 6, top, 200);
+    wait(enemyonscreen);
+
+    message("Doh...these folks again...");
+}
+
+game
+{
+    tutorial("Use WASD or the arrow keys to move\n and CTRL or SHIFT to shoot!");
+    
+    enemy(regular, 1, 3, top, 20);
+    wait(enemyonscreen);
+    
+    enemy(regular, 1, 3, bottom, 20);
+    wait(enemyonscreen);
+    
+    enemy(regular, 2, 3, center, 20);
+    wait(enemyonscreen);
+        
+    enemy(regular, 2, 3, top, 20);
+    wait(enemyonscreen);
+        
+    message("I should investigate this...");
+}
+

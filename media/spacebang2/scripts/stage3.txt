@@ -1,0 +1,69 @@
+
+settings [speed = 35, layers = 4]
+{
+    layer("sky.txt", 0%);
+    layer("mountains.txt", 20%);
+    layer("clouds.txt", 40%);
+    layer("hills.txt", 100%);
+}
+
+animation
+{
+    title("Chapter 3: Killer islands");
+}
+
+game
+{
+	enemy(island, 1, 1, top, 30);
+	wait(5);
+	enemy(island, 1, 1, center, 35);
+	wait(10);
+	enemy(regular, 1, 2, bottom, 20);
+    wait(enemyonscreen);
+
+	enemy(island, 1, 1, top, 20);
+	enemy(island, 1, 1, bottom, 25);
+	wait(10);
+	enemy(worm, 1, 7, top, 50);
+	wait(20);
+	enemy(island, 1, 1, center, 35);
+    wait(enemyonscreen);
+    
+    enemy(island, 1, 1, bottom, 50);
+    wait(5);
+    enemy(island, 1, 1, center, 60);
+    wait(15);
+    enemy(island, 2, 1, top, 60);
+	enemy(regular, 1, 3, center, 25);
+	wait(15);
+	enemy(island, 1, 1, top, 60);
+    wait(enemyonscreen);
+
+	// ide jolenne valami do( enemyalive ) { ... };
+    enemy(razor, 1, 1, center, 80);
+    wait(20);
+    enemy(island, 1, 1, bottom, 60);
+    wait(20);
+    enemy(island, 1, 1, top, 60);
+    wait(enemyonscreen);
+    
+    enemy(worm, 2, 7, top, 50);
+    wait(15);
+    enemy(island, 1, 1, center, 70);
+    wait(enemyonscreen);
+    
+    invert(x);
+    
+    enemy(island, 1, 1, center, 60);
+    wait(5);
+    enemy(island, 1, 1, top, 70);
+    wait(7);
+    enemy(island, 1, 1, bottom, 80);
+    enemy(regular, 1, 3, center, 25);
+    //wait(3);
+    enemy(regular, 2, 2, top, 25);
+    wait(enemyonscreen);
+        
+    invert();
+}
+

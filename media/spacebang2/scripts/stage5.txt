@@ -1,0 +1,55 @@
+
+settings [speed = 40, layers = 3, powerups = yes]
+{
+    layer("icemountains.txt", 20%);
+    layer("icewater1.txt", "icewater2.txt", 40%);
+    layer("fishes1.txt", "fishes2.txt", 100%);
+}
+
+animation
+{
+	title("Chapter 5: Jingle bangs");
+    
+    message("That should do it...but...\nwhere the hell am I??");
+    message("Looks like the winter pole...holy crow!!");
+}
+
+game
+{
+    enemy(bomb, 2, 7, bottom, 15);
+    wait(enemyonscreen);
+    
+    enemy(razor, 1, 1, center, 80);
+    wait(enemyonscreen);
+    
+    enemy(bomb, 2, 3, bottom, 15);
+    wait(50);
+    enemy(worm, 1, 15, bottom, 50);
+    wait(enemyonscreen);
+    
+    enemy(regular, 3, 2, top, 30);
+    wait(enemyonscreen);
+    
+    invert(xy);
+    
+    enemy(razor, 1, 1, center, 80);
+    wait(30);
+    enemy(worm, 1, 15, bottom, 50);
+    wait(enemyonscreen);
+    
+    invert();
+    
+    enemy(regular, 2, 2, top, 30);
+    wait(30);
+    enemy(worm, 2, 15, top, 50);
+    wait(enemyonscreen);
+    
+    invert(x);
+    
+    enemy(bomb, 1, 10, center, 10);
+    wait(40);
+    enemy(regular, 2, 5, top, 30);
+    wait(enemyonscreen);
+    
+    invert();
+}
