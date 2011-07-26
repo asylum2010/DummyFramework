@@ -1,0 +1,24 @@
+
+
+Requirements
+============
+
+- Windows XP/Vista/7 32 bit
+- DirectX SDK
+- Visual Studio 2005/2008/2010
+
+
+Compilation
+===========
+
+- add the framework's include folder in Tools -> Options -> Projects and Solutions -> VC++ Directories -> Include
+- open code/vs/DummyFramework_VCXX
+- click Rebuild Solution
+- the library files doesn't have to be added, since the projects add them through the #pragma keyword
+- open projects/Projects_VCXX
+- similarly Rebuild Solution
+
+
+
+
+

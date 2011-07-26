@@ -10,6 +10,9 @@ namespace DummyFramework
 	class CStateManager9;
 	class CGame9;
 
+	/**
+	 * \brief Represents a mesh part
+	 */
     class CSubset9
     {
     public:
@@ -23,6 +26,12 @@ namespace DummyFramework
         }
     };
 
+	/**
+	 * \brief Simple game object
+	 *
+	 * The CObject9 class encapsulates the common properties
+	 * of a game object (meshparts, materials, textures).
+	 */
 	class CObject9 : public CTransformable
     {
     protected:

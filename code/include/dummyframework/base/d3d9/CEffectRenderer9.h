@@ -11,6 +11,9 @@ namespace DummyFramework
     class CGame9;
 	class CStateManager9;
 
+	/**
+	 * \brief Base class for effect renderers
+	 */
     class CEffectRenderer9
     {
     protected:

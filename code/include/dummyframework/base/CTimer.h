@@ -6,6 +6,9 @@
 
 namespace DummyFramework
 {
+	/**
+	 * \brief Win32-based high resolution timer
+	 */
     class CTimer
     {
     protected:

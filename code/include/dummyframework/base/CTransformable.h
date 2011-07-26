@@ -12,6 +12,9 @@
 
 namespace DummyFramework
 {
+	/**
+	 * \brief Represents a transformable entity
+	 */
 	class CTransformable
 	{
 	protected:

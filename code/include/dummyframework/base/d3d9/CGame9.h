@@ -11,12 +11,32 @@
 #include <d3dx9.h>
 #include <list>
 
-#define _DUMMY_EFFECT_DONT_SAVE_ D3DXFX_DONOTSAVESTATE|D3DXFX_DONOTSAVESAMPLERSTATE|D3DXFX_DONOTSAVESHADERSTATE
+#define _DUMMY_EFFECT_DONT_SAVE_   D3DXFX_DONOTSAVESTATE|D3DXFX_DONOTSAVESAMPLERSTATE|D3DXFX_DONOTSAVESHADERSTATE
 
 namespace DummyFramework
 {
     class CEffectRenderer9;
 
+	/**
+	 * \brief Base class for DummyFramework applications
+	 *
+	 * The <kbd>CGame9</kbd> class is responsible for Direct3D initialization,
+	 * device loss/reset handling and fixed timestep updating of the
+	 * application's logic.
+	 
+	 * Note that the <kbd>Update()</kbd> method is called
+	 * in discrete time steps (every 1/10 th second by default), that
+	 * can be modified through the <kbd>Sync.UpdateInterval</kbd> member.
+	 * Fixed timestep updating can be turned off by setting the
+	 * <kbd>fixedtimestep</kbd> member to false.
+	 *
+	 * Another important thing is <i>state management</i>, that was
+	 * recently introduced into the framework. This requires that if
+	 * something can be called on the <kbd>StateManager</kbd> object
+	 * then that has to be called on it. This implies that state blocks
+	 * should be used with care (that means you have to guarantee that
+	 * the framework stays consistent).
+	 */
     class CGame9 : public has_slots
     {
     private:
@@ -35,11 +55,11 @@ namespace DummyFramework
     protected:
         typedef std::list<CEffectRenderer9*> rendererlist;
         
-        rendererlist            effects;
-        rendererlist            posteffects;
-        bool                    fixedtimestep;
-        bool                    devicelost;
-        unsigned long           resetcounter;
+        rendererlist   effects;
+        rendererlist   posteffects;
+        bool           fixedtimestep;
+        bool           devicelost;
+        unsigned long  resetcounter;
 
         virtual bool Initialize();
         virtual bool LoadContent();
@@ -63,7 +83,7 @@ namespace DummyFramework
         CGameLogicSynchronizer  Sync;
 		CStateManager9*         StateManager;
 
-        // ezekhez reset szükséges (vagy az Initialize() elött beállitod)
+        // this require device reset (or you set them before calling Initialize())
         D3DDISPLAYMODE          DisplayMode;
         bool                    FullScreen;
         bool                    VSync;

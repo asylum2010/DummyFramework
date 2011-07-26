@@ -7,6 +7,18 @@
 
 namespace DummyFramework
 {
+	/**
+	 * \brief Update scheduler
+	 *
+	 * This class performs the fixed timestep
+	 * updateing of the game's logic.
+	 *
+	 * Note that if your game has a menu then
+	 * you should create another synchronizer
+	 * object for the game, and use the
+	 * one in the game's main class (inherited from CGame9)
+	 * only for the menu.
+	 */
     class CGameLogicSynchronizer
     {
     private:

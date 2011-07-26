@@ -5,7 +5,7 @@
 #include <dummyframework/menu/CButton.h>
 
 /**
- * \brief An animable button
+ * \brief An animatable button
  */
 class AnimatedButton : public DummyFramework::CButton
 {

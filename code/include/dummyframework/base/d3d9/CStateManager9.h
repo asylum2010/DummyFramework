@@ -6,6 +6,19 @@
 
 namespace DummyFramework
 {
+	/**
+	 * \brief State manager for effects
+	 *
+	 * The state manager object helps to filter out
+	 * redundant renderstate and texture state switches.
+	 * However this requires that you use it for these kind
+	 * of calls.
+	 *
+	 * If you use <kbd>D3DXCreateEffectXX()</kbd>, then you have to
+	 * set the state manager for it manually, and you have to
+	 * use the <kbd>_DUMMY_EFFECT_DONT_SAVE_</kbd> flag when calling
+	 * <kbd>ID3DXEffect::Begin()</kbd>.
+	 */
 	class CStateManager9 : public ID3DXEffectStateManager
 	{
 	protected:

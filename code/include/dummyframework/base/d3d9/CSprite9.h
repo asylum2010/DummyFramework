@@ -9,22 +9,22 @@ namespace DummyFramework
     /**
      * \brief Represents a 2D object
      *
-     * For smaller textures it is more efficient to use
-	 * a pre-calculated mask for collision detection
-     * than locking the texture.
+     * This class uses a collision mask for
+	 * collision detection. This part of the
+	 * framework is yet to be improved.
      */
     class CSprite9
     {
     private:
-        char*    mask;                     /*!< collision mask */
-        tagSIZE  masksize;                 /*!< mask size (real image size) */
+        char*    mask;                     /*!< Collision mask */
+        tagSIZE  masksize;                 /*!< Mask size (real image size) */
 
     public:
-        D3DXVECTOR2         OriginalSize;  /*!< original size (as in the atlas) */
-		D3DXVECTOR2         Position;      /*!< position for collision detection */
-        D3DXVECTOR2         Size;          /*!< size of the sprite object */
-        LPDIRECT3DTEXTURE9  Texture;       /*!< texture or texture atlas which contains the image */
-        float               Texcoords[4];  /*!< texture coordinates */
+        D3DXVECTOR2         OriginalSize;  /*!< Original size (as in the atlas) */
+		D3DXVECTOR2         Position;      /*!< Position for collision detection */
+        D3DXVECTOR2         Size;          /*!< Size of the sprite object */
+        LPDIRECT3DTEXTURE9  Texture;       /*!< Texture or texture atlas which contains the image */
+        float               Texcoords[4];  /*!< Texture coordinates */
         
         CSprite9();
         ~CSprite9();

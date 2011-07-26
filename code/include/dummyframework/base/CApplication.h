@@ -56,6 +56,9 @@ namespace DummyFramework
 
 	/**
 	 * \brief Win32 based application class
+	 *
+	 * The application class handles Windows messages, and translates them to
+	 * a more sophisticated signal/slot system.
 	 */
     class CApplication
     {

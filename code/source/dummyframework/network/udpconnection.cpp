@@ -24,9 +24,9 @@ namespace DummyFramework
 	//*************************************************************************************************************
 	udpconnection::udpconnection()
 	{
-	#ifdef _WIN32
+#ifdef _WIN32
 		bad = (0 != WSAStartup(MAKEWORD(2, 2), &wsa));
-	#endif
+#endif
 
 		sock = -1;
 		Blocking = false;
@@ -54,24 +54,24 @@ namespace DummyFramework
 
 		if( !bad && !Blocking )
 		{
-	#ifdef _WIN32
+#ifdef _WIN32
 			DWORD nb = 1;
 			bad = (0 != ioctlsocket(sock, FIONBIO, &nb));
-	#else
+#else
 			int nb = 1;
 			bad = (-1 == fcntl(sock, F_SETFL, O_NONBLOCK, nb));
-	#endif
+#endif
 		}
 	}
 	//=============================================================================================================
 	void udpconnection::disconnect()
 	{
-		#ifdef _WIN32
+#ifdef _WIN32
 			closesocket(sock);
 			WSACleanup();
-		#else
+#else
 			close(sock);
-		#endif
+#endif
 
 		sock = -1;
 	}

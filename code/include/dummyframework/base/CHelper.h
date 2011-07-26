@@ -17,6 +17,9 @@
 
 namespace DummyFramework
 {
+	/**
+	 * \brief Helper class
+	 */
     class CHelper
     {
     public:

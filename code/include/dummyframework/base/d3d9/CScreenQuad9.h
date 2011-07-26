@@ -47,6 +47,11 @@ namespace DummyFramework
 
 	/**
 	 * \brief Dynamic quad buffer
+	 *
+	 * This class increases rendering performance by
+	 * putting all of the sprites in a single buffer.
+	 * It is recommended that you use it with texture
+	 * atlases.
 	 */
     class CDynamicQuadBuffer9 : public has_slots
     {

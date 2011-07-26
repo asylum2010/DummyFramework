@@ -22,6 +22,9 @@ namespace DummyFramework
 
     class CObject9;
 
+	/**
+	 * \brief Texture description
+	 */
     class CTextureDesc
     {
     public:
@@ -38,6 +41,25 @@ namespace DummyFramework
         }
     };
 	
+	/**
+	 * \brief Basic content manager
+	 *
+	 * The content manager keeps track of resources, and
+	 * handles them on device loss/reset. However it
+	 * does not make any reference counting on them, so
+	 * if you no longer use a resource that will be released
+	 * only when the program terminates.
+	 *
+	 * Resources in the default pool are handled specially
+	 * (f. e. render targets). You can query the recreated
+	 * resource through the <kbd>GetTextureByID()</kbd>
+	 * method, when the device is reset.
+	 *
+	 * Note that the manager handles resources only created
+	 * through its methods, thus if you get a texture's
+	 * surface level for example, you have to release that
+	 * on device loss/termination.
+	 */
     class CContentManager9 : public has_slots
     {
     protected:

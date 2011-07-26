@@ -15,7 +15,13 @@ namespace DummyFramework
     /**
      * \brief Sprite based font drawing
      *
-     * Supports BMFont files.
+     * This class supports BMFont files, and uses
+	 * a texture atlas with dynamic vertex buffer.
+	 * Consequently, the texts can be animated dynamically.
+	 *
+	 * Texts have to be organised into groups (for example
+	 * a group might be a particular menu's texts) and can be
+	 * handled separately.
      */
     class CSpriteFont9
     {
@@ -37,7 +43,7 @@ namespace DummyFramework
         /**
          * \brief Character set (ASCII)
          *
-         * For the time being only single page sets are supported.
+         * Only single page sets are supported for the time being.
          */
         struct scharset
         {
