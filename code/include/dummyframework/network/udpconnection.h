@@ -10,7 +10,7 @@
 #    include <unistd.h>
 #    include <netdb.h>
 #    include <fcntl.h>
-#    define int SOCKET;
+#    define SOCKET int
 #endif
 
 #include <string>

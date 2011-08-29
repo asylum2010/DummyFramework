@@ -29,6 +29,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetworkTest", "networktest\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinapiTest", "winapitest\WinapiTest_VC90.vcproj", "{A4230416-5013-47B0-8ABE-04E64960DFAD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConvertX2OBJ", "convertx2obj\ConvertX2OBJ_VC90.vcproj", "{DCC4231F-B537-4565-8987-257837E958F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -91,6 +93,10 @@ Global
 		{A4230416-5013-47B0-8ABE-04E64960DFAD}.Debug|Win32.Build.0 = Debug|Win32
 		{A4230416-5013-47B0-8ABE-04E64960DFAD}.Release|Win32.ActiveCfg = Release|Win32
 		{A4230416-5013-47B0-8ABE-04E64960DFAD}.Release|Win32.Build.0 = Release|Win32
+		{DCC4231F-B537-4565-8987-257837E958F5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DCC4231F-B537-4565-8987-257837E958F5}.Debug|Win32.Build.0 = Debug|Win32
+		{DCC4231F-B537-4565-8987-257837E958F5}.Release|Win32.ActiveCfg = Release|Win32
+		{DCC4231F-B537-4565-8987-257837E958F5}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
