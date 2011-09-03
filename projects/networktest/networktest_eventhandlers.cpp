@@ -14,3 +14,9 @@ void NetworkTest::application_keyup(const DummyFramework::skeyboardstate& kstate
 	}
 }
 //=============================================================================================================
+void NetworkTest::application_closed()
+{
+	worker.Stop();
+	service->Disconnect();
+}
+//=============================================================================================================

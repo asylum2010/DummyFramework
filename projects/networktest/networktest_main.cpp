@@ -5,6 +5,7 @@
 NetworkTest::NetworkTest()
 {
 	cansend = false;
+	service = NetworkServiceProvider::Create();
 
 	airplanes.reserve(20);
 	airplanes.push_back(AirPlane());
@@ -25,6 +26,8 @@ NetworkTest::NetworkTest()
 NetworkTest::~NetworkTest()
 {
 	worker.Close();
+
+	safe_delete(service);
 }
 //=============================================================================================================
 bool NetworkTest::LoadSettings()

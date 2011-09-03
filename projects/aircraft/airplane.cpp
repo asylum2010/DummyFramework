@@ -16,53 +16,31 @@ AirPlane::AirPlane()
 	position = D3DXVECTOR3(0, 0, 0);
 }
 //=============================================================================================================
-void AirPlane::MakeStatePack(std::string& out)
+void AirPlane::MakeState(unsigned long& input, D3DXVECTOR3& pos, D3DXQUATERNION& q)
 {
-	std::stringstream ss;
+	input = state;
 
-	D3DXVECTOR3& pcurr = position.current();
-	D3DXQUATERNION& rcurr = rotation.current();
-	
-	ss << state << ",";
-	ss << pcurr.x << "," << pcurr.y << "," << pcurr.z << ",";
-	ss << rcurr.x << "," << rcurr.y << "," << rcurr.z << "," << rcurr.w;
-
-	out += ss.str();
+	pos = position.current();
+	q = rotation.current();
 }
 //=============================================================================================================
-void AirPlane::UpdateFromPack(const std::string& str, double time)
+void AirPlane::UpdateState(unsigned long input, const D3DXVECTOR3& pos, const D3DXQUATERNION& q, double time)
 {
-	std::vector<std::string> v;
+	D3DXVECTOR3 pd;
+	D3DXQUATERNION qd;
 
-	DummyFramework::CHelper::Split(v, ',', str, true);
-	state = (unsigned long)atoi(v[0].c_str());
-
-	D3DXVECTOR3 p, pd;
-	D3DXQUATERNION q, qd;
-
-	p.x = (float)atof(v[1].c_str());
-	p.y = (float)atof(v[2].c_str());
-	p.z = (float)atof(v[3].c_str());
-
-	q.x = (float)atof(v[4].c_str());
-	q.y = (float)atof(v[5].c_str());
-	q.z = (float)atof(v[6].c_str());
-	q.w = (float)atof(v[7].c_str());
+	state = input;
 
 	// szinkronizácio
-	pd = p - position.current();
+	pd = pos - position.current();
 
-	if( D3DXVec3Length(&pd) > 6 )
-	{
-		position = p;
-	}
+	//if( D3DXVec3Length(&pd) > 6 )
+		position = pos;
 	
 	qd = q - rotation.current();
 
-	if( ::D3DXQuaternionLength(&qd) > 1.5f )
-	{
+	//if( D3DXQuaternionLength(&qd) > 1.5f )
 		rotation = q;
-	}
 
 	lastinput = time;
 }

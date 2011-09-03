@@ -32,8 +32,8 @@ public:
 	AirPlane();
 	~AirPlane() {}
 
-	void MakeStatePack(std::string& out);
-	void UpdateFromPack(const std::string& str, double time);
+	void MakeState(unsigned long& input, D3DXVECTOR3& pos, D3DXQUATERNION& q);
+	void UpdateState(unsigned long input, const D3DXVECTOR3& pos, const D3DXQUATERNION& q, double time);
 	void Update(double time);
 	void UpdateTransforms(float alpha);
 

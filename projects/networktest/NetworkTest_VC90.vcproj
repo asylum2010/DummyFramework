@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1250"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="NetworkTest"
 	ProjectGUID="{9E52CCC1-AB48-48D7-98DC-902FA9B16A0B}"
 	RootNamespace="NetworkTest"
@@ -180,6 +180,33 @@
 		<File
 			RelativePath=".\main.cpp"
 			>
+		</File>
+		<File
+			RelativePath=".\networkserviceprovider.cpp"
+			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+				/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath=".\networkserviceprovider.h"
+			>
+		</File>
+		<File
+			RelativePath=".\networkserviceprovider_stub.cpp"
+			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				ExcludedFromBuild="true"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+				/>
+			</FileConfiguration>
 		</File>
 		<File
 			RelativePath=".\networktest.h"

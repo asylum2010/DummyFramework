@@ -13,174 +13,84 @@ void NetworkTest::operator ()()
 void NetworkTest::run_client()
 {
 	std::cout << "* Connecting...\n";
-	connection.connect(hostip.c_str(), 8080);
+	service->Connect(hostip.c_str(), 8080);
 
-	// ((packetsize * 8) / 1024) / UpdateInterval;
-	client.SendRate = 20.0f; // kbps
-	client.attach(connection);
+	entityDTO dto;
+	size_t cnt;
 
-	bool connected = false;
-	std::string str;
-	size_t myid = 0;
-
-	while( 1 )
+	while( true )
 	{
-		if( connected )
+		if( service->IsConnected() )
 		{
-			channel >> str;
+			cnt = service->GetNumConnections();
 
-			if( str.length() > 0 )
+			if( cnt >= airplanes.size() )
+				airplanes.resize(cnt + 1);
+
+			// update other players' states
+			for( size_t i = 0; i < cnt; ++i )
 			{
-				//std::cout << "* Message from server: " <<
-				//	str << "\n";
-
-				switch( str[0] )
+				if( service->ReceiveState(dto, i) )
 				{
-				case 'a':
-					// a szerver fogadott minket
-					myid = (size_t)atoi(str.substr(1).c_str());
-
-					std::cout << "* <<accept>>: myid == " << myid << "\n";
-					break;
-
-				case 's': {
-					// updateljük az i. állapotát
-					// ha nincs még olyan akkor létrehozza
-					std::vector<std::string> v;
-					DummyFramework::CHelper::Split(v, '|', str, true);
-
-					size_t id = (size_t)atoi(v[0].substr(1).c_str());
-
-					if( id == 0 )
-						std::cout << "* <<state>>: Invalid id\n";
-					else
-					{
-						if( id >= airplanes.size() )
-							airplanes.resize(id + 1);
-
-						airplanes[id].UpdateFromPack(v[1], Sync.Timer().Time());
-					}
-
-					} break;
-
-				default:
-					break;
+					airplanes[i + 1].UpdateState(
+						dto.input, dto.position, dto.orientation, Sync.Timer().Time());
 				}
 			}
-			
+
+			// send own state
 			if( cansend )
 			{
-				// küldjük az állapotunkat
 				AirPlane& avatar = airplanes[0];
+				avatar.MakeState(dto.input, dto.position, dto.orientation);
 
-				str = "s" + DummyFramework::CHelper::DiscreteToString<size_t>(myid) + "|";
-				avatar.MakeStatePack(str);
-
-				channel << str;
+				service->SendState(dto);
 				cansend = false;
 			}
 		}
-		else if( connected = client.join(channel) )
-			std::cout << "* Connected...\n";
 
-		client.run();
+		service->UpdateClient(true);
 	}
 }
 //=============================================================================================================
 void NetworkTest::run_server()
 {
 	std::cout << "* Listening...\n";
-	connection.connect(0, 0, 8080);
+	service->Connect("", 8080);
 
-	server.attach(connection);
-	server.SendRate = 50.0f; // kbps
+	entityDTO dto;
+	size_t cnt;
 
-	DummyFramework::udpchannel channels[10];
-	size_t count = 0;
-	std::string str;
-
-	while( 1 )
+	while( true )
 	{
-		if( server.accept(channels[count]) )
+		cnt = service->GetNumConnections();
+
+		// new player
+		if( cnt > airplanes.size() - 1 )
+			airplanes.resize(cnt + 1);
+
+		// update other players' states
+		for( size_t i = 0; i < cnt; ++i )
 		{
-			std::cout << "* " << channels[count].getaddress().tostring() <<
-				" connected...\n";
-
-			airplanes.push_back(AirPlane());
-			AirPlane& avatar = *airplanes.begin();
-
-			// kiküldjük neki az id-jét
-			str = "a" + DummyFramework::CHelper::DiscreteToString<size_t>(count + 1);
-			channels[count] << str;
-
-			// és elküldjük a már kapcsolodott kliensek állapotát
-			for( size_t i = 0; i < count + 1; ++i )
+			if( service->ReceiveState(dto, i) )
 			{
-				str = "s" + DummyFramework::CHelper::DiscreteToString<size_t>(i + 1) + "|";
-
-				airplanes[i].MakeStatePack(str);
-				channels[count] << str;
-			}
-
-			// a többi kliensnek lejjebb küldödik
-			++count;
-		}
-
-		for( size_t i = 0; i < count; ++i )
-		{
-			channels[i] >> str;
-
-			if( str.length() > 0 )
-			{
-				//std::cout << "* Message from " <<
-				//	channels[i].getaddress().tostring() << ": " << str << "\n";
-
-				switch( str[0] )
-				{
-				case 's': {
-					// udapeteljük az i-edik állapotát
-					std::vector<std::string> v;
-					DummyFramework::CHelper::Split(v, '|', str, true);
-
-					size_t id = (size_t)atoi(v[0].substr(1).c_str());
-
-					if( id == 0 || id >= airplanes.size() || (id != i + 1) )
-						std::cout << "* <<state>>: Invalid id\n";
-					else
-					{
-						airplanes[id].UpdateFromPack(v[1], Sync.Timer().Time());
-					}
-
-					// mindenkinek továbbküldjük
-					for( size_t j = 0; j < count; ++j )
-					{
-						if( j != i )
-							channels[j] << str;
-					}
-					
-					} break;
-
-				default:
-					break;
-				}
+				airplanes[i + 1].UpdateState(
+					dto.input, dto.position, dto.orientation, Sync.Timer().Time());
 			}
 		}
 
-		if( cansend )
+		// send player states to everyone
+		for( size_t i = 0; i < airplanes.size(); ++i )
 		{
-			// küldjük mindenkinek a saját állapotot
-			str = "s1|";
+			airplanes[i].MakeState(dto.input, dto.position, dto.orientation);
 
-			AirPlane& avatar = airplanes[0];
-			avatar.MakeStatePack(str);
-
-			for( size_t i = 0; i < count; ++i )
-				channels[i] << str;
-
-			cansend = false;
+			for( size_t j = 0; j < cnt; ++j )
+			{
+				if( j + 1 != i )
+					service->SendState(dto, j);
+			}
 		}
-
-		server.run();
+			
+		service->UpdateServer(true);
 	}
 }
 //=============================================================================================================
