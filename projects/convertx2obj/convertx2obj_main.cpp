@@ -50,10 +50,9 @@ bool ConvertX2OBJ::LoadContent()
 	SetCurrentDirectory("../media/");
 #endif
 
-	// load and optimize
-	LPD3DXMESH mesh = Content.LoadMesh("meshes/statue.X");
+	LPD3DXMESH mesh = Content.LoadMesh("meshes/skullocc2.X");
 	dassert(false, "ConvertX2OBJ::LoadContent(): Could not load mesh", mesh);
-	
+
 	// look for vertex attributes
 	D3DVERTEXELEMENT9 decl[MAX_FVF_DECL_SIZE];
 	char* vdata = NULL;
@@ -65,6 +64,15 @@ bool ConvertX2OBJ::LoadContent()
 	WORD posoff, possize = 0;
 	WORD texoff, texsize = 0;
 	WORD normoff, normsize = 0;
+	WORD entries = 0;
+
+	WORD sizes[] =
+	{
+		1, // D3DDECLTYPE_FLOAT1
+		2, // D3DDECLTYPE_FLOAT2
+		3, // D3DDECLTYPE_FLOAT3
+		4, // D3DDECLTYPE_FLOAT4
+	};
 
 	for( DWORD i = 0; i < MAX_FVF_DECL_SIZE; ++i )
 	{
@@ -90,11 +98,20 @@ bool ConvertX2OBJ::LoadContent()
 			decl[i].UsageIndex == 0 )
 		{
 			texoff = decl[i].Offset;
-			texsize = 2;
+			
+			texsize = sizes[decl[i].Type];
 		}
+
+		++entries;
 	}
 
-	std::cout << "\nposition: " << posoff << "\ntexcoord: " << texoff << "\nnormal: " << normoff << "\n";
+	std::cout << "\nnumber of entries: " << entries << "\n";
+	std::cout << "position: " << posoff << ", " << possize << "\ntexcoord: " << texoff <<
+		", " << texsize << "\nnormal: " << normoff << ", " << normsize << "\n";
+
+	std::cout << "\nnumber of vertices: " << mesh->GetNumVertices() << "\n";
+	std::cout << "vertex stride: " << mesh->GetNumBytesPerVertex() << "\n";
+	std::cout << "number of faces: " << mesh->GetNumFaces() << "\n\n";
 
 	// convert to obj
 	mesh->LockVertexBuffer(0, (void**)&vdata);
@@ -166,8 +183,9 @@ bool ConvertX2OBJ::LoadContent()
 		{
 			of << "# subset " << i << " to come\n";
 
+			/*
 			// filter out duplicate vertices
-			// this is not the most optimal method
+			// probably this isn't the most efficient method
 			cache.clear();
 
 			for( DWORD j = 0; j < subsetcounts[i]; ++j )
@@ -177,14 +195,19 @@ bool ConvertX2OBJ::LoadContent()
 				if( cache.end() == std::find(cache.begin(), cache.end(), index) )
 					cache.push_back(index);
 			}
+			*/
 
 			// positions
 			count = 0;
 
-			for( wordlist::iterator it = cache.begin(); it != cache.end(); ++it )
+			for( DWORD k = 0; k < mesh->GetNumVertices(); ++k )
 			{
-				index = *it;
+				index = k;
 
+			//for( wordlist::iterator it = cache.begin(); it != cache.end(); ++it )
+			//{
+				//index = *it;
+				
 				x = *((float*)(vdata + stride * index + posoff));
 				y = *((float*)(vdata + stride * index + posoff + sizeof(float)));
 				z = *((float*)(vdata + stride * index + posoff + 2 * sizeof(float)));
@@ -212,12 +235,20 @@ bool ConvertX2OBJ::LoadContent()
 			{
 				count = 0;
 
-				for( wordlist::iterator it = cache.begin(); it != cache.end(); ++it )
+				for( DWORD k = 0; k < mesh->GetNumVertices(); ++k )
 				{
-					index = *it;
+					index = k;
+
+				//for( wordlist::iterator it = cache.begin(); it != cache.end(); ++it )
+				//{
+				//	index = *it;
 
 					x = *((float*)(vdata + stride * index + texoff));
-					y = *((float*)(vdata + stride * index + texoff + sizeof(float)));
+
+					if( texsize > 1 )
+						y = *((float*)(vdata + stride * index + texoff + sizeof(float)));
+					else
+						y = 0;
 					
 					of << "vt " << x << " " << y << "\n";
 					++count;
@@ -233,9 +264,12 @@ bool ConvertX2OBJ::LoadContent()
 			{
 				count = 0;
 
-				for( wordlist::iterator it = cache.begin(); it != cache.end(); ++it )
+				for( DWORD k = 0; k < mesh->GetNumVertices(); ++k )
 				{
-					index = *it;
+					index = k;
+				//for( wordlist::iterator it = cache.begin(); it != cache.end(); ++it )
+				//{
+				//	index = *it;
 
 					x = *((float*)(vdata + stride * index + normoff));
 					y = *((float*)(vdata + stride * index + normoff + sizeof(float)));

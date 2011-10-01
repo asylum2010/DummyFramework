@@ -459,7 +459,7 @@ void Game::InternalUpdate()
         }
     }
     
-    // powerups
+    // powerupok
     {
         poweruplist::iterator it = powerups.begin();
         poweruplist::iterator del;
@@ -539,6 +539,7 @@ void Game::Draw()
     CForm::Draw();
     spritefont->Draw(GroupID);
 
+	// animáció csíkok
     if( state == TransitionIn || state == TransitionOut ||
         state == Inactive || state == TransitionHalf )
     {
@@ -567,7 +568,7 @@ void Game::AddEnemy(long type, long height, long width, long track, long speed)
     float        tw;
     long         cnt;
 
-    // elöször meg kell tudni, hogy mégis melyik grafika lesz
+    // elöször meg kell tudni, hogy melyik grafika lesz
     switch( type )
     {
     case 0:

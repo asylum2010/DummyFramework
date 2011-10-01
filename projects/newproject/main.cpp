@@ -5,10 +5,26 @@
 #include <fstream>
 #include <windows.h>
 
-#define PROTOTYPE_UP     "EmptyProject10"
-#define PROTOTYPE_LOW    "emptyproject10"
-#define PROTOTYPE_DEF    "_EMPTYPROJECT10_H_"
-#define CONC(a, b)       a##b
+#define _QUANTUM       1
+#define _DUMMY_DX9     9
+#define _DUMMY_DX10    10
+
+#define _TARGET_TYPE   _QUANTUM
+#define CONC(a, b)     a##b
+
+#if _TARGET_TYPE == _DUMMY_DX10
+#   define PROTOTYPE_UP     "EmptyProject10"
+#   define PROTOTYPE_LOW    "emptyproject10"
+#   define PROTOTYPE_DEF    "_EMPTYPROJECT10_H_"
+#elif _TARGET_TYPE == _DUMMY_DX9
+#   define PROTOTYPE_UP     "EmptyProject9"
+#   define PROTOTYPE_LOW    "emptyproject9"
+#   define PROTOTYPE_DEF    "_EMPTYPROJECT9_H_"
+#elif _TARGET_TYPE == _QUANTUM
+#   define PROTOTYPE_UP     "EmptyProject"
+#   define PROTOTYPE_LOW    "emptyproject"
+#   define PROTOTYPE_DEF    "_EMPTYPROJECT_H_"
+#endif
 
 struct filedesc
 {
@@ -16,24 +32,28 @@ struct filedesc
     std::string suffix;
     bool replace;
     bool lower;
+	bool source;
 };
 
 int main()
 {
     filedesc files[] =
     {
-        { PROTOTYPE_UP,  "_VC80.sln",          true, false },
-        { PROTOTYPE_UP,  "_VC80.vcproj",       true, false },
-        { PROTOTYPE_UP,  "_VC90.sln",          true, false },
-        { PROTOTYPE_UP,  "_VC90.vcproj",       true, false },
-        { PROTOTYPE_LOW, ".h",                 true, true  },
-        { PROTOTYPE_LOW, "_main.cpp",          true, true  },
-        { PROTOTYPE_LOW, "_eventhandlers.cpp", true, true  },
-        { "",            "main.cpp",           true, true  }
+#if _TARGET_TYPE != _QUANTUM
+        { PROTOTYPE_UP,  "_VC80.sln",          true, false, false },
+        { PROTOTYPE_UP,  "_VC80.vcproj",       true, false, false },
+        { PROTOTYPE_UP,  "_VC90.sln",          true, false, false },
+#endif
+        { PROTOTYPE_UP,  "_VC90.vcproj",       true, false, false },
+
+        { PROTOTYPE_LOW, ".h",                 true, true, true  },
+        { PROTOTYPE_LOW, "_main.cpp",          true, true, true  },
+        { PROTOTYPE_LOW, "_eventhandlers.cpp", true, true, true  },
+        { "",            "main.cpp",           true, true, true  }
     };
     
-	// create directory
-    std::string projectname, projectdir, dest;
+	std::string projectname, projectname_low, projectdir, dest, src;
+	std::string protosrcdir, protoprojdir, sourcedir;
 
 	size_t proto_up = strlen(PROTOTYPE_UP);
 	size_t proto_low = strlen(PROTOTYPE_LOW);
@@ -42,8 +62,25 @@ int main()
     std::cout << "Project name: ";
     std::cin >> projectname;
 
-    projectdir = projectname;
-    std::transform(projectname.begin(), projectname.end(), projectdir.begin(), tolower);
+#if _TARGET_TYPE == _QUANTUM
+	projectname_low = projectname;
+    std::transform(projectname.begin(), projectname.end(), projectname_low.begin(), tolower);
+
+	sourcedir = "source\\" + projectname_low;
+	projectdir = "vs\\vc90\\";
+	protoprojdir = "vs\\vc90\\";
+	protosrcdir = std::string("source\\") + CONC(PROTOTYPE_LOW, "\\");
+
+    CreateDirectoryA(sourcedir.c_str(), NULL);
+#else
+	projectname_low = projectname;
+    std::transform(projectname.begin(), projectname.end(), projectname_low.begin(), tolower);
+
+	sourcedir = projectname_low;
+	projectdir = projectname_low;
+	protosrcdir = std::string(CONC(PROTOTYPE_LOW, "\\"));
+	protoprojdir = std::string(CONC(PROTOTYPE_LOW, "\\"));
+#endif
 
     CreateDirectoryA(projectdir.c_str(), NULL);
     size_t count = sizeof(files) / sizeof(files[0]);
@@ -51,15 +88,26 @@ int main()
 	// copy files
     for( size_t i = 0; i < count; ++i )
     {
-        dest = projectdir + "\\";
+		if( files[i].source )
+		{
+			dest = sourcedir + "\\";
+			src = protosrcdir + files[i].name + files[i].suffix;
+		}
+		else
+		{
+			dest = projectdir + "\\";
+			src = protoprojdir + files[i].name + files[i].suffix;
+		}
 
         if( files[i].lower )
         {
             dest +=
-                (files[i].name == "" ? files[i].suffix : projectdir + files[i].suffix);
+                (files[i].name == "" ? files[i].suffix : projectname_low + files[i].suffix);
+
+			std::cout << "copying\n    " << src << " to\n    " << dest << "\n\n";
 
             CopyFileA(
-                (CONC(PROTOTYPE_LOW, "\\") + files[i].name + files[i].suffix).c_str(),
+                src.c_str(),
                 dest.c_str(), true);
         }
         else
@@ -67,11 +115,14 @@ int main()
             dest +=
                 (files[i].name == "" ? files[i].suffix : projectname + files[i].suffix);
             
+			std::cout << "copying\n    " << src << " to\n    " << dest << "\n\n";
+
             CopyFileA(
-                (CONC(PROTOTYPE_LOW, "\\") + files[i].name + files[i].suffix).c_str(),
+                src.c_str(),
                 dest.c_str(), true);
         }
 
+		// replace strings
         if( files[i].replace )
         {
             std::ifstream f(dest.c_str(), std::ifstream::binary);
@@ -90,12 +141,13 @@ int main()
 
             while( (pos = str.find(PROTOTYPE_LOW, pos)) != std::string::npos )
             {
-                str.replace(pos, proto_low, projectdir);
+                str.replace(pos, proto_low, projectname_low);
+
                 pos++;
                 ++cnt;
             }
 
-            length -= cnt * (proto_low - (signed)projectdir.length());
+            length -= cnt * (proto_low - (signed)projectname_low.length());
 
             cnt = 0;
             pos = 0;
@@ -103,6 +155,7 @@ int main()
             while( (pos = str.find(PROTOTYPE_UP, pos)) != std::string::npos )
             {
                 str.replace(pos, proto_up, projectname);
+
                 pos++;
                 ++cnt;
             }
@@ -118,6 +171,7 @@ int main()
             while( (pos = str.find(PROTOTYPE_DEF, pos)) != std::string::npos )
             {
                 str.replace(pos, proto_def, "_" + tmp + "_H_");
+
                 pos++;
                 ++cnt;
             }
