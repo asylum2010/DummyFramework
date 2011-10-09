@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{45addd80-270f-4570-b5d7-a32e09412f31}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\media\effects\bloom.fx">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\..\..\media\effects\diffuse.fx">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\..\..\media\effects\fresnel.fx">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\..\..\media\effects\sky.fx">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\..\..\media\effects\tiles.fx">
+      <Filter>shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\fresnel\fresnel.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\fresnel\fresnel_eventhandlers.cpp" />
+    <ClCompile Include="..\..\source\fresnel\fresnel_main.cpp" />
+    <ClCompile Include="..\..\source\fresnel\main.cpp" />
+  </ItemGroup>
+</Project>

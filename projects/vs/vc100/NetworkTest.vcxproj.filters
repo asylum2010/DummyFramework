@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="extern">
+      <UniqueIdentifier>{d2a0173c-10ee-4d62-9f60-4549de54ef6d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\aircraft\airplane.cpp">
+      <Filter>extern</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\networktest\main.cpp" />
+    <ClCompile Include="..\..\source\networktest\networkserviceprovider.cpp" />
+    <ClCompile Include="..\..\source\networktest\networkserviceprovider_stub.cpp" />
+    <ClCompile Include="..\..\source\networktest\networktest_eventhandlers.cpp" />
+    <ClCompile Include="..\..\source\networktest\networktest_main.cpp" />
+    <ClCompile Include="..\..\source\networktest\networktest_thread.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\aircraft\airplane.h">
+      <Filter>extern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\networktest\networkserviceprovider.h" />
+    <ClInclude Include="..\..\source\networktest\networktest.h" />
+  </ItemGroup>
+</Project>

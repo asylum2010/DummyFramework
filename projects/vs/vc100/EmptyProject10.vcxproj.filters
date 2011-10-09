@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{b9337dc7-0bfa-49ac-923b-acc93b494279}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\emptyproject10\emptyproject10.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\emptyproject10\emptyproject10_eventhandlers.cpp" />
+    <ClCompile Include="..\..\source\emptyproject10\emptyproject10_main.cpp" />
+    <ClCompile Include="..\..\source\emptyproject10\main.cpp" />
+  </ItemGroup>
+</Project>

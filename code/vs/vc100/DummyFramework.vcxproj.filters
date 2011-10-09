@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="base">
+      <UniqueIdentifier>{581c876b-9f57-4229-8b2d-b2a5e14b01fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\d3d9">
+      <UniqueIdentifier>{310ade68-b36a-4d33-8c99-ee95e9fde30a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\d3d10">
+      <UniqueIdentifier>{9acb7bc4-128f-46fc-8883-e3d32a05795d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="camera">
+      <UniqueIdentifier>{b01b7328-d0db-485b-bd77-45c013f90790}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderers">
+      <UniqueIdentifier>{18aac108-f105-4cf8-bb96-80f785b1c6b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderers\d3d9">
+      <UniqueIdentifier>{7f8a4411-5fa3-4fc4-9c31-444098974b07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderers\d3d10">
+      <UniqueIdentifier>{d49d5b86-8ad8-4575-8bb4-4485daa411c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="menu">
+      <UniqueIdentifier>{fb7e97ee-e1d6-4f60-bd9b-5ca7a7ecdafe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui">
+      <UniqueIdentifier>{bf96ce82-f0e5-4ffc-b6da-733455ef33fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thread">
+      <UniqueIdentifier>{76a1802e-492f-4c95-bc2c-634ee20979d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="network">
+      <UniqueIdentifier>{e1292b7d-fc9c-405a-bc9b-89caab335c71}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\dummyframework\base\CApplication.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\base\CGameLogicSynchronizer.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\base\CHelper.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\base\CTimer.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\base\CTransformable.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CContentManager9.cpp">
+      <Filter>base\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CEffectRenderer9.cpp">
+      <Filter>base\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CGame9.cpp">
+      <Filter>base\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CObject9.cpp">
+      <Filter>base\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CScreenQuad9.cpp">
+      <Filter>base\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CSprite9.cpp">
+      <Filter>base\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CSpriteFont9.cpp">
+      <Filter>base\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CStateManager9.cpp">
+      <Filter>base\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\base\d3d10\CGame10.cpp">
+      <Filter>base\d3d10</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\camera\CAbstractCamera.cpp">
+      <Filter>camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\camera\CArcballCamera.cpp">
+      <Filter>camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\camera\CFPSCamera.cpp">
+      <Filter>camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\camera\CModelViewerCamera.cpp">
+      <Filter>camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CBloomRenderer9.cpp">
+      <Filter>renderers\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CCausticsRenderer9.cpp">
+      <Filter>renderers\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CEnvironmentRenderer9.cpp">
+      <Filter>renderers\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CGodRayRenderer9.cpp">
+      <Filter>renderers\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CLensFlareRenderer9.cpp">
+      <Filter>renderers\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CMotionBlurRenderer9.cpp">
+      <Filter>renderers\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CScreenFader9.cpp">
+      <Filter>renderers\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CShadowMapRenderer9.cpp">
+      <Filter>renderers\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CWaterRenderer9.cpp">
+      <Filter>renderers\d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\menu\CButton.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\menu\CControl.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\menu\CForm.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\menu\CFormManager.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\menu\CLabel.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\gui\CCheckBox.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\gui\CComboBox.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\gui\CGroupBox.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\gui\CMenuStrip.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\gui\CNumericUpDown.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\gui\COpenFileDialog.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\gui\CPictureBox.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\gui\CProgressBar.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\gui\CPushButton.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\gui\CRadioButton.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\gui\CStatic.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\gui\CStatusStrip.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\gui\CTrackBar.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\gui\CWindow.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\thread\CThread.cpp">
+      <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\network\udpchannel.cpp">
+      <Filter>network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\network\udpclient.cpp">
+      <Filter>network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\network\udpconnection.cpp">
+      <Filter>network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\dummyframework\network\udpserver.cpp">
+      <Filter>network</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

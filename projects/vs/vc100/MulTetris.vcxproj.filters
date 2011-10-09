@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="game">
+      <UniqueIdentifier>{cf1dc465-123c-4e27-984b-5cfdaa6633a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="menu">
+      <UniqueIdentifier>{c90a50c9-65a3-4445-8275-3fb7dd57c0dd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\multetris\coopgame.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\multetris\exitgame.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\multetris\gamevariables.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\multetris\multitable.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\multetris\singlegame.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\multetris\singletable.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\multetris\tetromino.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\multetris\versusgame.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\multetris\mainmenu.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\multetris\pausemenu.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\multetris\staticbackground.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\multetris\main.cpp" />
+    <ClCompile Include="..\..\source\multetris\multetris_eventhandlers.cpp" />
+    <ClCompile Include="..\..\source\multetris\multetris_main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\multetris\coopgame.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\multetris\exitgame.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\multetris\gamevariables.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\multetris\multitable.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\multetris\singlegame.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\multetris\singletable.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\multetris\tetromino.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\multetris\versusgame.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\multetris\mainmenu.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\multetris\pausemenu.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\multetris\staticbackground.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\multetris\multetris.h" />
+  </ItemGroup>
+</Project>
