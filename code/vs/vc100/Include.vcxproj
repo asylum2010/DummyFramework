@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{281AB309-2127-4C67-8017-15740F68E610}</ProjectGuid>
+    <RootNamespace>Include</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\$(SolutionName)_$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\$(SolutionName)_$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\$(SolutionName)_$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\$(SolutionName)_$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\dummyframework\base\CApplication.h" />
+    <ClInclude Include="..\..\include\dummyframework\base\CGameLogicSynchronizer.h" />
+    <ClInclude Include="..\..\include\dummyframework\base\CHelper.h" />
+    <ClInclude Include="..\..\include\dummyframework\base\CTimer.h" />
+    <ClInclude Include="..\..\include\dummyframework\base\CTransformable.h" />
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CContentManager9.h" />
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CEffectRenderer9.h" />
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CGame9.h" />
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CObject9.h" />
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CScreenQuad9.h" />
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CSprite9.h" />
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CSpriteFont9.h" />
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CStateManager9.h" />
+    <ClInclude Include="..\..\include\dummyframework\base\d3d10\CGame10.h" />
+    <ClInclude Include="..\..\include\dummyframework\camera\CAbstractCamera.h" />
+    <ClInclude Include="..\..\include\dummyframework\camera\CArcballCamera.h" />
+    <ClInclude Include="..\..\include\dummyframework\camera\CFPSCamera.h" />
+    <ClInclude Include="..\..\include\dummyframework\camera\CModelViewerCamera.h" />
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CBloomRenderer9.h" />
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CCausticsRenderer9.h" />
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CEnvironmentRenderer9.h" />
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CGodRayRenderer9.h" />
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CLensFlareRenderer9.h" />
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CMotionBlurRenderer9.h" />
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CScreenFader9.h" />
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CShadowMapRenderer9.h" />
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CWaterRenderer9.h" />
+    <ClInclude Include="..\..\include\dummyframework\template\bijectivemap.hpp" />
+    <ClInclude Include="..\..\include\dummyframework\template\connection.hpp" />
+    <ClInclude Include="..\..\include\dummyframework\template\defines.h" />
+    <ClInclude Include="..\..\include\dummyframework\template\signal.hpp" />
+    <ClInclude Include="..\..\include\dummyframework\template\signal0.hpp" />
+    <ClInclude Include="..\..\include\dummyframework\template\signal1.hpp" />
+    <ClInclude Include="..\..\include\dummyframework\template\signal_base.hpp" />
+    <ClInclude Include="..\..\include\dummyframework\template\syncedanimator.hpp" />
+    <ClInclude Include="..\..\include\dummyframework\template\unisignal.hpp" />
+    <ClInclude Include="..\..\include\dummyframework\menu\CButton.h" />
+    <ClInclude Include="..\..\include\dummyframework\menu\CControl.h" />
+    <ClInclude Include="..\..\include\dummyframework\menu\CForm.h" />
+    <ClInclude Include="..\..\include\dummyframework\menu\CFormManager.h" />
+    <ClInclude Include="..\..\include\dummyframework\menu\CLabel.h" />
+    <ClInclude Include="..\..\include\dummyframework\gui\CCheckBox.h" />
+    <ClInclude Include="..\..\include\dummyframework\gui\CComboBox.h" />
+    <ClInclude Include="..\..\include\dummyframework\gui\CGroupBox.h" />
+    <ClInclude Include="..\..\include\dummyframework\gui\CMenuStrip.h" />
+    <ClInclude Include="..\..\include\dummyframework\gui\CNumericUpDown.h" />
+    <ClInclude Include="..\..\include\dummyframework\gui\COpenFileDialog.h" />
+    <ClInclude Include="..\..\include\dummyframework\gui\CPictureBox.h" />
+    <ClInclude Include="..\..\include\dummyframework\gui\CProgressBar.h" />
+    <ClInclude Include="..\..\include\dummyframework\gui\CPushButton.h" />
+    <ClInclude Include="..\..\include\dummyframework\gui\CRadioButton.h" />
+    <ClInclude Include="..\..\include\dummyframework\gui\CStatic.h" />
+    <ClInclude Include="..\..\include\dummyframework\gui\CStatusStrip.h" />
+    <ClInclude Include="..\..\include\dummyframework\gui\CTrackBar.h" />
+    <ClInclude Include="..\..\include\dummyframework\gui\CWindow.h" />
+    <ClInclude Include="..\..\include\dummyframework\thread\CThread.h" />
+    <ClInclude Include="..\..\include\dummyframework\network\udpchannel.h" />
+    <ClInclude Include="..\..\include\dummyframework\network\udpclient.h" />
+    <ClInclude Include="..\..\include\dummyframework\network\udpconnection.h" />
+    <ClInclude Include="..\..\include\dummyframework\network\udpserver.h" />
+    <ClInclude Include="..\..\include\dummyframework.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

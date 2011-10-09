@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1250"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="DummyFramework"
 	ProjectGUID="{9AC620E6-58E3-4BA9-BDA4-0A75378309AE}"
 	RootNamespace="DummyFramework"
@@ -18,8 +18,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\..\lib\$(ConfigurationName)"
-			IntermediateDirectory="..\..\vs\$(SolutionName)_$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="$(SolutionDir)\$(SolutionName)_$(ConfigurationName)\$(ProjectName)"
+			IntermediateDirectory="$(SolutionDir)\$(SolutionName)_$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="4"
 			CharacterSet="2"
 			>
@@ -41,6 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="../../include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -75,12 +76,13 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="copy /Y &quot;$(TargetDir)\$(TargetFileName)&quot; &quot;$(SolutionDir)\..\lib\$(ConfigurationName)\$(TargetFileName)&quot;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\lib\$(ConfigurationName)"
-			IntermediateDirectory="..\..\vs\$(SolutionName)_$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="$(SolutionDir)\$(SolutionName)_$(ConfigurationName)\$(ProjectName)"
+			IntermediateDirectory="$(SolutionDir)\$(SolutionName)_$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="4"
 			CharacterSet="2"
 			WholeProgramOptimization="1"
@@ -104,6 +106,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="../../include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -137,6 +140,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="copy /Y &quot;$(TargetDir)\$(TargetFileName)&quot; &quot;$(SolutionDir)\..\lib\$(ConfigurationName)\$(TargetFileName)&quot;"
 			/>
 		</Configuration>
 	</Configurations>

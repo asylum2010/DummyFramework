@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9AC620E6-58E3-4BA9-BDA4-0A75378309AE}</ProjectGuid>
+    <RootNamespace>DummyFramework</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\$(SolutionName)_$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\$(SolutionName)_$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\$(SolutionName)_$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\$(SolutionName)_$(Configuration)\$(ProjectName)\</IntDir>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../../include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)\$(TargetFileName)" "$(SolutionDir)\..\lib\$(Configuration)\$(TargetFileName)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../../include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)\$(TargetFileName)" "$(SolutionDir)\..\lib\$(Configuration)\$(TargetFileName)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\dummyframework\base\CApplication.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\base\CGameLogicSynchronizer.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\base\CHelper.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\base\CTimer.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\base\CTransformable.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CContentManager9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CEffectRenderer9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CGame9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CObject9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CScreenQuad9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CSprite9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CSpriteFont9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\base\d3d9\CStateManager9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\base\d3d10\CGame10.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\camera\CAbstractCamera.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\camera\CArcballCamera.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\camera\CFPSCamera.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\camera\CModelViewerCamera.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CBloomRenderer9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CCausticsRenderer9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CEnvironmentRenderer9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CGodRayRenderer9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CLensFlareRenderer9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CMotionBlurRenderer9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CScreenFader9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CShadowMapRenderer9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CWaterRenderer9.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\menu\CButton.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\menu\CControl.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\menu\CForm.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\menu\CFormManager.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\menu\CLabel.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\gui\CCheckBox.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\gui\CComboBox.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\gui\CGroupBox.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\gui\CMenuStrip.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\gui\CNumericUpDown.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\gui\COpenFileDialog.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\gui\CPictureBox.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\gui\CProgressBar.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\gui\CPushButton.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\gui\CRadioButton.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\gui\CStatic.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\gui\CStatusStrip.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\gui\CTrackBar.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\gui\CWindow.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\thread\CThread.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\network\udpchannel.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\network\udpclient.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\network\udpconnection.cpp" />
+    <ClCompile Include="..\..\source\dummyframework\network\udpserver.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
