@@ -78,6 +78,7 @@
     <ClInclude Include="..\..\include\dummyframework\template\signal.hpp" />
     <ClInclude Include="..\..\include\dummyframework\template\signal0.hpp" />
     <ClInclude Include="..\..\include\dummyframework\template\signal1.hpp" />
+    <ClInclude Include="..\..\include\dummyframework\template\signal2.hpp" />
     <ClInclude Include="..\..\include\dummyframework\template\signal_base.hpp" />
     <ClInclude Include="..\..\include\dummyframework\template\syncedanimator.hpp" />
     <ClInclude Include="..\..\include\dummyframework\template\unisignal.hpp" />

@@ -4,6 +4,7 @@
 
 #include "signal0.hpp"
 #include "signal1.hpp"
+#include "signal2.hpp"
 #include "unisignal.hpp"
 
 #ifndef events

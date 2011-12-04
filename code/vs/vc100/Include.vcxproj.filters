@@ -220,5 +220,8 @@
       <Filter>network</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dummyframework.h" />
+    <ClInclude Include="..\..\include\dummyframework\template\signal2.hpp">
+      <Filter>template</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
