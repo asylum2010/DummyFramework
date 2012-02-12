@@ -44,7 +44,7 @@ namespace DummyFramework
 
 	public:
 		static bool CheckError();
-		static CWindow* GetWindow(HWND hwnd);
+		static CWindow* GetWindowByHandle(HWND hwnd);
 
 		bool DelegateInput;
 		bool DrawFocusRect;

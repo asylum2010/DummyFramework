@@ -16,6 +16,7 @@
 #include <dummyframework/gui/CStatic.h>
 #include <dummyframework/gui/CNumericUpDown.h>
 #include <dummyframework/gui/CPushButton.h>
+#include <dummyframework/gui/CComboBox.h>
 
 class WinapiTest : public DummyFramework::CGame9
 {
@@ -42,6 +43,7 @@ private:
 	DummyFramework::CNumericUpDown   updown1;
 	DummyFramework::CTrackBar        trackbar1;
 	DummyFramework::CStatic          label1;
+	DummyFramework::CComboBox        combo1;
 
 	DummyFramework::CBloomRenderer9* bloomrenderer;
 
@@ -52,6 +54,7 @@ eventhandlers:
 	void application_keyup(const DummyFramework::skeyboardstate& kstate);
 	void application_command(const DummyFramework::scommand& cmd);
 	void application_notify(const DummyFramework::scommand& cmd);
+	void application_windowproc(DummyFramework::smessage& message);
 };
 
 #endif

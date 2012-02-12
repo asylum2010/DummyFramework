@@ -3,6 +3,7 @@
 #define _CCOMBOBOX_H_
 
 #include "CWindow.h"
+#include <uxtheme.h>
 
 namespace DummyFramework
 {
@@ -15,6 +16,14 @@ namespace DummyFramework
 
 	class CComboBox : public CWindow
 	{
+	protected:
+		HTHEME theme;
+
+		static WNDPROC originalproc;
+		static LRESULT WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
+
+		void RenderItem(LPDRAWITEMSTRUCT ds);
+
 	public:
 		edropdownstyle DropDownStyle;
 
@@ -22,6 +31,8 @@ namespace DummyFramework
 		~CComboBox();
 
 		bool Initialize(HWND parent);
+		bool Render(LPDRAWITEMSTRUCT ds);
+
 		LRESULT ProcessCommands(WPARAM wparam, LPARAM lparam);
 
 		inline void AddString(const std::string& str) {

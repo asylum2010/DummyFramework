@@ -83,6 +83,12 @@ void WinapiTest::InitializeGUI()
 	label1.Location.x = width - 324 + 6;
 	label1.Location.y = height - mh - sh + 4 + 2;
 
+	combo1.Location.x = groupbox1.Location.x;
+	combo1.Location.y = groupbox1.Location.y + groupbox1.Size.y + 16;
+	combo1.Size.x = 150;
+	combo1.Size.y = 20;
+	combo1.DropDownStyle = DummyFramework::dds_dropdownlist;
+
 	// init
 	menustrip1.Initialize(hwnd);
 	picturebox1.Initialize(hwnd);
@@ -92,10 +98,20 @@ void WinapiTest::InitializeGUI()
 	trackbar1.Initialize(hwnd);
 	button1.Initialize(hwnd);
 	label1.Initialize(hwnd);
+	combo1.Initialize(hwnd);
 
 	trackbar1.SetRange(0, 100);
 	trackbar1.SetPos(55);
 	updown1.SetValue(0.55f);
+
+	combo1.AddString("Apple");
+	combo1.AddString("Lemon");
+	combo1.AddString("\\Banane");
+	combo1.AddString("Kiwi");
+	combo1.AddString("\\Mango");
+	combo1.AddString("\\Orange");
+
+	combo1.SetCurrentItem(1);
 
 #ifdef _DEBUG
 	DummyFramework::CWindow::CheckError();

@@ -55,7 +55,7 @@ namespace DummyFramework
 		return true;
 	}
 	//=============================================================================================================
-	CWindow* CWindow::GetWindow(HWND hwnd)
+	CWindow* CWindow::GetWindowByHandle(HWND hwnd)
 	{
 		windowmap::iterator it = wndmap.find(hwnd);
 

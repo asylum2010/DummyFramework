@@ -16,6 +16,18 @@ namespace DummyFramework
         dummyinstance->KeyBoardState.virtualkey = 0;
         dummyinstance->MouseState.button = 0;
 
+		smessage Message;
+
+		Message.wparam = wParam;
+        Message.lparam = lParam;
+		Message.msg = msg;
+		Message.handled = false;
+
+		dummyinstance->windowproc(Message);
+
+		if( Message.handled )
+			return TRUE;
+
         switch( msg )
         {
         case WM_MENUSELECT:
@@ -58,7 +70,7 @@ namespace DummyFramework
 
             dummyinstance->notify(Command);
             break;
-
+		
         case WM_CLOSE:
             dummyinstance->closed();
             dummyinstance->activated.disconnectall();

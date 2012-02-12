@@ -9,6 +9,7 @@ WinapiTest::WinapiTest()
 	Application.keyup.connect(this, &WinapiTest::application_keyup);
 	Application.command.connect(this, &WinapiTest::application_command);
 	Application.notify.connect(this, &WinapiTest::application_notify);
+	Application.windowproc.connect(this, &WinapiTest::application_windowproc);
 }
 //=============================================================================================================
 WinapiTest::~WinapiTest()

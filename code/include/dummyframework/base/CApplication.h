@@ -54,6 +54,14 @@ namespace DummyFramework
 		LPARAM lparam;
 	};
 
+	struct smessage
+	{
+		WPARAM wparam;
+		LPARAM lparam;
+		unsigned int msg;
+		bool handled;
+	};
+
 	/**
 	 * \brief Win32 based application class
 	 *
@@ -67,14 +75,13 @@ namespace DummyFramework
         LPDIRECTINPUTDEVICE8    mouse;
         DIMOUSESTATE            mstate;
 		DIMOUSESTATE            mpstate;
-
-        WNDCLASSEXA    wc;
-		RECT           workarea;
-        HWND           hwnd;
-        bool           running;
-        bool           active;
-		bool           windowed;
-        unsigned char  state;
+        WNDCLASSEXA             wc;
+		RECT                    workarea;
+        HWND                    hwnd;
+        bool                    running;
+        bool                    active;
+		bool                    windowed;
+        unsigned char           state;
 
         static CApplication* dummyinstance;
         static LRESULT WINAPI WndProc(HWND hWnd, unsigned int msg, WPARAM wParam, LPARAM lParam);
@@ -115,13 +122,14 @@ namespace DummyFramework
 		signal0 paintcontinued;
 		signal0 closed;
 
-        signal1<const skeyboardstate&> keydown;
-        signal1<const skeyboardstate&> keyup;
-        signal1<const smousestate&>    mousedown;
-        signal1<const smousestate&>    mouseup;
-        signal1<const smousestate&>    mousemove;
-		signal1<const scommand&>       command;
-		signal1<const scommand&>       notify;
+        signal1<const skeyboardstate&>  keydown;
+        signal1<const skeyboardstate&>  keyup;
+        signal1<const smousestate&>     mousedown;
+        signal1<const smousestate&>     mouseup;
+        signal1<const smousestate&>     mousemove;
+		signal1<const scommand&>        command;
+		signal1<const scommand&>        notify;
+		signal1<smessage&>              windowproc;
     };
 }
 

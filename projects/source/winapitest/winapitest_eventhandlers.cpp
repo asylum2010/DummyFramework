@@ -14,6 +14,21 @@ void WinapiTest::application_keyup(const DummyFramework::skeyboardstate& kstate)
 	}
 }
 //=============================================================================================================
+void WinapiTest::application_windowproc(DummyFramework::smessage& message)
+{
+	switch( message.msg )
+	{
+	case WM_DRAWITEM:
+		if( message.wparam == combo1.ID() )
+			message.handled = combo1.Render((LPDRAWITEMSTRUCT)message.lparam);
+
+		break;
+
+	default:
+		break;
+	}
+}
+//=============================================================================================================
 void WinapiTest::application_notify(const DummyFramework::scommand& cmd)
 {
 	NMHDR* hdr = (NMHDR*)cmd.lparam;
@@ -37,7 +52,24 @@ void WinapiTest::application_command(const DummyFramework::scommand& cmd)
 	WORD msg = HIWORD(cmd.wparam);
 	HWND ctrl = (HWND)cmd.lparam;
 
-	if( ctrl == trackbar1.GetHandle() )
+	static DWORD prev = 0;
+
+	if( ctrl == combo1.GetHandle() )
+	{
+		if( msg == CBN_SELCHANGE )
+		{
+			TCHAR itemtext[256];
+
+			DWORD ind = SendMessage(ctrl, CB_GETCURSEL, 0, 0);
+			SendMessage(ctrl, CB_GETLBTEXT, ind, (LPARAM)itemtext);
+
+			if( itemtext[0] == '\\' )
+				SendMessage(ctrl, CB_SETCURSEL, prev, 0);
+			else
+				prev = ind;
+		}
+	}
+	else if( ctrl == trackbar1.GetHandle() )
 	{
 		if( DummyFramework::tba_moved == trackbar1.ProcessCommands(cmd.wparam, cmd.lparam) )
 		{

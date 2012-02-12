@@ -105,13 +105,13 @@ bool ConvertX2OBJ::LoadContent()
 		++entries;
 	}
 
-	std::cout << "\nnumber of entries: " << entries << "\n";
-	std::cout << "position: " << posoff << ", " << possize << "\ntexcoord: " << texoff <<
-		", " << texsize << "\nnormal: " << normoff << ", " << normsize << "\n";
+	std::cout << "\nNumber of entries: " << entries << "\n";
+	std::cout << "Position offset: " << posoff << ", " << possize << "\nTexcoord offset: " << texoff <<
+		", " << texsize << "\nNormal offset: " << normoff << ", " << normsize << "\n";
 
-	std::cout << "\nnumber of vertices: " << mesh->GetNumVertices() << "\n";
-	std::cout << "vertex stride: " << mesh->GetNumBytesPerVertex() << "\n";
-	std::cout << "number of faces: " << mesh->GetNumFaces() << "\n\n";
+	std::cout << "\nNumber of vertices: " << mesh->GetNumVertices() << "\n";
+	std::cout << "Vertex stride: " << mesh->GetNumBytesPerVertex() << "\n";
+	std::cout << "Number of faces: " << mesh->GetNumFaces() << "\n\n";
 
 	// convert to obj
 	mesh->LockVertexBuffer(0, (void**)&vdata);
@@ -154,7 +154,7 @@ bool ConvertX2OBJ::LoadContent()
 	subsetcounts[numsubsets] *= 3;
 	++numsubsets;
 
-	std::cout << "\nnumber of subsets: " << numsubsets << "\n";
+	std::cout << "\nNumber of subsets: " << numsubsets << "\n";
 
 	for( DWORD i = 0; i < numsubsets; ++i )
 	{
@@ -164,6 +164,8 @@ bool ConvertX2OBJ::LoadContent()
 	// for each subset write out data
 	float x, y, z, w;
 	DWORD count;
+
+	CreateDirectory("meshes/output", NULL);
 
 	std::ofstream of("meshes/output/output.obj");
 	of << "#\n# DummyFramework X to OBJ converter\n#\n\n";
@@ -182,32 +184,14 @@ bool ConvertX2OBJ::LoadContent()
 		for( DWORD i = 0; i < numsubsets; ++i )
 		{
 			of << "# subset " << i << " to come\n";
-
-			/*
-			// filter out duplicate vertices
-			// probably this isn't the most efficient method
-			cache.clear();
-
-			for( DWORD j = 0; j < subsetcounts[i]; ++j )
-			{
-				index = *(((WORD*)idata) + subsetstarts[i] + j);
-
-				if( cache.end() == std::find(cache.begin(), cache.end(), index) )
-					cache.push_back(index);
-			}
-			*/
-
+			
 			// positions
 			count = 0;
 
 			for( DWORD k = 0; k < mesh->GetNumVertices(); ++k )
 			{
 				index = k;
-
-			//for( wordlist::iterator it = cache.begin(); it != cache.end(); ++it )
-			//{
-				//index = *it;
-				
+							
 				x = *((float*)(vdata + stride * index + posoff));
 				y = *((float*)(vdata + stride * index + posoff + sizeof(float)));
 				z = *((float*)(vdata + stride * index + posoff + 2 * sizeof(float)));
@@ -239,10 +223,6 @@ bool ConvertX2OBJ::LoadContent()
 				{
 					index = k;
 
-				//for( wordlist::iterator it = cache.begin(); it != cache.end(); ++it )
-				//{
-				//	index = *it;
-
 					x = *((float*)(vdata + stride * index + texoff));
 
 					if( texsize > 1 )
@@ -267,10 +247,7 @@ bool ConvertX2OBJ::LoadContent()
 				for( DWORD k = 0; k < mesh->GetNumVertices(); ++k )
 				{
 					index = k;
-				//for( wordlist::iterator it = cache.begin(); it != cache.end(); ++it )
-				//{
-				//	index = *it;
-
+				
 					x = *((float*)(vdata + stride * index + normoff));
 					y = *((float*)(vdata + stride * index + normoff + sizeof(float)));
 					z = *((float*)(vdata + stride * index + normoff + 2 * sizeof(float)));
@@ -290,13 +267,39 @@ bool ConvertX2OBJ::LoadContent()
 			for( DWORD j = 0; j < subsetcounts[i]; j += 3 )
 			{
 				index = *(((WORD*)idata) + subsetstarts[i] + j) + 1;
-				of << "f " << index << "/" << index << "/" << index << " ";
+				of << "f " << index;
+
+				if( texsize > 0 )
+					of << "/" << index;
+				else if( normsize > 0 )
+					of << "/";
+
+				if( normsize > 0 )
+					of << "/" << index;
 
 				index = *(((WORD*)idata) + subsetstarts[i] + j + 1) + 1;
-				of << index << "/" << index << "/" << index << " ";
+				of << " " << index;
+
+				if( texsize > 0 )
+					of << "/" << index;
+				else if( normsize > 0 )
+					of << "/";
+
+				if( normsize > 0 )
+					of << "/" << index;
 
 				index = *(((WORD*)idata) + subsetstarts[i] + j + 2) + 1;
-				of << index << "/" << index << "/" << index << "\n";
+				of << " " << index;
+
+				if( texsize > 0 )
+					of << "/" << index;
+				else if( normsize > 0 )
+					of << "/";
+
+				if( normsize > 0 )
+					of << "/" << index;
+
+				of << "\n";
 
 				++count;
 			}

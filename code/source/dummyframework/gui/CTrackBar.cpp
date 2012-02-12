@@ -16,11 +16,13 @@ namespace DummyFramework
 			_DUMMY_INPUT_EVENTS
 				if( it->second->DelegateInput )
 					SendMessage(it->second->GetParent(), msg, wparam, lparam);
+
 				break;
 
 			case WM_SETFOCUS:
 				if( !it->second->DrawFocusRect )
 					return 0;
+
 				break;
 
 			default:
