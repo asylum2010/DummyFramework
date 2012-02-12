@@ -6,6 +6,9 @@
 // http://msdn.microsoft.com/en-us/library/windows/desktop/dd373487%28v=vs.85%29.aspx
 // http://msdn.microsoft.com/en-us/library/windows/desktop/bb773210%28v=vs.85%29.aspx
 
+// http://www.codeguru.com/cpp/controls/buttonctrl/advancedbuttons/article.php/c5161
+// http://www.windows-api.com/microsoft/Win32-UI/29257426/dropdown-list-with-cbsdropdownlist--cbsownerdrawvariable-in-vista.aspx
+
 namespace DummyFramework
 {
 	WNDPROC CComboBox::originalproc = 0;
@@ -20,6 +23,32 @@ namespace DummyFramework
 
 			switch( msg )
 			{
+			/*
+			case WM_PAINT:
+				{
+					PAINTSTRUCT ps;
+					RECT rc;
+					HRESULT hr;
+
+					//HTHEME button = OpenThemeData(hwnd, L"BUTTON");
+
+					HDC hdc = BeginPaint(hwnd, &ps);
+					{
+						GetWindowRect(hwnd, &rc);
+
+						HDC ndc = 0;
+
+						BeginBufferedPaint(hdc, &rc, , , &ndc);
+
+						hr = DrawThemeBackground(combo->theme, hdc, CP_READONLY, 0, &rc, 0);
+						//hr = DrawThemeBackground(button, hdc, BP_PUSHBUTTON, PBS_NORMAL, &rc, 0);
+					}
+					EndPaint(hwnd, &ps);
+					//CloseThemeData(button);
+				}
+				return 0;
+			*/
+
 			case WM_DESTROY:
 				if( combo->theme )
 				{
@@ -142,6 +171,20 @@ namespace DummyFramework
 		if( theme )
 		{
 			/*
+			if( ds->itemAction == ODA_DRAWENTIRE )
+			{
+				HRESULT hr;
+
+				//if( ds->itemState == 
+				//printf("hello\n");
+
+				if( ds->itemState == ODS_COMBOBOXEDIT ) {
+					hr = DrawThemeBackground(theme, ds->hDC, CP_DROPDOWNBUTTON, CBXS_NORMAL, &ds->rcItem, 0);
+				}
+			}
+			*/
+
+			/*
 			if( ds->itemState == ODS_COMBOBOXEDIT )
 			{
 				// render the combo box itself
@@ -149,7 +192,7 @@ namespace DummyFramework
 				HRESULT hr;
 
 				GetWindowRect(hwnd, &rc);
-				hr = DrawThemeBackground(theme, ds->hDC, CP_BACKGROUND, 0, &rc, 0);
+				hr = DrawThemeBackground(theme, ds->hDC, CP_DROPDOWNBUTTON, CBXS_NORMAL, &rc, 0);
 
 				return false;
 			}
