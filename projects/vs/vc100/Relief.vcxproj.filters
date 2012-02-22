@@ -4,6 +4,9 @@
     <Filter Include="shaders">
       <UniqueIdentifier>{255caf87-41b2-4384-b572-e505853f33ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{01f8c544-620f-4194-b024-38d96bc47daa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\media\effects\bloom.fx">
@@ -15,6 +18,9 @@
     <None Include="..\..\..\media\effects\sky.fx">
       <Filter>shaders</Filter>
     </None>
+    <None Include="..\..\resources\common.aps">
+      <Filter>resources</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\relief\main.cpp" />
@@ -23,5 +29,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\relief\relief.h" />
+    <ClInclude Include="..\..\resources\resource.h">
+      <Filter>resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\resources\common.rc">
+      <Filter>resources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

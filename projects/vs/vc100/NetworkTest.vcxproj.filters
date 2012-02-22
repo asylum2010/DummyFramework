@@ -4,6 +4,9 @@
     <Filter Include="extern">
       <UniqueIdentifier>{d2a0173c-10ee-4d62-9f60-4549de54ef6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{26dd5c0e-925c-435f-a3a7-165c03ddf7c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\aircraft\airplane.cpp">
@@ -22,5 +25,18 @@
     </ClInclude>
     <ClInclude Include="..\..\source\networktest\networkserviceprovider.h" />
     <ClInclude Include="..\..\source\networktest\networktest.h" />
+    <ClInclude Include="..\..\resources\resource.h">
+      <Filter>resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\resources\common.aps">
+      <Filter>resources</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\resources\common.rc">
+      <Filter>resources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

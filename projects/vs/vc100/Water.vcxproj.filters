@@ -4,6 +4,9 @@
     <Filter Include="shaders">
       <UniqueIdentifier>{62283828-9432-421b-9a6d-6c346f5841e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{23ef8c82-d469-4e57-9323-04bc5eec4e73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\media\effects\blinnphong.fx">
@@ -21,6 +24,9 @@
     <None Include="..\..\..\media\effects\water.fx">
       <Filter>shaders</Filter>
     </None>
+    <None Include="..\..\resources\common.aps">
+      <Filter>resources</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\water\main.cpp" />
@@ -29,5 +35,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\water\water.h" />
+    <ClInclude Include="..\..\resources\resource.h">
+      <Filter>resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\resources\common.rc">
+      <Filter>resources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

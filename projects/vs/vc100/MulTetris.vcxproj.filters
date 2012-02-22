@@ -7,6 +7,9 @@
     <Filter Include="menu">
       <UniqueIdentifier>{c90a50c9-65a3-4445-8275-3fb7dd57c0dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{ee009107-f53f-46e7-a212-a735b806b1da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\multetris\coopgame.cpp">
@@ -81,5 +84,18 @@
       <Filter>menu</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\multetris\multetris.h" />
+    <ClInclude Include="..\..\resources\resource.h">
+      <Filter>resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\resources\common.aps">
+      <Filter>resources</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\resources\common.rc">
+      <Filter>resources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

@@ -16,6 +16,9 @@
     <Filter Include="shaders">
       <UniqueIdentifier>{7791d7e5-96e8-401c-9961-7230c8337bb5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{0545136e-428a-4f3a-8335-e020d2146876}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\spacebang2\script.cpp">
@@ -186,6 +189,9 @@
       <Filter>game</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\spacebang2\spacebang2.h" />
+    <ClInclude Include="..\..\resources\resource.h">
+      <Filter>resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\spacebang2\script.l">
@@ -218,5 +224,13 @@
     <None Include="..\..\..\media\spacebang2\distort.fx">
       <Filter>shaders</Filter>
     </None>
+    <None Include="..\..\resources\common.aps">
+      <Filter>resources</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\resources\common.rc">
+      <Filter>resources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

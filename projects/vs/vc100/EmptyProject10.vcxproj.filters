@@ -4,13 +4,29 @@
     <Filter Include="shaders">
       <UniqueIdentifier>{b9337dc7-0bfa-49ac-923b-acc93b494279}</UniqueIdentifier>
     </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{21b5578e-1dac-4b24-8f19-2da5e7fe28b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\emptyproject10\emptyproject10.h" />
+    <ClInclude Include="..\..\resources\resource.h">
+      <Filter>resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\emptyproject10\emptyproject10_eventhandlers.cpp" />
     <ClCompile Include="..\..\source\emptyproject10\emptyproject10_main.cpp" />
     <ClCompile Include="..\..\source\emptyproject10\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\resources\common.aps">
+      <Filter>resources</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\resources\common.rc">
+      <Filter>resources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

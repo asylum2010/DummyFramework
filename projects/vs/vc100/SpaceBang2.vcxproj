@@ -53,7 +53,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../code/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../code/include;../../../extern/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -73,7 +73,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../../code/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../code/include;../../../extern/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -127,6 +127,7 @@
     <ClCompile Include="..\..\source\spacebang2\spacebang2_main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\resources\resource.h" />
     <ClInclude Include="..\..\source\spacebang2\script.h" />
     <ClInclude Include="..\..\source\spacebang2\animatedbutton.h" />
     <ClInclude Include="..\..\source\spacebang2\animatedlabel.h" />
@@ -156,6 +157,9 @@
     <ClInclude Include="..\..\source\spacebang2\spacebang2.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\resources\common.aps">
+      <FileType>Document</FileType>
+    </None>
     <None Include="..\..\source\spacebang2\script.l" />
     <None Include="..\..\source\spacebang2\script.y" />
     <None Include="..\..\..\media\spacebang2\scripts\demolevel.txt" />
@@ -166,6 +170,9 @@
     <None Include="..\..\..\media\spacebang2\scripts\stage4.txt" />
     <None Include="..\..\..\media\spacebang2\scripts\stage5.txt" />
     <None Include="..\..\..\media\spacebang2\distort.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\resources\common.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
