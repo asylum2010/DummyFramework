@@ -17,7 +17,7 @@ game
     tutorial("Pick up powerups to gain advantages!");
     
     enemy(bomb, 2, 3, center, 15);
-    message("These guys doesn't look\nvery stable...");
+    message("These guys don't look\nvery stable...");
     wait(enemyonscreen);
     
     enemy(regular, 3, 1, center, 20);

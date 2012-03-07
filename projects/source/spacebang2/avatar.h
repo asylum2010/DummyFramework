@@ -8,7 +8,7 @@
 /**
  * \brief The character controlled by the player
  *
- * This class represents a user-controllable sprite, specifically for shooter games.
+ * This class represents a user-controllable sprite, specifically for side-scroller games.
  */
 class Avatar : public GameElement, public DummyFramework::has_slots
 {

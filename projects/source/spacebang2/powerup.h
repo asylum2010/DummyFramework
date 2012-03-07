@@ -9,7 +9,7 @@
  * \brief A powerup
  *
  * Theres no need for inheritance since the game handles powerups,
- * thus it can use the signal/slot system.
+ * so it can use the signal/slot system.
  */
 class Powerup : public GameElement
 {
