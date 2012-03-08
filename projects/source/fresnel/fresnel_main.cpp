@@ -75,7 +75,7 @@ bool Fresnel::Initialize()
 bool Fresnel::LoadContent()
 {
 #ifdef _DEBUG
-	SetCurrentDirectory("../../../../media/");
+	SetCurrentDirectory("../../../media/");
 #else
 	SetCurrentDirectory("../media/");
 #endif

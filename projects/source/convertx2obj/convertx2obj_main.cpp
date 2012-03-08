@@ -6,6 +6,11 @@
 ConvertX2OBJ::ConvertX2OBJ()
 {
 	Application.keyup.connect(this, &ConvertX2OBJ::application_keyup);
+	Application.keydown.connect(&camera, &DummyFramework::CModelViewerCamera::onkeydown);
+	Application.keyup.connect(&camera, &DummyFramework::CModelViewerCamera::onkeyup);
+	Application.mousedown.connect(&camera, &DummyFramework::CModelViewerCamera::onmousedown);
+	Application.mouseup.connect(&camera, &DummyFramework::CModelViewerCamera::onmouseup);
+	Application.mousemove.connect(&camera, &DummyFramework::CModelViewerCamera::onmousemove);
 }
 //=============================================================================================================
 ConvertX2OBJ::~ConvertX2OBJ()
@@ -38,7 +43,17 @@ bool ConvertX2OBJ::Initialize()
 	bool success = CGame9::Initialize();
 	dassert(false, "ConvertX2OBJ::Initialize(): Could not initialize game", success);
 
-	// TODO: initialization logic
+	camera.ZoomSpeed = 0.05f;
+	camera.SetDistance(1.4f);
+	camera.SetClip(0.1f, 100);
+	camera.SetAspect((float)DisplayMode.Width / (float)DisplayMode.Height);
+	camera.SetPosition(0, 0, 0);
+	camera.SetFov(D3DX_PI / 2);
+	camera.OrbitRight(-1.2f * D3DX_PI);
+	camera.OrbitUp(0.45f);
+	camera.ClampPitch(-0.55f, D3DX_PI / 2);
+
+	Graphics->SetRenderState(D3DRS_LIGHTING, false);
 	return success;
 }
 //=============================================================================================================
@@ -50,8 +65,15 @@ bool ConvertX2OBJ::LoadContent()
 	SetCurrentDirectory("../media/");
 #endif
 
-	LPD3DXMESH mesh = Content.LoadMesh("meshes/skullocc2.X");
-	dassert(false, "ConvertX2OBJ::LoadContent(): Could not load mesh", mesh);
+	object.Initialize(*this);
+
+	bool success = Content.CreateObject(object, "meshes/knot.x");
+	dassert(false, "ConvertX2OBJ::LoadContent(): Could not load object", success);
+	
+	//object.Mesh = Content.LoadMesh("meshes/airplane.X");
+	//dassert(false, "ConvertX2OBJ::LoadContent(): Could not load mesh", object.Mesh);
+	
+	LPD3DXMESH mesh = object.Mesh;
 
 	// look for vertex attributes
 	D3DVERTEXELEMENT9 decl[MAX_FVF_DECL_SIZE];
@@ -179,7 +201,7 @@ bool ConvertX2OBJ::LoadContent()
 		typedef std::list<WORD> wordlist;
 
 		wordlist cache;
-		WORD index;
+		DWORD index;
 
 		for( DWORD i = 0; i < numsubsets; ++i )
 		{
@@ -309,30 +331,51 @@ bool ConvertX2OBJ::LoadContent()
 		}
 	}
 
+	D3DXMATRIX tmp;
+	D3DXVECTOR3 center;
+	float radius;
+
+	D3DXComputeBoundingSphere((D3DXVECTOR3*)(vdata + posoff), mesh->GetNumVertices(), stride, &center, &radius);
+	std::cout << "\nBounding sphere radius: " << radius << "\n";
+
 	mesh->UnlockAttributeBuffer();
 	mesh->UnlockIndexBuffer();
 	mesh->UnlockVertexBuffer();
 
 	of.close();
 
+	radius = 0.7f / radius;
+
+	D3DXMatrixScaling(&world, radius, radius, radius);
+	D3DXVec3TransformCoord(&center, &center, &world);
+
+	D3DXMatrixTranslation(&tmp, -center.x, -center.y, -center.z);
+	D3DXMatrixMultiply(&world, &world, &tmp);
+
 	return CGame9::LoadContent();
 }
 //=============================================================================================================
 void ConvertX2OBJ::Update()
 {
-	// TODO: fixed time step game logic
+	camera.Update();
 	CGame9::Update();
 }
 //=============================================================================================================
 void ConvertX2OBJ::Draw()
 {
-	// TODO: interpolation
+	camera.UpdateTransforms((float)Sync.Alpha());
+	camera.GetViewMatrix(view);
+	camera.GetProjectionMatrix(proj);
+
+	Graphics->SetTransform(D3DTS_WORLD, &world);
+	Graphics->SetTransform(D3DTS_VIEW, &view);
+	Graphics->SetTransform(D3DTS_PROJECTION, &proj);
 
 	Graphics->Clear(0, NULL, D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER, 0xff6694ed, 1.0f, 0);
 
 	Graphics->BeginScene();
 	{
-		// TODO: draw
+		object.Draw();
 		CGame9::Draw();
 	}
 	Graphics->EndScene();

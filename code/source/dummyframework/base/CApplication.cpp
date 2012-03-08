@@ -261,7 +261,7 @@ namespace DummyFramework
 
         std::cout << 
             "DummyFramework v1.2\n"
-            "(c) 2008-2011 Asylum\n\n";
+            "(c) 2008-2012 Asylum\n\n";
     }
     //=============================================================================================================
     CApplication::~CApplication()
@@ -342,6 +342,7 @@ namespace DummyFramework
     {
         RECT rect = { 0, 0, width, height };
         DWORD style = WS_CLIPCHILDREN|WS_CLIPSIBLINGS;
+		WCHAR szExePath[MAX_PATH];
 
         if( hwnd )
         {
@@ -351,12 +352,15 @@ namespace DummyFramework
             return true;
         }
 
+        GetModuleFileNameW(NULL, szExePath, MAX_PATH);
+
         wc.cbSize           = sizeof(WNDCLASSEXA);
         wc.style            = CS_CLASSDC;
         wc.lpfnWndProc      = (WNDPROC)WndProc;
         wc.hInstance        = GetModuleHandle(NULL);
         wc.lpszClassName    = "DummyDXClass";
         wc.hbrBackground    = CreateSolidBrush(RGB(240, 240, 240));
+		wc.hIcon            = ExtractIconW(wc.hInstance, szExePath, 0);
 
         if( !RegisterClassEx(&wc) )
         {

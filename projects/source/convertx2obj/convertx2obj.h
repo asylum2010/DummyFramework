@@ -4,6 +4,8 @@
 
 #define _DUMMY_DX 9
 #include <dummyframework/base/d3d9/CGame9.h>
+#include <dummyframework/base/d3d9/CObject9.h>
+#include <dummyframework/camera/CModelViewerCamera.h>
 
 class ConvertX2OBJ : public DummyFramework::CGame9
 {
@@ -18,6 +20,12 @@ protected:
 
 	void Update();
 	void Draw();
+
+private:
+	DummyFramework::CModelViewerCamera camera;
+	DummyFramework::CObject9 object;
+
+	D3DXMATRIX world, view, proj;
 
 eventhandlers:
 	void application_keyup(const DummyFramework::skeyboardstate& kstate);
