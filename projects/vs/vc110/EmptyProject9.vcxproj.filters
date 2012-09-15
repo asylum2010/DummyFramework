@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{974072f7-14d4-429b-a975-0b8a0f712426}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{425a1b24-9c9c-4b44-b401-ac20cbe80ad2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\emptyproject9\emptyproject9.h" />
+    <ClInclude Include="..\..\resources\resource.h">
+      <Filter>resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\emptyproject9\emptyproject9_eventhandlers.cpp" />
+    <ClCompile Include="..\..\source\emptyproject9\emptyproject9_main.cpp" />
+    <ClCompile Include="..\..\source\emptyproject9\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\resources\common.aps">
+      <Filter>resources</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\resources\common.rc">
+      <Filter>resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

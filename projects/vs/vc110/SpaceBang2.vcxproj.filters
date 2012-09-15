@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="script">
+      <UniqueIdentifier>{f438cc99-f378-4175-af91-132b7a626589}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="menu">
+      <UniqueIdentifier>{9c88996d-93e5-4e27-abf6-16bb27b30a9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game">
+      <UniqueIdentifier>{16588a4d-b567-4810-8efe-ad93e2954e06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="chapters">
+      <UniqueIdentifier>{c935b7a9-50eb-4d80-b8d1-43074d39ef55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{7791d7e5-96e8-401c-9961-7230c8337bb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{0545136e-428a-4f3a-8335-e020d2146876}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\spacebang2\script.cpp">
+      <Filter>script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\statements.cpp">
+      <Filter>script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\animatedbutton.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\animatedlabel.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\animatedthumb.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\chaptermenu.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\chatbubble.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\gameovermenu.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\hud.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\loadingmenu.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\mainmenu.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\optionsmenu.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\pausemenu.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\staticbackground.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\staticlogo.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\statisticsmenu.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\avatar.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\background.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\bomb.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\enemy.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\explosion.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\game.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\game_eventhandlers.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\gameelement.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\powerup.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\projectile.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\razor.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\worm.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\spacebang2\main.cpp" />
+    <ClCompile Include="..\..\source\spacebang2\spacebang2_eventhandlers.cpp" />
+    <ClCompile Include="..\..\source\spacebang2\spacebang2_main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\spacebang2\script.h">
+      <Filter>script</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\animatedbutton.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\animatedlabel.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\animatedthumb.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\chaptermenu.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\chatbubble.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\gameovermenu.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\hud.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\loadingmenu.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\mainmenu.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\optionsmenu.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\pausemenu.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\staticbackground.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\staticlogo.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\statisticsmenu.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\avatar.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\background.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\bomb.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\enemy.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\explosion.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\game.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\gameelement.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\powerup.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\projectile.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\razor.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\worm.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\spacebang2\spacebang2.h" />
+    <ClInclude Include="..\..\resources\resource.h">
+      <Filter>resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\source\spacebang2\script.l">
+      <Filter>script</Filter>
+    </None>
+    <None Include="..\..\source\spacebang2\script.y">
+      <Filter>script</Filter>
+    </None>
+    <None Include="..\..\..\media\spacebang2\scripts\demolevel.txt">
+      <Filter>chapters</Filter>
+    </None>
+    <None Include="..\..\..\media\spacebang2\scripts\game.ini">
+      <Filter>chapters</Filter>
+    </None>
+    <None Include="..\..\..\media\spacebang2\scripts\stage1.txt">
+      <Filter>chapters</Filter>
+    </None>
+    <None Include="..\..\..\media\spacebang2\scripts\stage2.txt">
+      <Filter>chapters</Filter>
+    </None>
+    <None Include="..\..\..\media\spacebang2\scripts\stage3.txt">
+      <Filter>chapters</Filter>
+    </None>
+    <None Include="..\..\..\media\spacebang2\scripts\stage4.txt">
+      <Filter>chapters</Filter>
+    </None>
+    <None Include="..\..\..\media\spacebang2\scripts\stage5.txt">
+      <Filter>chapters</Filter>
+    </None>
+    <None Include="..\..\..\media\spacebang2\distort.fx">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\..\resources\common.aps">
+      <Filter>resources</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\resources\common.rc">
+      <Filter>resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

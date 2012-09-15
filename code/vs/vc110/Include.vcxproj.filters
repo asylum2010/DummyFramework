@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="base">
+      <UniqueIdentifier>{be44f9fd-d33f-445c-ad0f-22a119e4b5ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\d3d9">
+      <UniqueIdentifier>{458f0753-0362-49b6-bc3f-31f64e6034db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\d3d10">
+      <UniqueIdentifier>{cccdd9b9-1353-4442-8710-8593cc7cf048}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="camera">
+      <UniqueIdentifier>{930a5abb-5773-4e87-887c-7aed890826f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderers">
+      <UniqueIdentifier>{d493d9d8-7098-4357-8faa-181dbba4a7fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderers\d3d9">
+      <UniqueIdentifier>{c25a2cdc-77b8-4f33-9a8a-e588f29a633d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderers\d3d10">
+      <UniqueIdentifier>{52f137cf-15c6-42fc-a8ca-bfd2c00f51a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="template">
+      <UniqueIdentifier>{e5ed629c-83da-407c-8b1e-3314a344b694}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="menu">
+      <UniqueIdentifier>{1648f852-fd41-4477-91a9-c84ba0b85e55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui">
+      <UniqueIdentifier>{547855ce-d793-4674-86a5-69e7cbebf672}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thread">
+      <UniqueIdentifier>{65df1933-3253-46df-b849-72f92d342c88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="network">
+      <UniqueIdentifier>{199a3300-b70e-492c-9401-0067f6bca81a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\dummyframework\base\CApplication.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\base\CGameLogicSynchronizer.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\base\CHelper.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\base\CTimer.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\base\CTransformable.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CContentManager9.h">
+      <Filter>base\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CEffectRenderer9.h">
+      <Filter>base\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CGame9.h">
+      <Filter>base\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CObject9.h">
+      <Filter>base\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CScreenQuad9.h">
+      <Filter>base\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CSprite9.h">
+      <Filter>base\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CSpriteFont9.h">
+      <Filter>base\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\base\d3d9\CStateManager9.h">
+      <Filter>base\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\base\d3d10\CGame10.h">
+      <Filter>base\d3d10</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\camera\CAbstractCamera.h">
+      <Filter>camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\camera\CArcballCamera.h">
+      <Filter>camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\camera\CFPSCamera.h">
+      <Filter>camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\camera\CModelViewerCamera.h">
+      <Filter>camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CBloomRenderer9.h">
+      <Filter>renderers\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CCausticsRenderer9.h">
+      <Filter>renderers\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CEnvironmentRenderer9.h">
+      <Filter>renderers\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CGodRayRenderer9.h">
+      <Filter>renderers\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CLensFlareRenderer9.h">
+      <Filter>renderers\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CMotionBlurRenderer9.h">
+      <Filter>renderers\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CScreenFader9.h">
+      <Filter>renderers\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CShadowMapRenderer9.h">
+      <Filter>renderers\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CWaterRenderer9.h">
+      <Filter>renderers\d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\template\bijectivemap.hpp">
+      <Filter>template</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\template\connection.hpp">
+      <Filter>template</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\template\defines.h">
+      <Filter>template</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\template\signal.hpp">
+      <Filter>template</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\template\signal0.hpp">
+      <Filter>template</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\template\signal1.hpp">
+      <Filter>template</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\template\signal_base.hpp">
+      <Filter>template</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\template\syncedanimator.hpp">
+      <Filter>template</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\template\unisignal.hpp">
+      <Filter>template</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\menu\CButton.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\menu\CControl.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\menu\CForm.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\menu\CFormManager.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\menu\CLabel.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\gui\CCheckBox.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\gui\CComboBox.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\gui\CGroupBox.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\gui\CMenuStrip.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\gui\CNumericUpDown.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\gui\COpenFileDialog.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\gui\CPictureBox.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\gui\CProgressBar.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\gui\CPushButton.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\gui\CRadioButton.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\gui\CStatic.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\gui\CStatusStrip.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\gui\CTrackBar.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\gui\CWindow.h">
+      <Filter>gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\thread\CThread.h">
+      <Filter>thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\network\udpchannel.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\network\udpclient.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\network\udpconnection.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework\network\udpserver.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dummyframework.h" />
+    <ClInclude Include="..\..\include\dummyframework\template\signal2.hpp">
+      <Filter>template</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
