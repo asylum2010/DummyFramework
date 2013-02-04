@@ -73,7 +73,7 @@ bool StatisticsMenu::LoadContent()
     return true;
 }
 //=============================================================================================================
-void StatisticsMenu::SetState(unsigned long newstate)
+void StatisticsMenu::SetState(unsigned int newstate)
 {
     switch( newstate )
     {

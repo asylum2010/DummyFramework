@@ -6,30 +6,30 @@
 
 Enemy::hitinfo::hitinfo()
 {
-	alpha.set(0.0f, 0.0f);
+	alpha.set(5, 0.0f, 0.0f);
 	alpha = 0;
 	alpha.direction = 1;
 
 	ticks = alpha.count() + 2;
 	applied = 0;
 }
-//*************************************************************************************************************
-Enemy::Enemy()
-    : GameElement()
-{
-    direction         = D3DXVECTOR2(-1, 0);
-    cooldown          = 0;
-    position          = D3DXVECTOR2(0, 0);
-	color             = D3DXCOLOR(1, 1, 1, 1);
-	alive             = true;
 
-    Image             = NULL;
-    Hurt              = NULL;
-    Speed             = 10;
-    ProjectileSpeed   = 100.0f;
-    ProjectileOrigin  = D3DXVECTOR2(0.95f, 0.5f);
-    Value             = 10;
-    Health            = 2;
+Enemy::Enemy()
+	: GameElement()
+{
+	direction			= D3DXVECTOR2(-1, 0);
+	cooldown			= 0;
+	position			= D3DXVECTOR2(0, 0);
+	color				= D3DXCOLOR(1, 1, 1, 1);
+	alive				= true;
+
+	Image				= NULL;
+	Hurt				= NULL;
+	Speed				= 10;
+	ProjectileSpeed		= 100.0f;
+	ProjectileOrigin	= D3DXVECTOR2(0.95f, 0.5f);
+	Value				= 10;
+	Health				= 2;
 }
 //=============================================================================================================
 bool Enemy::Collide(const DummyFramework::CSprite9& other)
@@ -40,13 +40,13 @@ bool Enemy::Collide(const DummyFramework::CSprite9& other)
 	hitinfo info;
 	bool collide = false;
 
-    position.smooth(GameVariables::GetAlpha());
+	position.smooth(GameVariables::GetAlpha());
 	Image->Position = position.value;
 
 	if( collide = DummyFramework::CSprite9::Collide(info.hitpos, *Image, other) )
 		hits.push_back(info);
 
-    return collide;
+	return collide;
 }
 //=============================================================================================================
 bool Enemy::Visible()
@@ -55,7 +55,7 @@ bool Enemy::Visible()
 		return false;
 
 	// kint van-e a képernyöröl
-    return position.current().x >= -Image->Size.x;
+	return position.current.x >= -Image->Size.x;
 }
 //=============================================================================================================
 void Enemy::Hit(unsigned short damage)
@@ -75,7 +75,7 @@ void Enemy::Hit(unsigned short damage)
 				alive = false;
 				Explosion ex;
 
-				ex.Position = position.current() + Image->Size * 0.5f;
+				ex.Position = position.current + Image->Size * 0.5f;
 				ex.Scale = 1.0f;
 
 				explode(ex);
@@ -95,14 +95,14 @@ void Enemy::Hit(unsigned short damage)
 		}
 	}
 		
-    //TODO: if( hitpos.x > position.current().x && ... )
+	//TODO: if( hitpos.x > position.current().x && ... )
 }
 //=============================================================================================================
 void Enemy::SetPosition(const D3DXVECTOR2& newpos)
 {
-    position = D3DXVECTOR2(
-        newpos.x - Image->Size.x * 0.5f,
-        newpos.y - Image->Size.y * 0.5f);
+	position = D3DXVECTOR2(
+		newpos.x - Image->Size.x * 0.5f,
+		newpos.y - Image->Size.y * 0.5f);
 }
 //=============================================================================================================
 void Enemy::Update(const Avatar& av)
@@ -111,37 +111,37 @@ void Enemy::Update(const Avatar& av)
 		return;
 
 	Projectile p;
-    position.extend(direction * Speed);
+	position.extend(direction * Speed);
 
-    if( cooldown == 0 )
-    {
-        if( !(av.GetState() & Avatar::Exploded) )
-        {
+	if( cooldown == 0 )
+	{
+		if( !(av.GetState() & Avatar::Exploded) )
+		{
 			// ha teljesen a képernyön van már
-            if( (position.current().x + Image->Size.x) < GameVariables::ScreenWidth)
-            {
-                D3DXVECTOR2 avpos = av.Position.current();
+			if( (position.current.x + Image->Size.x) < GameVariables::ScreenWidth)
+			{
+				D3DXVECTOR2 avpos = av.Position.current;
 
 				// ha látja az avatárt
-                if( avpos.x < position.current().x &&
-                    abs(avpos.y - position.current().y) <= Image->Size.y )
-                {
+				if( avpos.x < position.current.x &&
+					abs(avpos.y - position.current.y) <= Image->Size.y )
+				{
 					p.Direction.x = -1;
 					p.Direction.y = 0;
 					p.Speed = Speed;
                     
-                    p.Position = D3DXVECTOR2(
-						position.previous().x + Image->Size.x * 0.12f,
-						position.previous().y + Image->Size.y * 0.7f);
+					p.Position = D3DXVECTOR2(
+						position.previous.x + Image->Size.x * 0.12f,
+						position.previous.y + Image->Size.y * 0.7f);
 
-                    shoot(p);
-                    cooldown = 60;
-                }
-            }
-        }
-    }
-    else
-        --cooldown;
+					shoot(p);
+					cooldown = 60;
+				}
+			}
+		}
+	}
+	else
+		--cooldown;
 
 	UpdateHits();
 }
@@ -151,13 +151,13 @@ size_t Enemy::Write(size_t start, quadbuffer& quad)
 	if( !alive )
 		return 0;
 
-    size_t count = 1;
+	size_t count = 1;
 
-    position.smooth(GameVariables::GetAlpha());
-    quad.WriteQuad(start, position.value, Image->Size, Image->Texcoords, 0xffffffff);
+	position.smooth(GameVariables::GetAlpha());
+	quad.WriteQuad(start, position.value, Image->Size, Image->Texcoords, 0xffffffff);
 
 	count += WriteHits(start + count, quad);
-    return count;
+	return count;
 }
 //=============================================================================================================
 void Enemy::UpdateHits()

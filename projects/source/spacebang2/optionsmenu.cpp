@@ -81,7 +81,7 @@ bool OptionsMenu::LoadContent()
     return true;
 }
 //=============================================================================================================
-void OptionsMenu::SetState(unsigned long newstate)
+void OptionsMenu::SetState(unsigned int newstate)
 {
     switch( newstate )
     {

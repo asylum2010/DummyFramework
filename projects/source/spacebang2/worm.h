@@ -38,24 +38,24 @@ private:
 	typedef std::vector<segment> segmentlist;
 	typedef std::list<collision> collisionlist;
 
-	segmentlist    segments;
-	collisionlist  collisions;
-	size_t         precision;
-	float          amplitude;
-	float          frequency;
-	float          phase;
-	float          scale;
+	segmentlist		segments;
+	collisionlist	collisions;
+	size_t			precision;
+	float			amplitude;
+	float			frequency;
+	float			phase;
+	float			scale;
 
 	//! Get the next position on the sine wave
 	void GetNext(D3DXVECTOR2& out, const D3DXVECTOR2& curr, float dist);
 
 public:
-	float Direction;    /*!< \brief Indicates the amplitude sign of the wave */
+	float Direction;	/*!< \brief Indicates the amplitude sign of the wave */
 
 	Worm(size_t length);
 
 	//! Checks if on of the worm's segments overlaps with the given sprite
-    bool Collide(const DummyFramework::CSprite9& other);
+	bool Collide(const DummyFramework::CSprite9& other);
 
 	//! Determines whether the worm is on the screen
 	bool Visible();
@@ -67,10 +67,10 @@ public:
 	void SetPosition(const D3DXVECTOR2& newpos);
 
 	//! Updates the worm
-    void Update(const Avatar& av);
+	void Update(const Avatar& av);
 
 	//! Renders the worm
-    size_t Write(size_t start, quadbuffer& quad);
+	size_t Write(size_t start, quadbuffer& quad);
 };
 
 #endif

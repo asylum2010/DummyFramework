@@ -29,10 +29,10 @@ public:
     ~StaticLogo() {}
 
     void Draw();
-    void SetState(unsigned long newstate);
+    void SetState(unsigned int newstate);
     void Update();
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
     void onfocusgained();
 };
 

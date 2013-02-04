@@ -14,10 +14,6 @@
 #include "coopgame.h"
 #include "exitgame.h"
 
-// singleben a háttér más legyen
-// coop
-// exithez valami rajz
-
 class MulTetris : public DummyFramework::CGame9
 {
 public:
@@ -36,22 +32,22 @@ protected:
 private:
 	DummyFramework::CContentManager9::textureatlas atlas;
 
-	DummyFramework::CFormManager  formmanager;
-    DummyFramework::CSpriteFont9  spritefont;
-	DummyFramework::CSprite9      menubg;
-    DummyFramework::CSprite9      bg;
-	DummyFramework::CSprite9      panel;
+	DummyFramework::CFormManager	formmanager;
+	DummyFramework::CSpriteFont9	spritefont;
+	DummyFramework::CSprite9		menubg;
+	DummyFramework::CSprite9		bg;
+	DummyFramework::CSprite9		panel;
 
-	StaticBackground  background;
-	MainMenu          mainmenu;
-	PauseMenu         pausemenu;
-	VersusGame        versus;
-	SingleGame        single;
-	CoopGame          coop;
-	ExitGame          quit;
-	size_t            currentgame;
+	StaticBackground	background;
+	MainMenu			mainmenu;
+	PauseMenu			pausemenu;
+	VersusGame			versus;
+	SingleGame			single;
+	CoopGame			coop;
+	ExitGame			quit;
+	size_t				currentgame;
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
 	void menu_hover(size_t action);
 	void menu_selected(size_t action);
 	void pause_selected(size_t action);

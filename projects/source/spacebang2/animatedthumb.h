@@ -20,7 +20,7 @@ public:
 	//! Render the thumbnail
     void Draw();
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
     void onresetdevice();
 };
 

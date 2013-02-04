@@ -5,8 +5,8 @@
 MulTetris::MulTetris()
 {
 	formmanager.InitialDelay = 10;
-    
-    formmanager.AddForm(background);
+
+	formmanager.AddForm(background);
 	formmanager.AddForm(mainmenu);
 	formmanager.AddForm(versus);
 	formmanager.AddForm(single);
@@ -51,7 +51,7 @@ MulTetris::MulTetris()
 	single.Bind(SingleGame::Rotate, VK_UP);
 
 	Application.keyup.connect(&formmanager, &DummyFramework::CFormManager::onkeyup);
-    Application.keydown.connect(&formmanager, &DummyFramework::CFormManager::onkeydown);
+	Application.keydown.connect(&formmanager, &DummyFramework::CFormManager::onkeydown);
 
 	mainmenu.selected.connect(this, &MulTetris::menu_selected);
 	mainmenu.hover.connect(this, &MulTetris::menu_hover);
@@ -93,7 +93,7 @@ bool MulTetris::Initialize()
 	GameVariables::RefHeight = 768;
 
 	GameVariables::ScreenWidth = (float)PresentationParameters.BackBufferWidth;
-    GameVariables::ScreenHeight = (float)PresentationParameters.BackBufferHeight;
+	GameVariables::ScreenHeight = (float)PresentationParameters.BackBufferHeight;
 
 #ifdef _DEBUG
 	SetCurrentDirectory("../../../media/multetris/");
@@ -101,28 +101,28 @@ bool MulTetris::Initialize()
 	SetCurrentDirectory("../media/multetris/");
 #endif
 
-    success = (success && formmanager.Initialize(*this, spritefont));
+	success = (success && formmanager.Initialize(*this, spritefont));
 	return success;
 }
 //=============================================================================================================
 bool MulTetris::LoadContent()
 {
 	bool success = (0xffffffff != spritefont.AddFont("showcard_100_bold.fnt"));
-    dassert(false, "MulTetris::LoadContent(): Could not load font", success);
+	dassert(false, "MulTetris::LoadContent(): Could not load font", success);
 
 	success = Content.LoadSprite(menubg, "menu.txt", &GameVariables::CorrelateH);
-    dassert(false, "MulTetris::LoadContent(): Could not load 'menu'", success);
-    
-    success = Content.LoadSprite(bg, "bg.txt", &GameVariables::CorrelateH);
-    dassert(false, "MulTetris::LoadContent(): Could not load 'bg'", success);
+	dassert(false, "MulTetris::LoadContent(): Could not load 'menu'", success);
+
+	success = Content.LoadSprite(bg, "bg.txt", &GameVariables::CorrelateH);
+	dassert(false, "MulTetris::LoadContent(): Could not load 'bg'", success);
 
 	success = Content.LoadSprite(panel, "panel.txt", &GameVariables::CorrelateH);
-    dassert(false, "MulTetris::LoadContent(): Could not load 'panel'", success);
+	dassert(false, "MulTetris::LoadContent(): Could not load 'panel'", success);
 
 	LPDIRECT3DTEXTURE9 tex;
 
 	tex = Content.LoadTextureAtlas(atlas, "atlas.txt", &GameVariables::CorrelateH);
-    dassert(false, "Game::LoadContent(): Could not load 'atlas'", tex);
+	dassert(false, "Game::LoadContent(): Could not load 'atlas'", tex);
 
 	versus.Atlas = single.Atlas = coop.Atlas = quit.Atlas = tex;
 	versus.Cell = single.Cell = coop.Cell = quit.Cell = &atlas["cell"];
@@ -142,10 +142,10 @@ bool MulTetris::LoadContent()
 
 	background.Panel = &panel;
 	background.Background = &bg;
-    pausemenu.Background = mainmenu.Background = &menubg;
+	pausemenu.Background = mainmenu.Background = &menubg;
 
 	success = formmanager.LoadContent();
-    background.SetState(DummyFramework::CControl::TransitionIn);
+	background.SetState(DummyFramework::CControl::TransitionIn);
 
 	return success && CGame9::LoadContent();
 }
@@ -153,19 +153,19 @@ bool MulTetris::LoadContent()
 void MulTetris::ResetRenderStates()
 {
 	StateManager->SetRenderState(D3DRS_ZENABLE, false);
-    StateManager->SetRenderState(D3DRS_LIGHTING, false);
-    StateManager->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
-    StateManager->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
-    StateManager->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-    StateManager->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+	StateManager->SetRenderState(D3DRS_LIGHTING, false);
+	StateManager->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
+	StateManager->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
+	StateManager->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	StateManager->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
-    StateManager->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_POINT);
-    StateManager->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_POINT);
-    StateManager->SetSamplerState(0, D3DSAMP_MIPFILTER, D3DTEXF_POINT);
+	StateManager->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_POINT);
+	StateManager->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_POINT);
+	StateManager->SetSamplerState(0, D3DSAMP_MIPFILTER, D3DTEXF_POINT);
 
 	StateManager->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
-    StateManager->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
-    StateManager->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_DIFFUSE);
+	StateManager->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
+	StateManager->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_DIFFUSE);
 }
 //=============================================================================================================
 void MulTetris::Update()
@@ -176,15 +176,15 @@ void MulTetris::Update()
 //=============================================================================================================
 void MulTetris::Draw()
 {
-    Graphics->Clear(0, NULL, D3DCLEAR_TARGET, 0xff000000, 1.0f, 0);
-    Graphics->SetVertexDeclaration(DummyFramework::CScreenQuad9::Declaration);
+	Graphics->Clear(0, NULL, D3DCLEAR_TARGET, 0xff000000, 1.0f, 0);
+	Graphics->SetVertexDeclaration(DummyFramework::CScreenQuad9::Declaration);
 
-    Graphics->BeginScene();
-    {
-        formmanager.Draw();
-    }
-    Graphics->EndScene();
+	Graphics->BeginScene();
+	{
+		formmanager.Draw();
+	}
+	Graphics->EndScene();
 
-    Graphics->Present(NULL, NULL, NULL, NULL);
+	Graphics->Present(NULL, NULL, NULL, NULL);
 }
 //=============================================================================================================

@@ -13,24 +13,24 @@
 class SingleTable
 {
 	struct tetriscell
-    {
-        unsigned long color;
+	{
+		unsigned int color;
 		bool visible;
 		bool mask;
-    };
+	};
 
 private:
 	typedef std::vector<Tetromino*> tetrolist;
 	typedef std::set<int> rowset;
 
-	Tetromino      current;
-	tetrolist      tetrominos;
-	rowset         todelete;
-	tetriscell**   drawtable;
-	unsigned long  state;
-	int            flashticks;
-	int            ticks;
-	bool           flash;
+	Tetromino		current;
+	tetrolist		tetrominos;
+	rowset			todelete;
+	tetriscell**	drawtable;
+	unsigned int	state;
+	int				flashticks;
+	int				ticks;
+	bool			flash;
 
 	void EraseTetro(const Tetromino& tetro);
 	void DrawTetro(const Tetromino& tetro);
@@ -51,21 +51,19 @@ public:
 	DummyFramework::CSprite9* Cell;
 	DummyFramework::CSprite9* Glow;
 
-	Tetromino Next;
-	size_t Score;
-	bool Fast;
-    
-
-	int Width, Height, HangOut;
-	float X, Y;
+	Tetromino	Next;
+	size_t		Score;
+	bool		Fast;
+	int			Width, Height, HangOut;
+	float		X, Y;
 	
-    SingleTable();
+	SingleTable();
 	~SingleTable();
 
 	bool Collide(const Tetromino& tetro);
 
 	void Clear();
-	void Fill(unsigned long colors[]);
+	void Fill(unsigned int colors[]);
 	void Half();
 	void Move(char direction);
 	void Reset();
@@ -75,11 +73,11 @@ public:
 	size_t Collapse();
 	size_t Write(size_t start, DummyFramework::CDynamicQuadBuffer9& quads, float alpha);
 
-	inline unsigned long GetState() const {
+	inline unsigned int GetState() const {
 		return state;
 	}
 	
-events:
+_DUMMY_EVENTS:
 	DummyFramework::signal0 gameover;
 };
 

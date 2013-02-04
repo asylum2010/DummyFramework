@@ -50,7 +50,7 @@ bool MainMenu::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSprit
     return CForm::Initialize(mygame, font);
 }
 //=============================================================================================================
-void MainMenu::SetState(unsigned long newstate)
+void MainMenu::SetState(unsigned int newstate)
 {
     switch( newstate )
     {

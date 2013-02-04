@@ -42,13 +42,13 @@ public:
     bool Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpriteFont9& font);
 
     void Draw();
-    void SetState(unsigned long newstate);
+    void SetState(unsigned int newstate);
     void Update();
 
-events:
+_DUMMY_EVENTS:
     DummyFramework::signal1<size_t> selected;
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
     void onfocusgained();
     void onfocuslost();
     void onkeyup(const DummyFramework::skeyboardstate& kstate);

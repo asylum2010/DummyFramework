@@ -57,17 +57,17 @@ public:
     bool LoadContent();
     
     void Draw();
-    void SetState(unsigned long newstate);
+    void SetState(unsigned int newstate);
     void Update();
 
     inline DummyFramework::resolutionset& GetResolutionSet() {
         return resolutions;
     }
 
-events:
+_DUMMY_EVENTS:
     DummyFramework::signal0 settingschanged;
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
     void onfocusgained();
     void onfocuslost();
     void onkeyup(const DummyFramework::skeyboardstate& kstate);

@@ -16,28 +16,28 @@
 class StaticBackground : public DummyFramework::CForm
 {
 private:
-    DummyFramework::syncedanimator<float, MENU_TRANSITION> alpha;
-    int ticks;
+	DummyFramework::syncedanimator<float, MENU_TRANSITION> alpha;
+	int ticks;
 
 public:
-    enum formaction
-    {
-        Visible,
-        Invisible
-    };
+	enum formaction
+	{
+		Visible,
+		Invisible
+	};
 
-    DummyFramework::CSprite9* Background;
+	DummyFramework::CSprite9* Background;
 	DummyFramework::CSprite9* Panel;
 
-    StaticBackground();
-    ~StaticBackground() {}
+	StaticBackground();
+	~StaticBackground() {}
 
-    void Draw();
-    void SetState(unsigned long newstate);
-    void Update();
+	void Draw();
+	void SetState(unsigned int newstate);
+	void Update();
 
-eventhandlers:
-    void onfocusgained();
+_DUMMY_EVENTHANDLERS:
+	void onfocusgained();
 };
 
 #endif

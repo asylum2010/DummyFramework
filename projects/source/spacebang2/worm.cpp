@@ -10,13 +10,13 @@ Worm::segment::segment()
 	health = 2;
 	alive = true;
 }
-//=============================================================================================================
+
 Worm::collision::collision()
 	: hitinfo()
 {
 	segment = 0xffffffff;
 }
-//*************************************************************************************************************
+
 Worm::Worm(size_t length)
 	: Enemy()
 {
@@ -53,7 +53,7 @@ bool Worm::Visible()
 	if( !alive || segments.size() == 0 )
 		return false;
 
-    return segments[segments.size() - 1].position.current().x >= -Image->Size.x;
+	return segments[segments.size() - 1].position.current.x >= -Image->Size.x;
 }
 //=============================================================================================================
 bool Worm::Collide(const DummyFramework::CSprite9& other)
@@ -171,24 +171,24 @@ void Worm::Update(const Avatar& av)
 	float start = (GameVariables::ScreenHeight - GameVariables::PlayFieldHeight + Image->Size.y) * 0.5f;
 
 	amplitude = (GameVariables::PlayFieldHeight - Image->Size.y) * 0.5f * Direction;
-	curr = segments[0].position.current();
+	curr = segments[0].position.current;
 
 	GetNext(newpos, curr, -Speed);
 	newpos.y += abs(amplitude) + start - size.y * 0.5f;
 
-	segments[0].position.previous() = curr;
-	segments[0].position.current() = newpos;
+	segments[0].position.previous = curr;
+	segments[0].position.current = newpos;
 	size = Image->Size * scale;
 
 	for( size_t i = 1; i < segments.size(); ++i )
 	{
-		curr = segments[i - 1].position.current();
+		curr = segments[i - 1].position.current;
 
 		GetNext(newpos, curr, dist);
 		newpos.y += abs(amplitude) + start - size.y * 0.5f;
 
-		segments[i].position.previous() = segments[i].position.current();
-		segments[i].position.current() = newpos;
+		segments[i].position.previous = segments[i].position.current;
+		segments[i].position.current = newpos;
 
 		dist = Image->Size.x * scale * 0.7f;
 	}
@@ -264,6 +264,6 @@ size_t Worm::Write(size_t start, quadbuffer& quad)
 		}
 	}
 
-    return count;
+	return count;
 }
 //=============================================================================================================

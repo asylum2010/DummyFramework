@@ -29,7 +29,7 @@ private:
 	AirPlane plane;
 	D3DXMATRIX view, proj;
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
 	void application_keyup(const DummyFramework::skeyboardstate& kstate);
 	void application_keydown(const DummyFramework::skeyboardstate& kstate);
 };

@@ -7,16 +7,16 @@
 
 #ifdef _DEBUG
 #	pragma comment(lib, "../../../code/lib/Debug/DummyFramework.lib")
-#   pragma comment(lib, "../../../extern/d3d9.lib")
-#   pragma comment(lib, "../../../extern/d3dx9.lib") // d3dx9d.lib
+#	pragma comment(lib, "../../../extern/d3d9.lib")
+#	pragma comment(lib, "../../../extern/d3dx9.lib") // d3dx9d.lib
  
-#   define _CRTDBG_MAP_ALLOC
-#   include <stdlib.h>
-#   include <crtdbg.h>
+#	define _CRTDBG_MAP_ALLOC
+#	include <stdlib.h>
+#	include <crtdbg.h>
 #else
-#   pragma comment(lib, "../../../code/lib/Release/DummyFramework.lib")
-#   pragma comment(lib, "../../../extern/d3d9.lib")
-#   pragma comment(lib, "../../../extern/d3dx9.lib")
+#	pragma comment(lib, "../../../code/lib/Release/DummyFramework.lib")
+#	pragma comment(lib, "../../../extern/d3d9.lib")
+#	pragma comment(lib, "../../../extern/d3dx9.lib")
 #endif
 
 int main()

@@ -42,15 +42,15 @@ public:
     void Draw();
 
 	//! Changse state
-    void SetState(unsigned long newstate);
+    void SetState(unsigned int newstate);
 
 	//! Fixed update
     void Update();
 
-events:
+_DUMMY_EVENTS:
     DummyFramework::signal1<size_t> selected;
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
     void onfocusgained();
     void onfocuslost();
     void onkeyup(const DummyFramework::skeyboardstate& kstate);

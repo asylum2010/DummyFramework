@@ -18,8 +18,8 @@ void WinapiTest::InitializeGUI()
 	int mh = GetSystemMetrics(SM_CYMENU);
 	int sh = 23; // zipp
 
-	long width = DisplayMode.Width + 20 + 226;
-	long height = DisplayMode.Height + 20 + mh + sh;
+	int width = DisplayMode.Width + 20 + 226;
+	int height = DisplayMode.Height + 20 + mh + sh;
 
 	size_t id1 = menustrip1.AddMenu("&File");
 	size_t id2 = menustrip1.AddMenu("&Help");

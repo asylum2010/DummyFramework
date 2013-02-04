@@ -3,14 +3,14 @@
 
 Tetromino::Tetromino()
 {
-    X = Y = 0;
-    Color = 0xffffffff;
-    orientation = 0;
+	X = Y = 0;
+	Color = 0xffffffff;
+	orientation = 0;
 
-    shape[0] = "0000000000000000";
-    shape[1] = "0000000000000000";
-    shape[2] = "0000000000000000";
-    shape[3] = "0000000000000000";
+	shape[0] = "0000000000000000";
+	shape[1] = "0000000000000000";
+	shape[2] = "0000000000000000";
+	shape[3] = "0000000000000000";
 }
 //=============================================================================================================
 Tetromino& Tetromino::operator =(const Tetromino& other)

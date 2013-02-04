@@ -5,7 +5,7 @@
 #include <dummyframework/base/d3d9/CGame9.h>
 #include <sstream>
 
-unsigned long examplecolors1[336] =
+unsigned int examplecolors1[336] =
 {
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff8a2be2, 0xff8a2be2, 0xff8a2be2, 0, 0xff8a2be2, 0xff8a2be2, 0xff8a2be2, 0xffff0000, 0xff8a2be2, 0xff8a2be2, 0,
@@ -21,7 +21,7 @@ unsigned long examplecolors1[336] =
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
 
-unsigned long examplecolors2[336] =
+unsigned int examplecolors2[336] =
 {
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff8a2be2, 0xff8a2be2, 0xff8a2be2, 0xff8a2be2, 0xff8a2be2, 0xff8a2be2, 0xffff0000, 0xff8a2be2, 0,
@@ -36,7 +36,7 @@ unsigned long examplecolors2[336] =
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xffffff00, 0xffffa500, 0, 0xff8a2be2, 0xff8a2be2, 0, 0xff0000ff, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
-//=============================================================================================================
+
 VersusGame::VersusGame()
 	: CForm()
 {
@@ -57,7 +57,7 @@ VersusGame::VersusGame()
 	ticks = 0;
 
 	for( size_t i = 0; i < 9; ++i )
-        AddControl(labels[i]);
+		AddControl(labels[i]);
 
 	players[0].table.gameover.connect(this, &VersusGame::ongame1over);
 	players[1].table.gameover.connect(this, &VersusGame::ongame2over);
@@ -140,7 +140,7 @@ void VersusGame::Draw()
 	float h2 = GameVariables::CorrelateH(420);
 
 	quads.Lock();
-    {
+	{
 		count += t1.Write(count, quads, blink.value);
 		count += t2.Write(count, quads, blink.value);
 
@@ -150,7 +150,7 @@ void VersusGame::Draw()
 	quads.Unlock();
 
 	game->StateManager->SetTexture(0, Atlas);
-    quads.Draw(count);
+	quads.Draw(count);
 
 	// szövegek frissitése
 	size_t mins, secs;
@@ -189,7 +189,7 @@ void VersusGame::Draw()
 		labels[6].Color.a = labels[7].Color.a = labels[8].Color.a = blink.value;
 
 	CForm::Draw();
-    spritefont->Draw(GroupID);
+	spritefont->Draw(GroupID);
 }
 //=============================================================================================================
 size_t VersusGame::DrawTetro(size_t start, const Tetromino& tetro, const D3DXVECTOR2& pos)
@@ -203,22 +203,22 @@ size_t VersusGame::DrawTetro(size_t start, const Tetromino& tetro, const D3DXVEC
 
 	color.a = white.a = blink.value;
 	
-    for( int i = 0; i < 4; ++i )
-    {
-        for( int j = 0; j < 4; ++j )
-        {
+	for( int i = 0; i < 4; ++i )
+	{
+		for( int j = 0; j < 4; ++j )
+		{
 			p.x = pos.x + Cell->Size.x * i;
 			p.y = pos.y + Cell->Size.y * j;
 
-            if( shape[i + 4 * j] == '1' )
-            {
-                quads.WriteQuad(start + count, p, Cell->Size, Cell->Texcoords, color);
+			if( shape[i + 4 * j] == '1' )
+			{
+				quads.WriteQuad(start + count, p, Cell->Size, Cell->Texcoords, color);
 				quads.WriteQuad(start + count + 1, p, Glow->Size, Glow->Texcoords, white);
 
 				count += 2;
-            }
-        }
-    }
+			}
+		}
+	}
 
 	return count;
 }
@@ -291,7 +291,7 @@ void VersusGame::ResetGUI()
 	labels[5].Position.y = GameVariables::CorrelateH(377);
 }
 //=============================================================================================================
-void VersusGame::SetState(unsigned long newstate)
+void VersusGame::SetState(unsigned int newstate)
 {
 	switch( newstate )
 	{
@@ -387,7 +387,7 @@ void VersusGame::Update()
 		break;
 
 	case TransitionOut:
-        focuslost(*this);
+		focuslost(*this);
 		break;
 	
 	case BlinkOut:
@@ -398,7 +398,7 @@ void VersusGame::Update()
 	case Swapping:
 		if( swapticks == 0 )
 		{
-			myswap<unsigned long>(players[0].bindings.b, players[1].bindings.b);
+			myswap<unsigned int>(players[0].bindings.b, players[1].bindings.b);
 			myswap<size_t>(players[0].table.Score, players[1].table.Score);
 
 			players[0].table.Fast = false;

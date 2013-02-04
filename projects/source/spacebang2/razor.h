@@ -28,9 +28,9 @@ public:
 
 	void Hit(unsigned short damage);
 	void SetPosition(const D3DXVECTOR2& newpos);
-    void Update(const Avatar& av);
+	void Update(const Avatar& av);
 
-    size_t Write(size_t start, quadbuffer& quad);
+	size_t Write(size_t start, quadbuffer& quad);
 };
 
 #endif

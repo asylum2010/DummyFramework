@@ -28,7 +28,7 @@ public:
     bool LoadContent();
 
 	//! Set the button's state
-    void SetState(unsigned long newstate);
+    void SetState(unsigned int newstate);
 
 	//! Update the button
     void Update();
@@ -36,7 +36,7 @@ public:
 	//! Render the button
     void Draw();
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
 	void onresetdevice();
 };
 

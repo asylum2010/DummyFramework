@@ -16,16 +16,16 @@ class VersusGame : public DummyFramework::CForm
 	typedef union
 	{
 		unsigned char a[4];
-		unsigned long b;
+		unsigned int b;
 	} binding;
 
 	struct player
 	{
-		SingleTable table;
-		binding     bindings;
-		char        movedir;
-		bool        rotated;
-		bool        firststep;
+		SingleTable	table;
+		binding		bindings;
+		char		movedir;
+		bool		rotated;
+		bool		firststep;
 	};
 
 	struct sine
@@ -36,13 +36,13 @@ class VersusGame : public DummyFramework::CForm
 	};
 
 private:
-	player   players[2];
-	int      ticks;
-	int      swapticks;
-	int      gametime;
-	int      swaptime;
-	bool     swapped;
-	bool     juststarted;
+	player	players[2];
+	int		ticks;
+	int		swapticks;
+	int		gametime;
+	int		swaptime;
+	bool	swapped;
+	bool	juststarted;
 
 	DummyFramework::syncedanimator<float, 3> blink;
 	DummyFramework::syncedanimator<float, 10, sine> swap;
@@ -90,14 +90,14 @@ public:
 
 	void Draw();
 	void Reset(bool clear);
-	void SetState(unsigned long newstate);
+	void SetState(unsigned int newstate);
 	void Update();
 	
 	inline void Bind(size_t player, inputaction act, unsigned char key) {
 		players[player].bindings.a[act] = key;
 	}
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
 	void onfocusgained();
 	void onfocuslost();
 	void onkeyup(const DummyFramework::skeyboardstate& kstate);

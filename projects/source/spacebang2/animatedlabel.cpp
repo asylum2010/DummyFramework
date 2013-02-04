@@ -17,7 +17,7 @@ AnimatedLabel::~AnimatedLabel()
 {
 }
 //=============================================================================================================
-void AnimatedLabel::SetState(unsigned long newstate)
+void AnimatedLabel::SetState(unsigned int newstate)
 {
     switch( newstate )
     {

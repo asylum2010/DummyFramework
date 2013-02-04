@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Aircraft", "vc100\Aircraft.vcxproj", "{B21FE382-09CE-4275-AE3F-11AE3EE83E11}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Caustics", "vc100\Caustics.vcxproj", "{D64752DA-B154-40FD-A9DF-D4971DD56AA0}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConvertX2OBJ", "vc100\ConvertX2OBJ.vcxproj", "{DCC4231F-B537-4565-8987-257837E958F5}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EmptyProject9", "vc100\EmptyProject9.vcxproj", "{742BDBC9-E9D0-46B1-9D85-92D8EAA22755}"

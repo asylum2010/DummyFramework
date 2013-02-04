@@ -68,7 +68,7 @@ bool ChapterMenu::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSp
     return CForm::Initialize(mygame, font);
 }
 //=============================================================================================================
-void ChapterMenu::SetState(unsigned long newstate)
+void ChapterMenu::SetState(unsigned int newstate)
 {
     switch( newstate )
     {

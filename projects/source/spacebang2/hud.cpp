@@ -79,7 +79,7 @@ void Hud::Reset()
     ticks = 0;
 }
 //=============================================================================================================
-void Hud::SetState(unsigned long newstate)
+void Hud::SetState(unsigned int newstate)
 {
     switch( newstate )
     {

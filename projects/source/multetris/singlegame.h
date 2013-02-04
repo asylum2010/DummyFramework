@@ -16,23 +16,23 @@ class SingleGame : public DummyFramework::CForm
 	typedef union
 	{
 		unsigned char a[4];
-		unsigned long b;
+		unsigned int b;
 	} binding;
 
 	struct player
 	{
-		SingleTable table;
-		binding     bindings;
-		char        movedir;
-		bool        rotated;
-		bool        firststep;
+		SingleTable	table;
+		binding		bindings;
+		char		movedir;
+		bool		rotated;
+		bool		firststep;
 	};
 	
 private:
-	player   player1;
-	int      ticks;
-	int      gametime;
-	bool     juststarted;
+	player	player1;
+	int		ticks;
+	int		gametime;
+	bool	juststarted;
 
 	DummyFramework::syncedanimator<float, 3> blink;
 	DummyFramework::CDynamicQuadBuffer9 quads;
@@ -76,14 +76,14 @@ public:
 
 	void Draw();
 	void Reset(bool clear);
-	void SetState(unsigned long newstate);
+	void SetState(unsigned int newstate);
 	void Update();
 	
 	inline void Bind(inputaction act, unsigned char key) {
 		player1.bindings.a[act] = key;
 	}
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
 	void onfocusgained();
 	void onfocuslost();
 	void onkeyup(const DummyFramework::skeyboardstate& kstate);

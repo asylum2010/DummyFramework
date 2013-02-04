@@ -44,7 +44,7 @@ private:
 	void run_client();
 	void run_server();
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
 	void application_keyup(const DummyFramework::skeyboardstate& kstate);
 	void application_closed();
 };

@@ -11,10 +11,10 @@
 class Projectile
 {
 public:
-    DummyFramework::CSprite9* Image;
-    D3DXVECTOR2               Direction;
-    syncedvector              Position;
-    float                     Speed;
+	DummyFramework::CSprite9*	Image;
+	D3DXVECTOR2					Direction;
+	syncedvector				Position;
+	float						Speed;
 };
 
 #endif

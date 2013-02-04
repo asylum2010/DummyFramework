@@ -36,7 +36,7 @@ public:
     DummyFramework::CSprite9* Panel;   /*!< \brief Animation stripes */
     unsigned short Health;
     unsigned short Shield;
-    unsigned long Score;
+    unsigned int Score;
     
     Hud();
     ~Hud() {}
@@ -60,7 +60,7 @@ public:
     void Reset();
 
 	//! Changes the HUD's state
-    void SetState(unsigned long newstate);
+    void SetState(unsigned int newstate);
 
 	//! Fixed timestep update
     void Update();
@@ -68,7 +68,7 @@ public:
 	//! Render
     size_t Write(size_t start, quadbuffer& quad);
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
     void onresetdevice();
 };
 

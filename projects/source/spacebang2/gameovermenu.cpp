@@ -48,7 +48,7 @@ bool GameOverMenu::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CS
     return CForm::Initialize(mygame, font);
 }
 //=============================================================================================================
-void GameOverMenu::SetState(unsigned long newstate)
+void GameOverMenu::SetState(unsigned int newstate)
 {
     switch( newstate )
     {

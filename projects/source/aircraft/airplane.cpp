@@ -16,7 +16,7 @@ AirPlane::AirPlane()
 	position = D3DXVECTOR3(0, 0, 0);
 }
 //=============================================================================================================
-void AirPlane::MakeState(unsigned long& input, D3DXVECTOR3& pos, D3DXQUATERNION& q)
+void AirPlane::MakeState(unsigned int& input, D3DXVECTOR3& pos, D3DXQUATERNION& q)
 {
 	input = state;
 
@@ -24,7 +24,7 @@ void AirPlane::MakeState(unsigned long& input, D3DXVECTOR3& pos, D3DXQUATERNION&
 	q = rotation.current();
 }
 //=============================================================================================================
-void AirPlane::UpdateState(unsigned long input, const D3DXVECTOR3& pos, const D3DXQUATERNION& q, double time)
+void AirPlane::UpdateState(unsigned int input, const D3DXVECTOR3& pos, const D3DXQUATERNION& q, double time)
 {
 	D3DXVECTOR3 pd;
 	D3DXQUATERNION qd;

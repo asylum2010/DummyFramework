@@ -16,22 +16,22 @@ float GameVariables::PlayFieldHeight = 0;
 unsigned short GameVariables::EnemiesKilled;
 unsigned short GameVariables::Deaths;
 unsigned short GameVariables::PowerupsAcquired;
-unsigned long GameVariables::Score;
-unsigned long GameVariables::TotalScore;
+unsigned int GameVariables::Score;
+unsigned int GameVariables::TotalScore;
 
 std::string& GameVariables::Qualify(std::string& out, const std::string& str)
 {
-    std::string path, name, ext;
+	std::string path, name, ext;
 
-    DummyFramework::CHelper::GetPath(path, str);
-    DummyFramework::CHelper::GetName(name, str);
-    DummyFramework::CHelper::GetExtension(ext, str);
-    
-    if( ext.length() == 0 )
-        out = path + Quality + "/" + name + "_" + Quality;
-    else
-        out = path + Quality + "/" + name + "_" + Quality + "." + ext;
+	DummyFramework::CHelper::GetPath(path, str);
+	DummyFramework::CHelper::GetName(name, str);
+	DummyFramework::CHelper::GetExtension(ext, str);
 
-    return out;
+	if( ext.length() == 0 )
+		out = path + Quality + "/" + name + "_" + Quality;
+	else
+		out = path + Quality + "/" + name + "_" + Quality + "." + ext;
+
+	return out;
 }
 //=============================================================================================================

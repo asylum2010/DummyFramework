@@ -46,8 +46,8 @@ void Razor::Update(const Avatar& av)
 	D3DXVECTOR2 shootdir;
 	const D3DXVECTOR2& goal = locations[4];
 
-	direction = (goal - Image->Size * 0.5f - position.current());
-	shootdir = av.Position.current() - position.current();
+	direction = (goal - Image->Size * 0.5f - position.current);
+	shootdir = av.Position.current - position.current;
 
 	float dist = D3DXVec2Length(&direction);
 
@@ -69,7 +69,7 @@ void Razor::Update(const Avatar& av)
 
 	case Idle:
 		++ticks;
-		position = position.current();
+		position = position.current;
 
 		if( ticks % 12 == 0 )
 		{
@@ -82,8 +82,8 @@ void Razor::Update(const Avatar& av)
 		else if( ticks % 3 == 0 )
 		{
 			D3DXVECTOR2 pos(
-				position.current().x + Image->Size.x * 0.5f,
-				position.current().y + Image->Size.y * 0.5f);
+				position.current.x + Image->Size.x * 0.5f,
+				position.current.y + Image->Size.y * 0.5f);
 
 			p.Direction.x = shootdir.x;
 			p.Direction.y = shootdir.y;
@@ -123,8 +123,8 @@ void Razor::Update(const Avatar& av)
 	}
 
 	// zseniális csalás
-	angle.current() = fmodf(angle.current() + 0.2f, D3DX_PI * 2);
-	angle.previous() = angle.current() - 0.2f;
+	angle.current = fmodf(angle.current + 0.2f, D3DX_PI * 2);
+	angle.previous = angle.current - 0.2f;
 
 	Enemy::UpdateHits();
 }
@@ -136,8 +136,8 @@ size_t Razor::Write(size_t start, quadbuffer& quad)
 
 	size_t count = 1;
 
-    position.smooth(GameVariables::GetAlpha());
-    angle.smooth(GameVariables::GetAlpha());
+	position.smooth(GameVariables::GetAlpha());
+	angle.smooth(GameVariables::GetAlpha());
 
 	float a = 0.5f * (1.0f - Image->Size.x) - 0.5f;
 	float b = 0.5f * (1.0f - Image->Size.y) - 0.5f;
@@ -156,9 +156,9 @@ size_t Razor::Write(size_t start, quadbuffer& quad)
 	positions[3].x = positions[0].x + Image->Size.y * s;
 	positions[3].y = positions[0].y + Image->Size.y * c;
 	
-    quad.WriteQuad(start, positions, Image->Texcoords, 0xffffffff);
+	quad.WriteQuad(start, positions, Image->Texcoords, 0xffffffff);
 	count += WriteHits(start + count, quad);
 
-    return count;
+	return count;
 }
 //=============================================================================================================

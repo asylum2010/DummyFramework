@@ -11,32 +11,32 @@
  */
 class Bomb : public Enemy
 {
-    enum bombstate
-    {
-        Idle,
-        Armed
-    };
+	enum bombstate
+	{
+		Idle,
+		Armed
+	};
 
 private:
-    size_t          ticks;                /*!< \brief How much time until epxlosion */
-    float           dist;                 /*!< \brief Distance between bomb and avatar */
-    float           maxdist;              /*!< \brief Danger radius */
-    unsigned short  state;                /*!< \brief Internal state */
-    bool            flash;                /*!< \brief Is the LED red or dark */
+	size_t			ticks;					/*!< \brief How much time until epxlosion */
+	float			dist;					/*!< \brief Distance between bomb and avatar */
+	float			maxdist;				/*!< \brief Danger radius */
+	unsigned short	state;					/*!< \brief Internal state */
+	bool			flash;					/*!< \brief Is the LED red or dark */
 
 public:
-    Bomb();
+	Bomb();
 
-    DummyFramework::CSprite9* Highlight;  /*!< \brief LED on the bomb */
+	DummyFramework::CSprite9* Highlight;	/*!< \brief LED on the bomb */
 
 	//! Returns true if the sprites overlap, or the sprite is in range of the bomb
-    bool Collide(const DummyFramework::CSprite9& other);
+	bool Collide(const DummyFramework::CSprite9& other);
 
 	//! Updates the bomb
-    void Update(const Avatar& av);
+	void Update(const Avatar& av);
 
 	//! Writes the bomb into the dynamic buffer
-    size_t Write(size_t start, quadbuffer& quad);
+	size_t Write(size_t start, quadbuffer& quad);
 };
 
 #endif

@@ -41,22 +41,22 @@ bool MultiTable::Collide(const Tetromino& tetro)
 	int m, n;
 	const std::string& shape = tetro.GetOrientedShape();
 
-    for( int i = 0; i < 4; ++i )
-    {
-        for( int j = 0; j < 4; ++j )
-        {
-            m = tetro.X + i;
-            n = tetro.Y + j;
+	for( int i = 0; i < 4; ++i )
+	{
+		for( int j = 0; j < 4; ++j )
+		{
+			m = tetro.X + i;
+			n = tetro.Y + j;
 
-            if( m >= 0 && m < Width && n < Height )
-            {
-                if( drawtable[m][n].mask && (shape[i + 4 * j] == '1') )
-                    return true;
-            }
-        }
-    }
+			if( m >= 0 && m < Width && n < Height )
+			{
+				if( drawtable[m][n].mask && (shape[i + 4 * j] == '1') )
+					return true;
+			}
+		}
+	}
 
-    return false;
+	return false;
 }
 //=============================================================================================================
 void MultiTable::Clear()
@@ -76,19 +76,19 @@ void MultiTable::DrawTetro(const Tetromino& tetro)
 	int ey = min(tetro.Y + 4, Height);
 	int m, n, ind;
 
-    for( m = sx; m < ex; ++m )
+	for( m = sx; m < ex; ++m )
 	{
 		for( n = tetro.Y; n < ey; ++n )
-        {
+		{
 			ind = (m - tetro.X) + 4 * (n - tetro.Y);
 
-            if( shape[ind] == '1' )
+			if( shape[ind] == '1' )
 			{
 				++drawtable[m][n].visible;
 				drawtable[m][n].color = ((drawtable[m][n].visible > 1) ? 0xffff9bf5 : tetro.Color);
 			}
-        }
-    }
+		}
+	}
 }
 //=============================================================================================================
 void MultiTable::EraseTetro(const Tetromino& tetro)
@@ -100,13 +100,13 @@ void MultiTable::EraseTetro(const Tetromino& tetro)
 	int ey = min(tetro.Y + 4, Height);
 	int m, n, ind;
 
-    for( m = sx; m < ex; ++m )
+	for( m = sx; m < ex; ++m )
 	{
 		for( n = tetro.Y; n < ey; ++n )
-        {
+		{
 			ind = (m - tetro.X) + 4 * (n - tetro.Y);
 
-            if( shape[ind] == '1' )
+			if( shape[ind] == '1' )
 			{
 				drawtable[m][n].visible = max(drawtable[m][n].visible - 1, 0);
 
@@ -115,8 +115,8 @@ void MultiTable::EraseTetro(const Tetromino& tetro)
 				else
 					drawtable[m][n].color = current[0].Color;
 			}
-        }
-    }
+		}
+	}
 }
 //=============================================================================================================
 void MultiTable::Glue(const Tetromino& tetro)
@@ -124,15 +124,15 @@ void MultiTable::Glue(const Tetromino& tetro)
 	const std::string& shape = tetro.GetOrientedShape();
 	int m, n;
 
-    for( int i = 0; i < 4; ++i )
-    {
-        for( int j = 0; j < 4; ++j )
-        {
-            m = tetro.X + i;
-            n = tetro.Y + j;
+	for( int i = 0; i < 4; ++i )
+	{
+		for( int j = 0; j < 4; ++j )
+		{
+			m = tetro.X + i;
+			n = tetro.Y + j;
 
-            if( m >= 0 && m < Width && n < Height )
-            {
+			if( m >= 0 && m < Width && n < Height )
+			{
 				if( shape[i + 4 * j] == '1' )
 				{
 					++drawtable[m][n].visible;
@@ -140,52 +140,52 @@ void MultiTable::Glue(const Tetromino& tetro)
 					drawtable[m][n].mask = true;
 					drawtable[m][n].color =	((drawtable[m][n].visible > 1) ? 0xffff9bf5 : tetro.Color);
 				}
-            }
-        }
-    }
+			}
+		}
+	}
 }
 //=============================================================================================================
 void MultiTable::MarkToDelete(int start, int end)
 {
 	todelete.clear();
 
-    for( int i = start; i < end; ++i )
-    {
-        for( int j = 1; j < Width - 1; ++j )
-        {
-            if( drawtable[j][i].mask )
-            {
-                todelete.insert(i);
-                break;
-            }
-        }
-    }
+	for( int i = start; i < end; ++i )
+	{
+		for( int j = 1; j < Width - 1; ++j )
+		{
+			if( drawtable[j][i].mask )
+			{
+				todelete.insert(i);
+				break;
+			}
+		}
+	}
 }
 //=============================================================================================================
 void MultiTable::FindToDelete(int start, int end)
 {
 	todelete.clear();
-    bool filled;
+	bool filled;
 
-    for( int i = start; i < end; ++i )
-    {
-        if( i >= Height - 1 )
-            continue;
-        
-        filled = true;
+	for( int i = start; i < end; ++i )
+	{
+		if( i >= Height - 1 )
+			continue;
 
-        for( int j = 1; j < Width - 1; ++j )
-        {
-            if( !drawtable[j][i].mask )
-            {
-                filled = false;
-                break;
-            }
-        }
+		filled = true;
 
-        if( filled )
-            todelete.insert(i);
-    }
+		for( int j = 1; j < Width - 1; ++j )
+		{
+			if( !drawtable[j][i].mask )
+			{
+				filled = false;
+				break;
+			}
+		}
+
+		if( filled )
+			todelete.insert(i);
+	}
 }
 //=============================================================================================================
 void MultiTable::Move(char player, char direction)
@@ -204,14 +204,14 @@ void MultiTable::Move(char player, char direction)
 	DrawTetro(t);
 }
 //=============================================================================================================
-void MultiTable::Fill(unsigned long colors[])
+void MultiTable::Fill(unsigned int colors[])
 {
 	int ind;
 
 	for( int i = 0; i < Width; ++i )
-    {
-        for( int j = 0; j < Height; ++j )
-        {
+	{
+		for( int j = 0; j < Height; ++j )
+		{
 			ind = i * Height + j;
 			
 			if( colors[ind] != 0 )
@@ -244,9 +244,9 @@ void MultiTable::Reset()
 
 	Fast1 = false;
 	Fast2 = false;
-	flash = false;
 	Score = 0;
 
+	flash = false;
 	state = Dead;
 	ticks = 0;
 
@@ -270,10 +270,10 @@ void MultiTable::Rotate(char player)
 	EraseTetro(t);
 	t.Rotate90();
 
-    if( Collide(t) )
-        t.Rotate270();
+	if( Collide(t) )
+		t.Rotate270();
 
-    DrawTetro(t);
+	DrawTetro(t);
 }
 //=============================================================================================================
 void MultiTable::Step(char player)
@@ -512,35 +512,35 @@ size_t MultiTable::Collapse()
 	int i, j, k;
 	bool empty;
 
-    while( todelete.size() > 0 )
-    {
-        i = *(todelete.rbegin());
-        todelete.erase(i);
+	while( todelete.size() > 0 )
+	{
+		i = *(todelete.rbegin());
+		todelete.erase(i);
 
-        j = i - 1;
+		j = i - 1;
 
-        while( todelete.count(j) > 0 )
-            --j;
+		while( todelete.count(j) > 0 )
+			--j;
 
-        empty = true;
+		empty = true;
 
-        for( k = 1; k < Width - 1; ++k )
-        {
-            if( drawtable[k][i].mask = drawtable[k][j].mask )
+		for( k = 1; k < Width - 1; ++k )
+		{
+			if( drawtable[k][i].mask = drawtable[k][j].mask )
 			{
-                empty = false;
+				empty = false;
 				drawtable[k][i].color = drawtable[k][j].color;
 				drawtable[k][i].visible = drawtable[k][j].visible;
 			}
 			else
 				drawtable[k][i].visible = 0;
-        }
+		}
 
-        if( !empty )
-            todelete.insert(j);
-    }
+		if( !empty )
+			todelete.insert(j);
+	}
 
-    return ret;
+	return ret;
 }
 //=============================================================================================================
 size_t MultiTable::Write(size_t start, DummyFramework::CDynamicQuadBuffer9& quads, float alpha)

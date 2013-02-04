@@ -19,7 +19,7 @@ public:
     DummyFramework::CSprite9* Corner;
     DummyFramework::CSprite9* Side;
     DummyFramework::CSprite9* Inside;
-    size_t IdleDelay;                   /*!< \brief How long it should be visible */
+    size_t IdleDelay;                   /*!< \brief How int it should be visible */
 
     ChatBubble();
     ~ChatBubble() {}
@@ -28,7 +28,7 @@ public:
     void Draw();
 
 	//! Change the bubble's state
-    void SetState(unsigned long newstate);
+    void SetState(unsigned int newstate);
 
 	//! Update the bubble
     void Update();

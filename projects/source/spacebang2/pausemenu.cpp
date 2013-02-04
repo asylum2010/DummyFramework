@@ -50,7 +50,7 @@ bool PauseMenu::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpri
     return CForm::Initialize(mygame, font);
 }
 //=============================================================================================================
-void PauseMenu::SetState(unsigned long newstate)
+void PauseMenu::SetState(unsigned int newstate)
 {
     switch( newstate )
     {

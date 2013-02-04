@@ -14,13 +14,13 @@ protected:
     DummyFramework::syncedanimator<float, 7> alpha;
 
 public:
-    size_t IdleDelay;   /*!< \brief How long should it be visible */
+    size_t IdleDelay;   /*!< \brief How int should it be visible */
 
     AnimatedLabel();
     ~AnimatedLabel();
 
 	//! Change the label's state
-    void SetState(unsigned long newstate);
+    void SetState(unsigned int newstate);
 
 	//! Update the label
     void Update();

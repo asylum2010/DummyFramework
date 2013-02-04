@@ -16,23 +16,23 @@ class CoopGame : public DummyFramework::CForm
 	typedef union
 	{
 		unsigned char a[4];
-		unsigned long b;
+		unsigned int b;
 	} binding;
 
 	struct player
 	{
-		binding     bindings;
-		char        movedir;
-		bool        rotated;
-		bool        firststep;
+		binding		bindings;
+		char		movedir;
+		bool		rotated;
+		bool		firststep;
 	};
 
 private:
-	MultiTable table;
-	player     players[2];
-	int        ticks;
-	int        gametime;
-	bool       juststarted;
+	MultiTable	table;
+	player		players[2];
+	int			ticks;
+	int			gametime;
+	bool		juststarted;
 
 	DummyFramework::syncedanimator<float, 3> blink;
 	DummyFramework::CDynamicQuadBuffer9 quads;
@@ -76,14 +76,14 @@ public:
 
 	void Draw();
 	void Reset(bool clear);
-	void SetState(unsigned long newstate);
+	void SetState(unsigned int newstate);
 	void Update();
 	
 	inline void Bind(size_t player, inputaction act, unsigned char key) {
 		players[player].bindings.a[act] = key;
 	}
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
 	void onfocusgained();
 	void onfocuslost();
 	void onkeyup(const DummyFramework::skeyboardstate& kstate);

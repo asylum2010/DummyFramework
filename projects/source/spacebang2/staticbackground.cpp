@@ -27,7 +27,7 @@ void StaticBackground::Draw()
     CForm::Draw();
 }
 //=============================================================================================================
-void StaticBackground::SetState(unsigned long newstate)
+void StaticBackground::SetState(unsigned int newstate)
 {
     switch( newstate )
     {

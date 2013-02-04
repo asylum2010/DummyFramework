@@ -25,15 +25,15 @@ private:
 	DummyFramework::syncedlinear<D3DXVECTOR3> position;
 	DummyFramework::syncedlinear<D3DXQUATERNION> rotation;
 
-	unsigned long state;
+	unsigned int state;
 	double lastinput;
 
 public:
 	AirPlane();
 	~AirPlane() {}
 
-	void MakeState(unsigned long& input, D3DXVECTOR3& pos, D3DXQUATERNION& q);
-	void UpdateState(unsigned long input, const D3DXVECTOR3& pos, const D3DXQUATERNION& q, double time);
+	void MakeState(unsigned int& input, D3DXVECTOR3& pos, D3DXQUATERNION& q);
+	void UpdateState(unsigned int input, const D3DXVECTOR3& pos, const D3DXQUATERNION& q, double time);
 	void Update(double time);
 	void UpdateTransforms(float alpha);
 
@@ -45,7 +45,7 @@ public:
 		return (state != Idle);
 	}
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
 	void onkeyup(const DummyFramework::skeyboardstate& kstate);
 	void onkeydown(const DummyFramework::skeyboardstate& kstate);
 };

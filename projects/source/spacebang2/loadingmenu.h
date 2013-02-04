@@ -33,13 +33,13 @@ public:
     bool Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpriteFont9& font);
 
     void Draw();
-    void SetState(unsigned long newstate);
+    void SetState(unsigned int newstate);
     void Update();
 
-events:
+_DUMMY_EVENTS:
     DummyFramework::signal0 startload;
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
     void onfocusgained();
     void onfocuslost();
     void onresetdevice();

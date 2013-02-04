@@ -37,7 +37,7 @@ private:
 	D3DXVECTOR3 eye;
 	objectlist objects;
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
 	void application_keyup(const DummyFramework::skeyboardstate& kstate);
 	void screenfader_faded(DummyFramework::CScreenFader9::efademode mode);
 	void waterrenderer_renderreflection();

@@ -19,7 +19,7 @@ bool AnimatedButton::LoadContent()
     return success;
 }
 //=============================================================================================================
-void AnimatedButton::SetState(unsigned long newstate)
+void AnimatedButton::SetState(unsigned int newstate)
 {
     switch( newstate )
     {

@@ -12,48 +12,48 @@
  */
 class Explosion : public GameElement
 {
-    functor sine2x
-    {
-        inline static float y(float x) {
-            return sin(2 * x) + 0.1f;
-        }
-    };
+	functor sine2x
+	{
+		inline static float y(float x) {
+			return sin(2 * x) + 0.1f;
+		}
+	};
 
 private:
-    size_t ticks;
-    unsigned long state;
+	size_t ticks;
+	unsigned int state;
 
-    DummyFramework::syncedanimator<float, 5> alpha;
-    DummyFramework::syncedanimator<float, 4, sine2x> scale;
+	DummyFramework::syncedanimator<float> alpha;
+	DummyFramework::syncedanimator<float, sine2x> scale;
 
 public:
-    enum explosionstate
-    {
-        Growing,
-        Idle,
-        Fading,
-        Faded
-    };
+	enum explosionstate
+	{
+		Growing,
+		Idle,
+		Fading,
+		Faded
+	};
 
-    DummyFramework::CSprite9*  Image;      /*!< \brief Explosion graphic */
-	syncedvector               Position;
-    float                      Speed;      /*!< \brief Movement speed */
-	float                      Scale;      /*!< \brief Scaling */
-	unsigned long              Value;      /*!< \brief Some explosions worth points */
+	DummyFramework::CSprite9*	Image;		/*!< \brief Explosion graphic */
+	syncedvector				Position;
+	float						Speed;		/*!< \brief Movement speed */
+	float						Scale;		/*!< \brief Scaling */
+	unsigned int				Value;		/*!< \brief Some explosions worth points */
 
-    Explosion();
+	Explosion();
 	~Explosion() {}
 
 	//! Fixed timestep update
-    void Update();
+	void Update();
 
 	//! Write into the dynamic buffer
-    size_t Write(size_t start, quadbuffer& quad);
+	size_t Write(size_t start, quadbuffer& quad);
 	
 	//! Returns the explosion's state
-    inline unsigned long GetState() const {
-        return state;
-    }
+	inline unsigned int GetState() const {
+		return state;
+	}
 };
 
 #endif

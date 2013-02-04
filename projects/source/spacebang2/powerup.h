@@ -13,43 +13,43 @@
  */
 class Powerup : public GameElement
 {
-    struct sinexpi_pi
-    {
-        inline static float y(float x) {
-            return (float)sin((x + 0.5f) * D3DX_PI);
-        }
-    };
+	struct sinexpi_pi
+	{
+		inline static float y(float x) {
+			return (float)sin((x + 0.5f) * D3DX_PI);
+		}
+	};
 
 private:
-    DummyFramework::syncedanimator<float, 10, sinexpi_pi> offset;
-    size_t ticks;
+	DummyFramework::syncedanimator<float, sinexpi_pi> offset;
+	size_t ticks;
 
 public:
-    DummyFramework::CSprite9* Image;
-    syncedvector Position;
-    float Speed;
+	DummyFramework::CSprite9* Image;
+	syncedvector Position;
+	float Speed;
 
-    Powerup();
-    ~Powerup() {}
-    
+	Powerup();
+	~Powerup() {}
+
 	//! Returns the powerup's position with its current offset
-    void GetPositionWithOffset(D3DXVECTOR2& out);
+	void GetPositionWithOffset(D3DXVECTOR2& out);
 
 	//! Fixed timestep update
-    void Update();
+	void Update();
 
 	//! Render
-    size_t Write(size_t start, quadbuffer& quad);
+	size_t Write(size_t start, quadbuffer& quad);
 
 	//! Set the powerup's position
-    inline void SetPosition(const D3DXVECTOR2& newpos) {
-        Position = D3DXVECTOR2(
-            newpos.x - Image->Size.x * 0.5f,
-            newpos.y - Image->Size.y * 0.5f);
-    }
-    
-events:
-    DummyFramework::unisignal0 apply;
+	inline void SetPosition(const D3DXVECTOR2& newpos) {
+		Position = D3DXVECTOR2(
+			newpos.x - Image->Size.x * 0.5f,
+			newpos.y - Image->Size.y * 0.5f);
+	}
+
+_DUMMY_EVENTS:
+	DummyFramework::unisignal0 apply;
 };
 
 #endif

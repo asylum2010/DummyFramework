@@ -27,7 +27,7 @@ private:
 
 	D3DXMATRIX world, view, proj;
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
 	void application_keyup(const DummyFramework::skeyboardstate& kstate);
 };
 

@@ -50,7 +50,7 @@ private:
 	LPDIRECT3DTEXTURE9 current;
 	D3DXMATRIX world;
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
 	void application_keyup(const DummyFramework::skeyboardstate& kstate);
 	void application_command(const DummyFramework::scommand& cmd);
 	void application_notify(const DummyFramework::scommand& cmd);

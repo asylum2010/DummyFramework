@@ -5,7 +5,7 @@
 #include <dummyframework/base/d3d9/CGame9.h>
 #include <sstream>
 
-unsigned long examplecolors3[336] =
+unsigned int examplecolors3[336] =
 {
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff00ffff, 0xff00ffff, 0xff00ffff, 0xffffa500, 0xffff0000, 0xffff0000, 0, 0, 0xff8a2be2, 0xff00ffff, 0xff8a2be2, 0, 
@@ -20,7 +20,7 @@ unsigned long examplecolors3[336] =
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff8a2be2, 0xff8a2be2, 0xff8a2be2, 0xff0000ff, 0, 0xffffa500, 0xffffff00, 0xffffff00, 0, 0, 0xff00ffff, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 };
-//=============================================================================================================
+
 SingleGame::SingleGame()
 	: CForm()
 {
@@ -35,7 +35,7 @@ SingleGame::SingleGame()
 	ticks = 0;
 
 	for( size_t i = 0; i < 5; ++i )
-        AddControl(labels[i]);
+		AddControl(labels[i]);
 
 	player1.table.gameover.connect(this, &SingleGame::ongameover);
 	
@@ -100,14 +100,14 @@ void SingleGame::Draw()
 	float h1 = GameVariables::CorrelateH(210);
 
 	quads.Lock();
-    {
+	{
 		count += t1.Write(count, quads, blink.value);
 		count += DrawTetro(count, player1.table.Next, D3DXVECTOR2(r + s * 0.3116f, h1));
 	}
 	quads.Unlock();
 
 	game->StateManager->SetTexture(0, Atlas);
-    quads.Draw(count);
+	quads.Draw(count);
 
 	// szövegek frissitése
 	size_t mins, secs;
@@ -131,7 +131,7 @@ void SingleGame::Draw()
 		labels[3].Color.a = labels[4].Color.a = blink.value;
 
 	CForm::Draw();
-    spritefont->Draw(GroupID);
+	spritefont->Draw(GroupID);
 }
 //=============================================================================================================
 size_t SingleGame::DrawTetro(size_t start, const Tetromino& tetro, const D3DXVECTOR2& pos)
@@ -145,22 +145,22 @@ size_t SingleGame::DrawTetro(size_t start, const Tetromino& tetro, const D3DXVEC
 
 	color.a = white.a = blink.value;
 	
-    for( int i = 0; i < 4; ++i )
-    {
-        for( int j = 0; j < 4; ++j )
-        {
+	for( int i = 0; i < 4; ++i )
+	{
+		for( int j = 0; j < 4; ++j )
+		{
 			p.x = pos.x + Cell->Size.x * i;
 			p.y = pos.y + Cell->Size.y * j;
 
-            if( shape[i + 4 * j] == '1' )
-            {
-                quads.WriteQuad(start + count, p, Cell->Size, Cell->Texcoords, color);
+			if( shape[i + 4 * j] == '1' )
+			{
+				quads.WriteQuad(start + count, p, Cell->Size, Cell->Texcoords, color);
 				quads.WriteQuad(start + count + 1, p, Glow->Size, Glow->Texcoords, white);
 
 				count += 2;
-            }
-        }
-    }
+			}
+		}
+	}
 
 	return count;
 }
@@ -211,7 +211,7 @@ void SingleGame::ResetGUI()
 	labels[2].Position.y = GameVariables::CorrelateH(166);
 }
 //=============================================================================================================
-void SingleGame::SetState(unsigned long newstate)
+void SingleGame::SetState(unsigned int newstate)
 {
 	switch( newstate )
 	{
@@ -271,7 +271,7 @@ void SingleGame::Update()
 		break;
 
 	case TransitionOut:
-        focuslost(*this);
+		focuslost(*this);
 		break;
 	
 	case BlinkOut:

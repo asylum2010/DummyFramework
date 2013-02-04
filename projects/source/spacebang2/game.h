@@ -34,7 +34,7 @@ class Game : public DummyFramework::CForm
      */
     struct savedvariables
     {
-        unsigned long score;
+        unsigned int score;
         unsigned short health;
         unsigned short integrity;
         unsigned short maxhealth;
@@ -48,7 +48,7 @@ class Game : public DummyFramework::CForm
     typedef std::set<short> powerupset;
 
 private:
-    DummyFramework::syncedanimator<float, MENU_TRANSITION * 2> alpha;
+    DummyFramework::syncedanimator<float> alpha;
 
     Background          background;           /*!< \brief Layered background */
     Avatar              avatar;               /*!< \brief The main character */
@@ -71,15 +71,15 @@ private:
     poweruplist         powerups;
     quadbuffer          quads;                /*!< \brief Dynamic vertex buffer */
     savedvariables      savedvars;
-    unsigned long       id;                   /*!< \brief ID of the rendertarget texture */
+    unsigned int       id;                   /*!< \brief ID of the rendertarget texture */
     unsigned char       invert, invertmode;
-    long                execdelay;            /*!< \brief Time until next command */
+    int                execdelay;            /*!< \brief Time until next command */
     int                 ticks;                /*!< \brief Counter */
     size_t              execticks;            /*!< \brief Counter for script execution */
     float               texcoords[4];
     
 	//! Adds an enemy to the game field
-    void AddEnemy(long type, long height, long width, long track, long speed);
+    void AddEnemy(int type, int height, int width, int track, int speed);
 
 	//! Adds a powerup
     void AddPowerup(const D3DXVECTOR2 pos);
@@ -153,7 +153,7 @@ public:
     void Reset(const std::string& stagefile);
 
 	//! Set a new gamestate
-    void SetState(unsigned long newstate);
+    void SetState(unsigned int newstate);
 
     //! Menu logic update
     void Update();
@@ -166,7 +166,7 @@ public:
 		avatar.FlushControlStates();
 	}
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
     void avatar_shoot();
     void avatar_dead();
     void avatar_explode();

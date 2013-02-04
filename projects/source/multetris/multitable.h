@@ -13,24 +13,24 @@
 class MultiTable
 {
 	struct tetriscell
-    {
-        unsigned long color;
+	{
+		unsigned int color;
 		char visible;
 		bool mask;
-    };
+	};
 
 private:
 	typedef std::vector<Tetromino*> tetrolist;
 	typedef std::set<int> rowset;
 
-	Tetromino      current[2];
-	tetrolist      tetrominos;
-	rowset         todelete;
-	tetriscell**   drawtable;
-	unsigned long  state;
-	int            flashticks;
-	int            ticks;
-	bool           flash;
+	Tetromino		current[2];
+	tetrolist		tetrominos;
+	rowset			todelete;
+	tetriscell**	drawtable;
+	unsigned int	state;
+	int				flashticks;
+	int				ticks;
+	bool			flash;
 
 	void CheckCollision();
 	void EraseTetro(const Tetromino& tetro);
@@ -62,13 +62,13 @@ public:
 	int Width, Height, HangOut;
 	float X, Y;
 	
-    MultiTable();
+	MultiTable();
 	~MultiTable();
 
 	bool Collide(const Tetromino& tetro);
 
 	void Clear();
-	void Fill(unsigned long colors[]);
+	void Fill(unsigned int colors[]);
 	void Move(char player, char direction);
 	void Reset();
 	void Rotate(char player);
@@ -77,11 +77,11 @@ public:
 	size_t Collapse();
 	size_t Write(size_t start, DummyFramework::CDynamicQuadBuffer9& quads, float alpha);
 
-	inline unsigned long GetState() const {
+	inline unsigned int GetState() const {
 		return state;
 	}
 
-events:
+_DUMMY_EVENTS:
 	DummyFramework::signal0 gameover;
 };
 

@@ -28,7 +28,7 @@ void StaticLogo::Draw()
     CForm::Draw();
 }
 //=============================================================================================================
-void StaticLogo::SetState(unsigned long newstate)
+void StaticLogo::SetState(unsigned int newstate)
 {
     switch( newstate )
     {

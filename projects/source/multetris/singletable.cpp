@@ -41,22 +41,22 @@ bool SingleTable::Collide(const Tetromino& tetro)
 	int m, n;
 	const std::string& shape = tetro.GetOrientedShape();
 
-    for( int i = 0; i < 4; ++i )
-    {
-        for( int j = 0; j < 4; ++j )
-        {
-            m = tetro.X + i;
-            n = tetro.Y + j;
+	for( int i = 0; i < 4; ++i )
+	{
+		for( int j = 0; j < 4; ++j )
+		{
+			m = tetro.X + i;
+			n = tetro.Y + j;
 
-            if( m >= 0 && m < Width && n < Height )
-            {
-                if( drawtable[m][n].mask && (shape[i + 4 * j] == '1') )
-                    return true;
-            }
-        }
-    }
+			if( m >= 0 && m < Width && n < Height )
+			{
+				if( drawtable[m][n].mask && (shape[i + 4 * j] == '1') )
+					return true;
+			}
+		}
+	}
 
-    return false;
+	return false;
 }
 //=============================================================================================================
 void SingleTable::Clear()
@@ -76,19 +76,19 @@ void SingleTable::DrawTetro(const Tetromino& tetro)
 	int ey = min(tetro.Y + 4, Height);
 	int m, n, ind;
 
-    for( m = sx; m < ex; ++m )
+	for( m = sx; m < ex; ++m )
 	{
 		for( n = tetro.Y; n < ey; ++n )
-        {
+		{
 			ind = (m - tetro.X) + 4 * (n - tetro.Y);
 
-            if( shape[ind] == '1' )
+			if( shape[ind] == '1' )
 			{
 				drawtable[m][n].visible = true;
 				drawtable[m][n].color = tetro.Color;
 			}
-        }
-    }
+		}
+	}
 }
 //=============================================================================================================
 void SingleTable::EraseTetro(const Tetromino& tetro)
@@ -100,16 +100,16 @@ void SingleTable::EraseTetro(const Tetromino& tetro)
 	int ey = min(tetro.Y + 4, Height);
 	int m, n, ind;
 
-    for( m = sx; m < ex; ++m )
+	for( m = sx; m < ex; ++m )
 	{
 		for( n = tetro.Y; n < ey; ++n )
-        {
+		{
 			ind = (m - tetro.X) + 4 * (n - tetro.Y);
 
 			if( shape[ind] == '1' )
 				drawtable[m][n].visible = false;
-        }
-    }
+		}
+	}
 }
 //=============================================================================================================
 void SingleTable::Glue(const Tetromino& tetro)
@@ -117,24 +117,24 @@ void SingleTable::Glue(const Tetromino& tetro)
 	const std::string& shape = tetro.GetOrientedShape();
 	int m, n;
 
-    for( int i = 0; i < 4; ++i )
-    {
-        for( int j = 0; j < 4; ++j )
-        {
-            m = tetro.X + i;
-            n = tetro.Y + j;
+	for( int i = 0; i < 4; ++i )
+	{
+		for( int j = 0; j < 4; ++j )
+		{
+			m = tetro.X + i;
+			n = tetro.Y + j;
 
-            if( m >= 0 && m < Width && n < Height )
-            {
+			if( m >= 0 && m < Width && n < Height )
+			{
 				if( shape[i + 4 * j] == '1' )
 				{
 					drawtable[m][n].color =	tetro.Color;
 					drawtable[m][n].mask = true;
 					drawtable[m][n].visible = true;
 				}
-            }
-        }
-    }
+			}
+		}
+	}
 }
 //=============================================================================================================
 void SingleTable::Half()
@@ -166,43 +166,43 @@ void SingleTable::MarkToDelete(int start, int end)
 {
 	todelete.clear();
 
-    for( int i = start; i < end; ++i )
-    {
-        for( int j = 1; j < Width - 1; ++j )
-        {
-            if( drawtable[j][i].mask )
-            {
-                todelete.insert(i);
-                break;
-            }
-        }
-    }
+	for( int i = start; i < end; ++i )
+	{
+		for( int j = 1; j < Width - 1; ++j )
+		{
+			if( drawtable[j][i].mask )
+			{
+				todelete.insert(i);
+				break;
+			}
+		}
+	}
 }
 //=============================================================================================================
 void SingleTable::FindToDelete(int start, int end)
 {
 	todelete.clear();
-    bool filled;
+	bool filled;
 
-    for( int i = start; i < end; ++i )
-    {
-        if( i >= Height - 1 )
-            continue;
-        
-        filled = true;
+	for( int i = start; i < end; ++i )
+	{
+		if( i >= Height - 1 )
+			continue;
 
-        for( int j = 1; j < Width - 1; ++j )
-        {
-            if( !drawtable[j][i].mask )
-            {
-                filled = false;
-                break;
-            }
-        }
+		filled = true;
 
-        if( filled )
-            todelete.insert(i);
-    }
+		for( int j = 1; j < Width - 1; ++j )
+		{
+			if( !drawtable[j][i].mask )
+			{
+				filled = false;
+				break;
+			}
+		}
+
+		if( filled )
+			todelete.insert(i);
+	}
 }
 //=============================================================================================================
 void SingleTable::Move(char direction)
@@ -219,14 +219,14 @@ void SingleTable::Move(char direction)
 	DrawTetro(current);
 }
 //=============================================================================================================
-void SingleTable::Fill(unsigned long colors[])
+void SingleTable::Fill(unsigned int colors[])
 {
 	int ind;
 
 	for( int i = 0; i < Width; ++i )
-    {
-        for( int j = 0; j < Height; ++j )
-        {
+	{
+		for( int j = 0; j < Height; ++j )
+		{
 			ind = i * Height + j;
 			
 			if( colors[ind] != 0 )
@@ -278,10 +278,10 @@ void SingleTable::Rotate()
 	EraseTetro(current);
 	current.Rotate90();
 
-    if( Collide(current) )
-        current.Rotate270();
+	if( Collide(current) )
+		current.Rotate270();
 
-    DrawTetro(current);
+	DrawTetro(current);
 }
 //=============================================================================================================
 void SingleTable::Step()
@@ -290,7 +290,7 @@ void SingleTable::Step()
 
 	current.X = Width / 2 - 2;
 	current.Y = 0;
-		
+
 	Next = *tetrominos[rand() % tetrominos.size()];
 	Next.Rotate(rand());
 
@@ -398,35 +398,35 @@ size_t SingleTable::Collapse()
 	int i, j, k;
 	bool empty;
 
-    while( todelete.size() > 0 )
-    {
-        i = *(todelete.rbegin());
-        todelete.erase(i);
+	while( todelete.size() > 0 )
+	{
+		i = *(todelete.rbegin());
+		todelete.erase(i);
 
-        j = i - 1;
+		j = i - 1;
 
-        while( todelete.count(j) > 0 )
-            --j;
+		while( todelete.count(j) > 0 )
+			--j;
 
-        empty = true;
+		empty = true;
 
-        for( k = 1; k < Width - 1; ++k )
-        {
-            if( drawtable[k][i].mask = drawtable[k][j].mask )
+		for( k = 1; k < Width - 1; ++k )
+		{
+			if( drawtable[k][i].mask = drawtable[k][j].mask )
 			{
-                empty = false;
+				empty = false;
 				drawtable[k][i].color = drawtable[k][j].color;
 				drawtable[k][i].visible = drawtable[k][j].visible;
 			}
 			else
 				drawtable[k][i].visible = 0;
-        }
+		}
 
-        if( !empty )
-            todelete.insert(j);
-    }
+		if( !empty )
+			todelete.insert(j);
+	}
 
-    return ret;
+	return ret;
 }
 //=============================================================================================================
 size_t SingleTable::Write(size_t start, DummyFramework::CDynamicQuadBuffer9& quads, float alpha)

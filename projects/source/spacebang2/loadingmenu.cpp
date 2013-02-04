@@ -31,7 +31,7 @@ bool LoadingMenu::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSp
     return CForm::Initialize(mygame, font);
 }
 //=============================================================================================================
-void LoadingMenu::SetState(unsigned long newstate)
+void LoadingMenu::SetState(unsigned int newstate)
 {
     switch( newstate )
     {

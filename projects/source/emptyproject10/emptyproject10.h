@@ -19,7 +19,7 @@ protected:
 	void Update();
 	void Draw();
 
-eventhandlers:
+_DUMMY_EVENTHANDLERS:
 	void application_keyup(const DummyFramework::skeyboardstate& kstate);
 };
 

@@ -16,7 +16,7 @@ ChatBubble::ChatBubble()
     alpha = 0;
 }
 //=============================================================================================================
-void ChatBubble::SetState(unsigned long newstate)
+void ChatBubble::SetState(unsigned int newstate)
 {
     switch( newstate )
     {

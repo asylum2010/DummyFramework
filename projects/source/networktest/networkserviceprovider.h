@@ -6,7 +6,7 @@
 #include <string>
 
 // TODO: lecserélni az OGRE-s megfelelöre
-typedef unsigned long inputstate;
+typedef unsigned int inputstate;
 typedef D3DXVECTOR3 vector3;
 typedef D3DXQUATERNION quaternion;
 
