@@ -17,15 +17,15 @@ namespace DummyFramework
 		state = 0;
 		weaponcd = 0;
 		pmax = D3DX_PI * 0.5f;
-        pmin = D3DX_PI * -0.5f;
+		pmin = D3DX_PI * -0.5f;
 
 		move = D3DXVECTOR3(0, 0, 0);
 
-		weapon.set(D3DXVECTOR2(-0.5f, 1), D3DXVECTOR2(0.5f, 1));
+		weapon.set(5, D3DXVECTOR2(-0.5f, 1), D3DXVECTOR2(0.5f, 1));
 		weapon = weapon.count() / 2;
 		weapon.direction = -1;
 
-		pushback.set(1, 1);
+		pushback.set(5, 1, 1);
 		pushback = pushback.count() - 1;
 		pushback.direction = 1;
 	}
@@ -53,22 +53,22 @@ namespace DummyFramework
 		{
 			weapon.step();
 
-			if( weapon.current() == 0 )
+			if( weapon.current == 0 )
 				weapon.direction = 1;
-			else if( weapon.current() == weapon.count() - 1 )
+			else if( weapon.current == weapon.count() - 1 )
 				weapon.direction = -1;
 		}
 		else
 		{
-			if( weapon.current() == weapon.count() / 2 )
+			if( weapon.current == weapon.count() / 2 )
 			{
 				weapon.direction = -1;
 				weapon = weapon.count() / 2;
 			}
 			else
 			{
-				weapon.previous() = weapon.current();
-				weapon.current() = weapon.count() / 2;
+				weapon.previous = weapon.current;
+				weapon.current = weapon.count() / 2;
 
 				weapon.direction *= -1;
 			}
@@ -105,15 +105,15 @@ namespace DummyFramework
 	void CFPSCamera::SetOrientation(const D3DXVECTOR3& angles)
 	{
 		euler.x = fmodf(angles.x, D3DX_PI * 2.0f);
-        euler.y = fmodf(angles.y, D3DX_PI * 2.0f);
-        euler.z = fmodf(angles.z, D3DX_PI * 2.0f);
+		euler.y = fmodf(angles.y, D3DX_PI * 2.0f);
+		euler.z = fmodf(angles.z, D3DX_PI * 2.0f);
 	}
 	//=============================================================================================================
-    void CFPSCamera::SetOrientation(float x, float y, float z)
+	void CFPSCamera::SetOrientation(float x, float y, float z)
 	{
 		euler.x = fmodf(x, D3DX_PI * 2.0f);
-        euler.y = fmodf(y, D3DX_PI * 2.0f);
-        euler.z = fmodf(z, D3DX_PI * 2.0f);
+		euler.y = fmodf(y, D3DX_PI * 2.0f);
+		euler.z = fmodf(z, D3DX_PI * 2.0f);
 	}
 	//=============================================================================================================
 	void CFPSCamera::XRotate(float angle)
@@ -121,7 +121,7 @@ namespace DummyFramework
 		euler.y = fmodf(euler.y + angle, D3DX_PI * 2.0f);
 	}
 	//=============================================================================================================
-    void CFPSCamera::YRotate(float angle)
+	void CFPSCamera::YRotate(float angle)
 	{
 		euler.x = fmodf(euler.x + angle, D3DX_PI * 2.0f);
 	}
@@ -133,51 +133,51 @@ namespace DummyFramework
 		D3DXQuaternionRotationYawPitchRoll(&orientation, euler.x, euler.y, euler.z);
 		D3DXQuaternionNormalize(&orientation, &orientation);
 
-        Up(up);
+		Up(up);
 		Forward(forward);
 
 		D3DXVECTOR3 eye;
 		GetEyePosition(eye);
 
 		D3DXVec3Cross(&right, &up, &forward);
-                
-        out._11 = right.x;  out._12 = up.x;  out._13 = forward.x;  out._14 = 0.0f;
-        out._21 = right.y;  out._22 = up.y;  out._23 = forward.y;  out._24 = 0.0f;
-        out._31 = right.z;  out._32 = up.z;  out._33 = forward.z;  out._34 = 0.0f;
 
-        out._41 = -D3DXVec3Dot(&right, &eye);
-        out._42 = -D3DXVec3Dot(&up, &eye);
-        out._43 = -D3DXVec3Dot(&forward, &eye);
-        out._44 = 1.0f;
+		out._11 = right.x;  out._12 = up.x;  out._13 = forward.x;  out._14 = 0.0f;
+		out._21 = right.y;  out._22 = up.y;  out._23 = forward.y;  out._24 = 0.0f;
+		out._31 = right.z;  out._32 = up.z;  out._33 = forward.z;  out._34 = 0.0f;
 
-        return out;
+		out._41 = -D3DXVec3Dot(&right, &eye);
+		out._42 = -D3DXVec3Dot(&up, &eye);
+		out._43 = -D3DXVec3Dot(&forward, &eye);
+		out._44 = 1.0f;
+
+		return out;
 	}
 	//=============================================================================================================
-    void CFPSCamera::onmousemove(const smousestate& mstate)
-    {
-        dest_rot.x = (float)mstate.dx * RotationSpeed;
-        dest_rot.y = (float)mstate.dy * RotationSpeed;
+	void CFPSCamera::onmousemove(const smousestate& mstate)
+	{
+		dest_rot.x = (float)mstate.dx * RotationSpeed;
+		dest_rot.y = (float)mstate.dy * RotationSpeed;
 
-        D3DXVec2Lerp(&rot, &rot, &dest_rot, 0.65f);
+		D3DXVec2Lerp(&rot, &rot, &dest_rot, 0.65f);
 
-        XRotate(rot.y);
+		XRotate(rot.y);
 		YRotate(rot.x);
-    }
+	}
 	//=============================================================================================================
 	void CFPSCamera::onmousedown(const smousestate& mstate)
 	{
 		if( mstate.button & Button )
-            state |= CS_Shooting;
+			state |= CS_Shooting;
 	}
 	//=============================================================================================================
-    void CFPSCamera::onmouseup(const smousestate& mstate)
+	void CFPSCamera::onmouseup(const smousestate& mstate)
 	{
 		if( mstate.button & Button )
 			state &= (~CS_Shooting);
 	}
 	//=============================================================================================================
-    void CFPSCamera::onkeydown(const skeyboardstate& kbstate)
-    {
+	void CFPSCamera::onkeydown(const skeyboardstate& kbstate)
+	{
 		if( kbstate.keytable[0x57] & 0x80 )
 			state |= CS_Forward;
 
@@ -189,11 +189,11 @@ namespace DummyFramework
 
 		if( kbstate.keytable[0x41] & 0x80 )
 			state |= CS_Left;
-    }
-    //=============================================================================================================
-    void CFPSCamera::onkeyup(const skeyboardstate& kbstate)
-    {
-        if( kbstate.keytable[0x57] == 0 )
+	}
+	//=============================================================================================================
+	void CFPSCamera::onkeyup(const skeyboardstate& kbstate)
+	{
+		if( kbstate.keytable[0x57] == 0 )
 			state &= (~CS_Forward);
 
 		if( kbstate.keytable[0x53] == 0 )
@@ -204,7 +204,6 @@ namespace DummyFramework
 
 		if( kbstate.keytable[0x41] == 0 )
 			state &= (~CS_Left);
-    }
+	}
 	//=============================================================================================================
 }
-

@@ -54,8 +54,8 @@ namespace DummyFramework
 
 		bool attach(udpconnection& conn);
 		bool join(udpchannel& out);
-		bool addpacket(unsigned long client_id, const udppacket& packet);
-		bool getpacket(unsigned long client_id, udppacket& packet);
+		bool addpacket(unsigned int client_id, const udppacket& packet);
+		bool getpacket(unsigned int client_id, udppacket& packet);
 		void run();
 
 		inline bool connected() const {
@@ -66,7 +66,7 @@ namespace DummyFramework
 			return abletosend;
 		}
 
-		inline void getaddress(unsigned long client_id, ipv4address& addr) {
+		inline void getaddress(unsigned int client_id, ipv4address& addr) {
 			addr = client.address;
 		}
 	};
@@ -74,6 +74,3 @@ namespace DummyFramework
 
 #endif
 //=============================================================================================================
-
-
- 

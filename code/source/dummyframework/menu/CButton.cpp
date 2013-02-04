@@ -9,7 +9,7 @@ namespace DummyFramework
 		ActiveColor = 0xffffff00;
 	}
 	//=============================================================================================================
-	void CButton::SetState(unsigned long newstate)
+	void CButton::SetState(unsigned int newstate)
 	{
 		switch( newstate )
 		{
@@ -21,7 +21,7 @@ namespace DummyFramework
 		case Hidden:
 			currentcolor = Color;
 			break;
-	    
+
 		default:
 			break;
 		}
@@ -29,12 +29,12 @@ namespace DummyFramework
 		CLabel::SetState(newstate);
 	}
 	//=============================================================================================================
-    void CButton::Draw()
-    {
+	void CButton::Draw()
+	{
 		currentcolor.a = Color.a;
 
-        if( state != Hidden )
-            spritefont->Set(GroupID, textid, Text, Position, Alignment, (DWORD)currentcolor);
-    }
+		if( state != Hidden )
+			spritefont->Set(GroupID, textid, Text, Position, Alignment, (DWORD)currentcolor);
+	}
 	//=============================================================================================================
 }

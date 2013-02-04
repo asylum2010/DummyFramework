@@ -55,15 +55,15 @@ namespace DummyFramework
 			NULL);
 
 		derror(false, "CPictureBox::Initialize(): Could not create window", hwnd);
-        
+
 		if( !originalproc )
 		{
 			originalproc = (WNDPROC)GetWindowLong(hwnd, GWL_WNDPROC);
 			derror(false, "CPictureBox::Initialize(): Could not get window procedure", originalproc);
 		}
 
-        long ret = SetWindowLong(hwnd, GWL_WNDPROC, (LONG)&CPictureBox::WndProc);
-        derror(false, "CPictureBox::Initialize(): Could not set window procedure", ret);
+		int ret = SetWindowLong(hwnd, GWL_WNDPROC, (LONG)&CPictureBox::WndProc);
+		derror(false, "CPictureBox::Initialize(): Could not set window procedure", ret);
 
 		return CWindow::Initialize(parent);
 	}
@@ -73,5 +73,4 @@ namespace DummyFramework
 		return 0;
 	}
 	//=============================================================================================================
-
 }

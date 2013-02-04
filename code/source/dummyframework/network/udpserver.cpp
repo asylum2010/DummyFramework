@@ -53,10 +53,9 @@ namespace DummyFramework
 
 				out = udpchannel(*this, size);
 				
-				// kiküldünk egy csomagot, jelezve, hogy fogadtuk
-				// (mert egyébként lehet, hogy sokáig nem is küldünk semmit)
-				// a seq mind1, a másik oldal ignorolja
-				// ha elveszett: elöbb-utobb csak küldünk valamit
+				// send a packet to acknowledge
+				// SEQ is irrelevant, the other side ignores it
+				// we will send something sooner or later
 				udppacket pack;
 
 				pack.connection_id = size;
@@ -73,7 +72,7 @@ namespace DummyFramework
 		return false;
 	}
 	//=============================================================================================================
-	bool udpserver::addpacket(unsigned long client_id, const udppacket& packet)
+	bool udpserver::addpacket(unsigned int client_id, const udppacket& packet)
 	{
 		if( clients.size() > client_id )
 		{
@@ -87,7 +86,7 @@ namespace DummyFramework
 		return false;
 	}
 	//=============================================================================================================
-	bool udpserver::getpacket(unsigned long client_id, udppacket& packet)
+	bool udpserver::getpacket(unsigned int client_id, udppacket& packet)
 	{
 		if( client_id < clients.size() )
 		{
@@ -98,8 +97,8 @@ namespace DummyFramework
 				packet = *client.incoming.begin();
 				client.incoming.erase(client.incoming.begin());
 
-				// ennél korábbit már nem fogadunk
-				// ezt nem igy kellene, hanem idö alapján
+				// do not receive older than this
+				// TODO: use time instead
 				client.firstseq = packet.sequence_no;
 				return true;
 			}
@@ -110,18 +109,18 @@ namespace DummyFramework
 	//=============================================================================================================
 	void udpserver::run()
 	{
-		// TODO: ha a protocol_id egyezik
-		// TODO: ha valamelyiktöl sokáig nem jön akkor kidobni (pl. a wow 5p után logout)
+		// TODO: when protocol_id-s match
+		// TODO: throw out inactive clients
 
-		// elöször küldünk (annyit küld amennyit a ráta megenged)
-		// adaptálni kell a fogadók sebességéhez
+		// send first (based on rate)
+		// adapt to receivers
 		float packetsize = (float)_PACKET_SIZE_;
 		float rate = SendRate / (float)clients.size();
 		float time = packetsize / (rate * 128.0f);
 
 		abletosend = false;
 
-		// egyelöre fix ráta
+		// fix rate for now
 		if( currentclient != clients.size() )
 		{
 			double current = clock.Time();
@@ -131,20 +130,20 @@ namespace DummyFramework
 				abletosend = true;
 				slot& client = clients[currentclient];
 
-				// ha alacsony a küldési ráta akkor ez nem hatékony
-				// ha magas akkor viszont a vesztett idö --> 0
+				// when send rate is low, this is ineffective
+				// when send rate is high, then lost time converges to zero
 				if( client.outgoing.size() > 0 )
 				{
 					last = current;
 					udppacket& packet = client.outgoing.front();
 
-					// beállitjuk a sorszámot
+					// set SEQ
 					packet.connection_id = currentclient;
 					packet.sequence_no = client.local;
 
 					++client.local;
 
-					// ackoljuk a elsö csomagot (érkezési sorrendben => az rtt reális)
+					// ACK first packet (based on arrival => RTT makes sense)
 					if( client.needsack.size() > 0 )
 					{
 						packet.ack = client.needsack.front();
@@ -160,20 +159,20 @@ namespace DummyFramework
 				currentclient = (currentclient + 1) % clients.size();
 			}
 		}
-		// nem biztos, hogy kell (amikor kilép valaki akkor mivan)
+		// what if someone quits?
 		else
 			currentclient = 0;
 
-		// aztán fogadunk
+		// receive
 		ipv4address sender;
 		udppacket packet;
 
 		if( connection->recvpacket(packet, sender) )
 		{
-			// megnézzük hogy uj kapcsolat-e
+			// check if its a new connection
 			if( packet.connection_id == 0xffff )
 			{
-				// TODO: packetet is?
+				// TODO: packet?
 				pending.push(sender);
 			}
 			else
@@ -188,11 +187,11 @@ namespace DummyFramework
 					}
 					else if( client.incoming.size() < _INCOMING_SIZE )
 					{
-						// TODO: ack alapján rtt számolás
+						// TODO: calculate RTT based on ACK
 						client.incoming.insert(packet);
 
-						// ha sokáig nem küldünk, akkor kihagyunk párat...
-						// az ackot csak rtt számolásra használja
+						// if we did not send a int time ago, skip some
+						// (ACK is used only for RTT calculation)
 						if( client.needsack.size() == 20 )
 							client.needsack.pop();
 

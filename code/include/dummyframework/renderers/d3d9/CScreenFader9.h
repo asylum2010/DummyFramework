@@ -8,41 +8,45 @@
 
 namespace DummyFramework
 {
-    class CScreenFader9 : public CEffectRenderer9
-    {
-    public:
-        enum efademode { In, Out };
+	class CScreenFader9 : public CEffectRenderer9
+	{
+	public:
+		enum efademode
+		{
+			In,
+			Out
+		};
 
-        unsigned int Delay;
+		unsigned int Delay;
 
-        CScreenFader9();
-        ~CScreenFader9() {}
+		CScreenFader9();
+		~CScreenFader9() {}
 
-        bool Initialize(CGame9& mygame);
+		bool Initialize(CGame9& mygame);
 		bool LoadContent();
-        bool CreateStateBlock();
+		bool CreateStateBlock();
 
-        void Update();
-        void Draw();
-        void Reset(efademode fademode);
+		void Update();
+		void Draw();
+		void Reset(efademode fademode);
 
-    private:
-		syncedanimator<float, 5> alpha;
+	private:
+		syncedanimator<float> alpha;
 
-        LPDIRECT3DTEXTURE9  texture;
-        D3DXCOLOR           color;
-        D3DXMATRIX          world;
-        efademode           mode;
-		unsigned int        ticks;
-        unsigned long       id;
+		LPDIRECT3DTEXTURE9	texture;
+		D3DXCOLOR			color;
+		D3DXMATRIX			world;
+		efademode			mode;
+		unsigned int		ticks;
+		unsigned int		id;
 
-	events:
-        signal1<efademode> faded;
+	_DUMMY_EVENTS:
+		signal1<efademode> faded;
 
-	eventhandlers:
+	_DUMMY_EVENTHANDLERS:
 		void onlostdevice();
-        void onresetdevice();
-    };
+		void onresetdevice();
+	};
 }
 
 #endif

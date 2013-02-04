@@ -6,20 +6,20 @@
 
 namespace DummyFramework
 {
-    class CButton : public CLabel
-    {
+	class CButton : public CLabel
+	{
 	protected:
 		D3DXCOLOR currentcolor;
 
-    public:
+	public:
 		D3DXCOLOR ActiveColor;
 
 		CButton();
-        ~CButton() {}
+		~CButton() {}
 
 		void Draw();
-		void SetState(unsigned long newstate);
-    };
+		void SetState(unsigned int newstate);
+	};
 }
 
 #endif

@@ -8,23 +8,23 @@
 
 namespace DummyFramework
 {
-    struct smousestate;
-    struct skeyboardstate;
+	struct smousestate;
+	struct skeyboardstate;
 
-    class CFPSCamera : public CAbstractCamera, public has_slots
-    {
-        enum ecamerastate
-        {
-            CS_Idle = 0,
-            CS_Rotating = 1,
-            CS_Forward = 2,
+	class CFPSCamera : public CAbstractCamera, public has_slots
+	{
+		enum ecamerastate
+		{
+			CS_Idle = 0,
+			CS_Rotating = 1,
+			CS_Forward = 2,
 			CS_Backward = 4,
 			CS_Left = 8,
 			CS_Right = 16,
 			CS_Jumping = 32,
 			CS_Crouching = 64,
 			CS_Shooting = 128
-        };
+		};
 
 		struct weaponanim
 		{
@@ -40,38 +40,38 @@ namespace DummyFramework
 				return ((x < 0.1f) ? 1.0f : (1.0f - (x - 1) * (x - 1)));
 			}
 		};
-        
-    private:
-		syncedanimator<D3DXVECTOR2, 5, weaponanim> weapon;
-		syncedanimator<float, 5, pushbackanim> pushback;
+
+	private:
+		syncedanimator<D3DXVECTOR2, weaponanim> weapon;
+		syncedanimator<float, pushbackanim> pushback;
 		syncedlinear<D3DXVECTOR3> move;
 
 		D3DXVECTOR3 euler;
 		D3DXVECTOR3 up, forward, right;
-        D3DXVECTOR2 rot, dest_rot;
+		D3DXVECTOR2 rot, dest_rot;
 
-        unsigned long state;
+		unsigned int state;
 		unsigned int weaponcd;
 		float pmin, pmax;
 
-    public:
-        float RotationSpeed;
+	public:
+		float RotationSpeed;
 		float MoveSpeed;
 		unsigned int WeaponCooldown;
 
-        CFPSCamera();
+		CFPSCamera();
 
-        void Update();
-        void UpdateTransforms(float alpha);
+		void Update();
+		void UpdateTransforms(float alpha);
 		void SetOrientation(const D3DXVECTOR3& angles);
-        void SetOrientation(float x, float y, float z);
+		void SetOrientation(float x, float y, float z);
 		void SetPosition(const D3DXVECTOR3& pos);
-        void SetPosition(float x, float y, float z);
+		void SetPosition(float x, float y, float z);
 		void XRotate(float angle);
-        void YRotate(float angle);
+		void YRotate(float angle);
 
 		D3DXMATRIX& GetViewMatrix(D3DXMATRIX& out);
-        D3DXVECTOR3& GetEyePosition(D3DXVECTOR3& out);
+		D3DXVECTOR3& GetEyePosition(D3DXVECTOR3& out);
 
 		inline const D3DXVECTOR2& GetWeaponOffset() const {
 			return weapon.value;
@@ -81,16 +81,16 @@ namespace DummyFramework
 			return pushback.value;
 		}
 
-	events:
+	_DUMMY_EVENTS:
 		DummyFramework::unisignal0 shoot;
 
-    eventhandlers:
-        void onmousemove(const smousestate& mstate);
-        void onkeydown(const skeyboardstate& kbstate);
-        void onkeyup(const skeyboardstate& kbstate);
+	_DUMMY_EVENTHANDLERS:
+		void onmousemove(const smousestate& mstate);
+		void onkeydown(const skeyboardstate& kbstate);
+		void onkeyup(const skeyboardstate& kbstate);
 		void onmousedown(const smousestate& mstate);
-        void onmouseup(const smousestate& mstate);
-    };
+		void onmouseup(const smousestate& mstate);
+	};
 
 	inline void CFPSCamera::SetPosition(const D3DXVECTOR3& pos) {
 		move = pos;

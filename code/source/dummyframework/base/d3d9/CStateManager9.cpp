@@ -2,8 +2,7 @@
 #include <dummyframework/base/d3d9/CStateManager9.h>
 #include <iostream>
 
-#define _ZERORS_ 300
-
+#define _ZERORS_	300
 
 namespace DummyFramework
 {
@@ -144,4 +143,3 @@ namespace DummyFramework
 	}
 	//=============================================================================================================
 }
-

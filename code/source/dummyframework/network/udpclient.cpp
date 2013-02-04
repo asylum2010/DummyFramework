@@ -51,7 +51,7 @@ namespace DummyFramework
 		return false;
 	}
 	//=============================================================================================================
-	bool udpclient::addpacket(unsigned long client_id, const udppacket& packet)
+	bool udpclient::addpacket(unsigned int client_id, const udppacket& packet)
 	{
 		if( client.outgoing.size() < 10 )
 		{
@@ -62,15 +62,15 @@ namespace DummyFramework
 		return false;
 	}
 	//=============================================================================================================
-	bool udpclient::getpacket(unsigned long client_id, udppacket& packet)
+	bool udpclient::getpacket(unsigned int client_id, udppacket& packet)
 	{
 		if( client.incoming.size() > 0 )
 		{
 			packet = *client.incoming.begin();
 			client.incoming.erase(client.incoming.begin());
 
-			// ennél korábbit már nem fogadunk
-			// ezt nem igy kellene, hanem idö alapján
+			// do not accept older than this
+			// TODO: use time instead
 			client.firstseq = packet.sequence_no;
 			return true;
 		}
@@ -80,7 +80,7 @@ namespace DummyFramework
 	//=============================================================================================================
 	void udpclient::run()
 	{
-		// TODO: ha a protocol_id egyezik
+		// TODO: when protocol_id-s match
 
 		float packetsize = (float)_PACKET_SIZE_;
 		float time = packetsize / (SendRate * 128.0f);
@@ -88,8 +88,8 @@ namespace DummyFramework
 		
 		abletosend = false;
 
-		// timeout esetén ujra probál kapcsolodni
-		// a szerver ezt nemfogja letárolni
+		// tries to reconnect on timeout
+		// the server wont store it
 		if( connection_id == 0xffff )
 		{
 			if( lasttimeout + TimeOut < current )
@@ -104,7 +104,7 @@ namespace DummyFramework
 			}
 		}
 		
-		// küldünk
+		// send
 		if( last + time < current )
 		{
 			abletosend = true;
@@ -132,7 +132,7 @@ namespace DummyFramework
 			}
 		}
 
-		// fogadunk
+		// receive
 		ipv4address sender;
 		udppacket packet;
 
@@ -143,8 +143,8 @@ namespace DummyFramework
 				//if( 0xffff == (connection_id = packet.connection_id) )
 				//	return;
 
-				// az "accept" nem érdekes...de ha elveszett?
-				// valszeg ugyis küld vmi adatot a szerver elöbb-utobb
+				// 'accept' is irrelevant, but what if the packet was lost?
+				// assume that the server sends something sooner or later
 				connection_id = packet.connection_id;
 				return;
 			}
@@ -157,7 +157,7 @@ namespace DummyFramework
 				}
 				else if( client.incoming.size() < _INCOMING_SIZE )
 				{
-					// TODO: ack alapján rtt számolás
+					// TODO: calculate RTT based on ACK
 					client.incoming.insert(packet);
 					
 					if( client.needsack.size() == 20 )

@@ -105,8 +105,8 @@ namespace DummyFramework
 			derror(false, "CComboBox::Initialize(): Could not get window procedure", originalproc);
 		}
 
-        long ret = SetWindowLong(hwnd, GWL_WNDPROC, (LONG)&CComboBox::WndProc);
-        derror(false, "CComboBox::Initialize(): Could not set window procedure", ret);
+		int ret = SetWindowLong(hwnd, GWL_WNDPROC, (LONG)&CComboBox::WndProc);
+		derror(false, "CComboBox::Initialize(): Could not set window procedure", ret);
 
 		HFONT font = (HFONT)GetStockObject(DEFAULT_GUI_FONT);
 		SendMessage(hwnd, WM_SETFONT, (WPARAM)font, MAKELPARAM(TRUE, 0));

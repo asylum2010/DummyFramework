@@ -96,9 +96,6 @@
     <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CBloomRenderer9.h">
       <Filter>renderers\d3d9</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CCausticsRenderer9.h">
-      <Filter>renderers\d3d9</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CEnvironmentRenderer9.h">
       <Filter>renderers\d3d9</Filter>
     </ClInclude>

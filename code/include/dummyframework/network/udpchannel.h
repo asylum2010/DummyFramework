@@ -13,9 +13,9 @@ namespace DummyFramework
 	{
 	public:
 		virtual ~udpstation() {}
-		virtual bool addpacket(unsigned long client_id, const udppacket& packet) = 0;
-		virtual bool getpacket(unsigned long client_id, udppacket& packet) = 0;
-		virtual void getaddress(unsigned long client_id, ipv4address& addr) = 0;
+		virtual bool addpacket(unsigned int client_id, const udppacket& packet) = 0;
+		virtual bool getpacket(unsigned int client_id, udppacket& packet) = 0;
+		virtual void getaddress(unsigned int client_id, ipv4address& addr) = 0;
 	};
 
 	class udpchannel
@@ -39,4 +39,3 @@ namespace DummyFramework
 
 #endif
 //=============================================================================================================
-

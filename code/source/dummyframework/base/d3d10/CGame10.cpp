@@ -5,51 +5,51 @@
 
 namespace DummyFramework
 {
-    CGame10::CGame10()
-    {
-        Graphics          = NULL;
-		SwapChain         = NULL;
-		RenderTargetView  = NULL;
-		DepthStencilView  = NULL;
-		DepthStencil      = NULL;
-        FullScreen        = false;
-        VSync             = false;
-        ZBuffer           = true;
-        Stencil           = false;
+	CGame10::CGame10()
+	{
+		Graphics			= NULL;
+		SwapChain			= NULL;
+		RenderTargetView	= NULL;
+		DepthStencilView	= NULL;
+		DepthStencil		= NULL;
+		FullScreen			= false;
+		VSync				= false;
+		ZBuffer				= true;
+		Stencil				= false;
 
-        resetcounter      = 0;
-        fixedtimestep     = true;
-        devicelost        = false;
+		resetcounter		= 0;
+		fixedtimestep		= true;
+		devicelost			= false;
 
-        DisplayMode.Format      = DXGI_FORMAT_R8G8B8A8_UNORM; // DXGI_FORMAT_UNKNOWN
-		DisplayMode.Width       = 1024;
-        DisplayMode.Height      = 768;
+		DisplayMode.Format	= DXGI_FORMAT_R8G8B8A8_UNORM;
+		DisplayMode.Width	= 1024;
+		DisplayMode.Height	= 768;
 
-        DisplayMode.RefreshRate.Numerator = 60;
-        DisplayMode.RefreshRate.Denominator = 1;
+		DisplayMode.RefreshRate.Numerator = 60;
+		DisplayMode.RefreshRate.Denominator = 1;
 
-        Application.activated.connect(this, &CGame10::onactivate);
-        Application.deactivated.connect(this, &CGame10::ondeactivate);
+		Application.activated.connect(this, &CGame10::onactivate);
+		Application.deactivated.connect(this, &CGame10::ondeactivate);
 
-        lost.connect(this, &CGame10::onlostdevice);
-        reset.connect(this, &CGame10::onresetdevice);
+		lost.connect(this, &CGame10::onlostdevice);
+		reset.connect(this, &CGame10::onresetdevice);
 
-        memset(&SwapChainDesc, 0, sizeof(DXGI_SWAP_CHAIN_DESC));
-    }
-    //=============================================================================================================
-    CGame10::~CGame10()
-    {
-        // ...
-        posteffects.clear();
-        effects.clear();
+		memset(&SwapChainDesc, 0, sizeof(DXGI_SWAP_CHAIN_DESC));
+	}
+	//=============================================================================================================
+	CGame10::~CGame10()
+	{
+		// ...
+		posteffects.clear();
+		effects.clear();
 
 		ShutDown();
-    }
-    //=============================================================================================================
-    bool CGame10::Initialize()
-    {
-        if( Graphics )
-            return true;
+	}
+	//=============================================================================================================
+	bool CGame10::Initialize()
+	{
+		if( Graphics )
+			return true;
 				
 		HRESULT hr;
 		HWND hwnd;
@@ -57,36 +57,34 @@ namespace DummyFramework
 		ID3D10Texture2D* backbuffer;
 		D3D10_VIEWPORT vp;
 
-		long width = (long)DisplayMode.Width;
-		long height = (long)DisplayMode.Height;
+		int width = (int)DisplayMode.Width;
+		int height = (int)DisplayMode.Height;
 
-        success = Application.Initialize(width, height, FullScreen);
-        dassert(false, "CGame10::Initialize(): Could not initialize application", success);
+		success = Application.Initialize(width, height, FullScreen);
+		dassert(false, "CGame10::Initialize(): Could not initialize application", success);
 
 		hwnd = Application.GetWindowHandle();
 
-		SwapChainDesc.BufferDesc          = DisplayMode;
-		SwapChainDesc.BufferDesc.Width    = width;
-		SwapChainDesc.BufferDesc.Height   = height;
-		SwapChainDesc.BufferCount         = 1;
-		SwapChainDesc.BufferUsage         = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-		SwapChainDesc.OutputWindow        = hwnd;
-		SwapChainDesc.SampleDesc.Count    = 1;
-		SwapChainDesc.SampleDesc.Quality  = 0;
-		SwapChainDesc.Windowed            = !FullScreen;
+		SwapChainDesc.BufferDesc			= DisplayMode;
+		SwapChainDesc.BufferDesc.Width		= width;
+		SwapChainDesc.BufferDesc.Height		= height;
+		SwapChainDesc.BufferCount			= 1;
+		SwapChainDesc.BufferUsage			= DXGI_USAGE_RENDER_TARGET_OUTPUT;
+		SwapChainDesc.OutputWindow			= hwnd;
+		SwapChainDesc.SampleDesc.Count		= 1;
+		SwapChainDesc.SampleDesc.Quality	= 0;
+		SwapChainDesc.Windowed				= !FullScreen;
 		
 		UINT flags = 0;
 
-#ifdef _DEBUG
+	#ifdef _DEBUG
 		flags |= D3D10_CREATE_DEVICE_DEBUG;
-#endif
-
-		//D3D10_DRIVER_TYPE_REFERENCE
+	#endif
 
 		hr = D3D10CreateDeviceAndSwapChain(NULL, D3D10_DRIVER_TYPE_HARDWARE, NULL, flags,
 			D3D10_SDK_VERSION, &SwapChainDesc, &SwapChain, &Graphics);
 
-        dnassert(false, "CGame10::Initialize(): Could not create device", FAILED(hr));
+		dnassert(false, "CGame10::Initialize(): Could not create device", FAILED(hr));
 
 		hr = SwapChain->GetBuffer(0, __uuidof(ID3D10Texture2D), (void**)&backbuffer);
 		dnassert(false, "CGame10::Initialize(): Could not get backbuffer", FAILED(hr));
@@ -102,15 +100,15 @@ namespace DummyFramework
 			D3D10_TEXTURE2D_DESC depthdesc;
 			memset(&depthdesc, 0, sizeof(D3D10_TEXTURE2D_DESC));
 
-			depthdesc.Width               = width;
-			depthdesc.Height              = height;
-			depthdesc.MipLevels           = 1;
-			depthdesc.ArraySize           = 1;
-			depthdesc.Format              = DXGI_FORMAT_D32_FLOAT;
-			depthdesc.SampleDesc.Count    = 1;
-			depthdesc.SampleDesc.Quality  = 0;
-			depthdesc.Usage               = D3D10_USAGE_DEFAULT;
-			depthdesc.BindFlags           = D3D10_BIND_DEPTH_STENCIL;
+			depthdesc.Width					= width;
+			depthdesc.Height				= height;
+			depthdesc.MipLevels				= 1;
+			depthdesc.ArraySize				= 1;
+			depthdesc.Format				= DXGI_FORMAT_D32_FLOAT;
+			depthdesc.SampleDesc.Count		= 1;
+			depthdesc.SampleDesc.Quality	= 0;
+			depthdesc.Usage					= D3D10_USAGE_DEFAULT;
+			depthdesc.BindFlags				= D3D10_BIND_DEPTH_STENCIL;
 
 			hr = Graphics->CreateTexture2D(&depthdesc, NULL, &DepthStencil);
 			dnassert(false, "CGame10::Initialize(): Could not create depth buffer", FAILED(hr));
@@ -139,98 +137,98 @@ namespace DummyFramework
 
 		// ...
 
-        if( fixedtimestep )
-            Sync.synchronize.connect(this, &CGame10::Update);
+		if( fixedtimestep )
+			Sync.synchronize.connect(this, &CGame10::Update);
 
-        return true;
-    }
-    //=============================================================================================================
-    bool CGame10::LoadContent()
-    {
+		return true;
+	}
+	//=============================================================================================================
+	bool CGame10::LoadContent()
+	{
 		// ...
-        return true;
-    }
-    //=============================================================================================================
-    void CGame10::UnloadContent()
-    {
+		return true;
+	}
+	//=============================================================================================================
+	void CGame10::UnloadContent()
+	{
 		// ...
-    }
+	}
 	//=============================================================================================================
 	void CGame10::ResetRenderStates()
 	{
 	}
-    //=============================================================================================================
-    void CGame10::Update()
-    {
+	//=============================================================================================================
+	void CGame10::Update()
+	{
 		// ...
-    }
-    //=============================================================================================================
-    void CGame10::Draw()
-    {
+	}
+	//=============================================================================================================
+	void CGame10::Draw()
+	{
 		// ...
-    }
-    //=============================================================================================================
-    bool CGame10::Validate()
-    {
-        return true;
-    }
-    //=============================================================================================================
-    void CGame10::Run()
-    {
-        bool success = Initialize();
-        dassert(, "CGame10::Run(): Initialization failed", success);
+	}
+	//=============================================================================================================
+	bool CGame10::Validate()
+	{
+		return true;
+	}
+	//=============================================================================================================
+	void CGame10::Run()
+	{
+		bool success = Initialize();
+		dassert(, "CGame10::Run(): Initialization failed", success);
 
-        success = LoadContent();
-        dassert(, "CGame10::Run(): Content creation failed", success);
+		success = LoadContent();
+		dassert(, "CGame10::Run(): Content creation failed", success);
 
 		dsad("Most of the features are not yet implemented");
 		ResetRenderStates();
 
 		Sync.Timer().Start();
-        Application.Show();
-        
-        valid = false;
+		Application.Show();
 
-        while( Application.Run() )
-        {
-            if( Application.Active() )
-            {
-                if( !valid )
-                {
-                    valid = Validate();
-                }
-                else
-                {
-                    if( fixedtimestep )
-                        Sync.Update();
-                    else
-                        Update();
+		valid = false;
 
-                    Draw();
-                }
-            }
-            else
-            {
-                valid = false;
-                Sleep(100);
-            }
-        }
+		while( Application.Run() )
+		{
+			if( Application.Active() )
+			{
+				if( !valid )
+				{
+					valid = Validate();
+				}
+				else
+				{
+					if( fixedtimestep )
+						Sync.Update();
+					else
+						Update();
 
-        UnloadContent();
-    }
-    //=============================================================================================================
-    bool CGame10::Lose()
-    {
-        devicelost = true;
-        lost();
+					Draw();
+				}
+			}
+			else
+			{
+				valid = false;
+				Sleep(100);
+			}
+		}
+
+		UnloadContent();
+	}
+	//=============================================================================================================
+	bool CGame10::Lose()
+	{
+		devicelost = true;
+		lost();
 
 		// ...
 
-        return true;
-    }
-    //=============================================================================================================
-    void CGame10::ShutDown()
-    {
+		return true;
+	}
+	//=============================================================================================================
+	void CGame10::ShutDown()
+	{
 		if( Graphics )
 			Graphics->ClearState();
 
@@ -244,40 +242,40 @@ namespace DummyFramework
 			ULONG rc = Graphics->Release();
 
 			if( rc > 0 )
-            {
-                std::stringstream ss;
-                ss << "d3ddevice refcount == " << rc;
-                dnassert(, ss.str(), true);
-            }
-            else
-            {
-                dhappy("D3D device released successfully");
-                Graphics = NULL;
-            }
+			{
+				std::stringstream ss;
+				ss << "d3ddevice refcount == " << rc;
+				dnassert(, ss.str(), true);
+			}
+			else
+			{
+				dhappy("D3D device released successfully");
+				Graphics = NULL;
+			}
 		}
-    }
-    //=============================================================================================================
-    void CGame10::onactivate()
-    {
-        Sync.Timer().Start();
-    }
-    //=============================================================================================================
-    void CGame10::ondeactivate()
-    {
-        Sync.Timer().Stop();
-    }
-    //=============================================================================================================
-    void CGame10::onlostdevice()
-    {
+	}
+	//=============================================================================================================
+	void CGame10::onactivate()
+	{
+		Sync.Timer().Start();
+	}
+	//=============================================================================================================
+	void CGame10::ondeactivate()
+	{
+		Sync.Timer().Stop();
+	}
+	//=============================================================================================================
+	void CGame10::onlostdevice()
+	{
 		// ...
-        valid = false;
-    }
-    //=============================================================================================================
-    void CGame10::onresetdevice()
-    {
+		valid = false;
+	}
+	//=============================================================================================================
+	void CGame10::onresetdevice()
+	{
 		// ...
-        ResetRenderStates();
-    }
-    //=============================================================================================================
+		ResetRenderStates();
+	}
+	//=============================================================================================================
 }
 

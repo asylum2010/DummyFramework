@@ -3,86 +3,66 @@
 
 namespace DummyFramework
 {
-    CTimer::CTimer()
-    {
-        lastelapsedtime     = 0;
-        stopped             = true;
-        stoptime            = 0;
-        basetime            = 0;
+	static LARGE_INTEGER qwTime;
 
-        LARGE_INTEGER qwTicksPerSec = { 0, 0 };
-        QueryPerformanceFrequency(&qwTicksPerSec);
+	CTimer::CTimer()
+	{
+		stopped		= true;
+		stoptime	= 0;
+		basetime	= 0;
 
-        tickspersec = qwTicksPerSec.QuadPart;
-    }
-    //=============================================================================================================
-    double CTimer::ElapsedTime()
-    {
-        LARGE_INTEGER qwTime = GetAdjustedCurrentTime();
+		LARGE_INTEGER qwTicksPerSec = { { 0, 0 } };
+		QueryPerformanceFrequency(&qwTicksPerSec);
 
-        double elapsedtime = (double)(qwTime.QuadPart - lastelapsedtime) / (double)tickspersec;
-        lastelapsedtime = qwTime.QuadPart;
-        
-        if( elapsedtime < 0.0 )
-            elapsedtime = 0.0;
+		tickspersec = qwTicksPerSec.QuadPart;
+	}
+	//=============================================================================================================
+	double CTimer::Time()
+	{
+		if( stopped )
+			qwTime.QuadPart = stoptime;
+		else
+			QueryPerformanceCounter(&qwTime);
 
-        return elapsedtime;
-    }
-    //=============================================================================================================
-    double CTimer::Time()
-    {
-        LARGE_INTEGER qwTime = GetAdjustedCurrentTime();
+		return (double)(qwTime.QuadPart - basetime) / (double)tickspersec;
+	}
+	//=============================================================================================================
+	double CTimer::TimeNano()
+	{
+		if( stopped )
+			qwTime.QuadPart = stoptime;
+		else
+			QueryPerformanceCounter(&qwTime);
 
-        double fAppTime = (double)(qwTime.QuadPart - basetime) / (double)tickspersec;
-        return fAppTime;
-    }
-    //=============================================================================================================
-    void CTimer::Reset()
-    {
-        LARGE_INTEGER qwTime = GetAdjustedCurrentTime();
-    
-        basetime         = qwTime.QuadPart;
-        lastelapsedtime  = qwTime.QuadPart;
-        stoptime         = 0;
-        stopped          = false;
-    }
-    //=============================================================================================================
-    void CTimer::Start()
-    {
-        LARGE_INTEGER qwTime = { 0, 0 };
-        QueryPerformanceCounter(&qwTime);
+		return (double)(qwTime.QuadPart - basetime);
+	}
+	//=============================================================================================================
+	void CTimer::Reset()
+	{
+		basetime	= 0;
+		stoptime	= 0;
+		stopped		= true;
+	}
+	//=============================================================================================================
+	void CTimer::Start()
+	{
+		QueryPerformanceCounter(&qwTime);
 
-        if( stopped )
-            basetime += qwTime.QuadPart - stoptime;
+		if( stopped )
+			basetime += qwTime.QuadPart - stoptime;
 
-        stoptime = 0;
-        lastelapsedtime = qwTime.QuadPart;
-        stopped = false;
-    }
-    //=============================================================================================================
-    void CTimer::Stop()
-    {
-        if( !stopped )
-        {
-            LARGE_INTEGER qwTime = { 0, 0 };
-            QueryPerformanceCounter(&qwTime);
+		stopped = false;
+	}
+	//=============================================================================================================
+	void CTimer::Stop()
+	{
+		if( !stopped )
+		{
+			QueryPerformanceCounter(&qwTime);
 
-            stoptime = qwTime.QuadPart;
-            lastelapsedtime = qwTime.QuadPart;
-            stopped = true;
-        }
-    }
-    //=============================================================================================================
-    LARGE_INTEGER CTimer::GetAdjustedCurrentTime()
-    {
-        LARGE_INTEGER qwTime;
-
-        if( stoptime != 0 )
-            qwTime.QuadPart = stoptime;
-        else
-            QueryPerformanceCounter(&qwTime);
-
-        return qwTime;
-    }
-    //=============================================================================================================
+			stoptime	= qwTime.QuadPart;
+			stopped		= true;
+		}
+	}
+	//=============================================================================================================
 }

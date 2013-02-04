@@ -19,46 +19,46 @@ namespace DummyFramework
 	 * one in the game's main class (inherited from CGame9)
 	 * only for the menu.
 	 */
-    class CGameLogicSynchronizer
-    {
-    private:
-        CTimer clock;
-        double currenttime;
-        double accumulator;
-        double newtime;
-        double lasttime;
-        double lastfps;
+	class CGameLogicSynchronizer
+	{
+	private:
+		CTimer clock;
+		double currenttime;
+		double accumulator;
+		double newtime;
+		double lasttime;
+		double lastfps;
 
-        unsigned int fps;
-        unsigned int frames;
+		unsigned int fps;
+		unsigned int frames;
 
-    public:
-        CGameLogicSynchronizer();
+	public:
+		CGameLogicSynchronizer();
 		~CGameLogicSynchronizer() {}
 
-        double UpdateInterval;
+		double UpdateInterval;
 
-	    bool Elapsed(double interval, bool reset = true);
+		bool Elapsed(double interval, bool reset = true);
 
-        void Reset();
-        void Update();
-        void Jump();
+		void Reset();
+		void Update();
+		void Jump();
 
-        inline unsigned int Fps() const {
+		inline unsigned int Fps() const {
 			return fps;
 		}
 
-        inline double Alpha() const {
+		inline double Alpha() const {
 			return accumulator / UpdateInterval;
 		}
 
-        inline CTimer& Timer() {
+		inline CTimer& Timer() {
 			return clock;
 		}
 
-	events:
+	_DUMMY_EVENTS:
 		signal0 synchronize;
-    };
+	};
 }
 
 #endif

@@ -12,123 +12,127 @@ namespace DummyFramework
 {
 	class CGame9;
 
-    /**
-     * \brief Sprite based font drawing
-     *
-     * This class supports BMFont files, and uses
+	/**
+	 * \brief Sprite based font drawing
+	 *
+	 * This class supports BMFont files, and uses
 	 * a texture atlas with dynamic vertex buffer.
 	 * Consequently, the texts can be animated dynamically.
 	 *
 	 * Texts have to be organised into groups (for example
 	 * a group might be a particular menu's texts) and can be
 	 * handled separately.
-     */
-    class CSpriteFont9
-    {
-        /**
-         * \brief Character description
-         */
-        struct schardesc
-        {
-            unsigned short x, y;
-            unsigned short width, height;
-            unsigned short xadvance;
-            unsigned short page;
-            short xoffset, yoffset;
+	 */
+	class CSpriteFont9
+	{
+		/**
+		 * \brief Character description
+		 */
+		struct schardesc
+		{
+			unsigned short	x, y;
+			unsigned short	width, height;
+			unsigned short	xadvance;
+			unsigned short	page;
+			short			xoffset;
+			short			yoffset;
 
-            schardesc()
-                : x(0), y(0), width(0), height(0), xoffset(0), yoffset(0), xadvance(0), page(0)    {}
-        };
+			schardesc()
+				: x(0), y(0), width(0), height(0), xoffset(0), yoffset(0), xadvance(0), page(0)
+			{
+			}
+		};
 
-        /**
-         * \brief Character set (ASCII)
-         *
-         * Only single page sets are supported for the time being.
-         */
-        struct scharset
-        {
-            LPDIRECT3DTEXTURE9 texture;
-            unsigned short lineheight;
-            unsigned short base;
-            unsigned short width, height;
-            unsigned short pages;
-            schardesc chars[256];
-        };
-        
-        /**
-         * \brief A text object
-         */
-        struct stext
-        {
-            D3DXVECTOR2    position;
-            std::string    text;
-            unsigned long  color;
-            unsigned long  alignment;
-            float          scale;
-            bool           visible;
-        };
-        
-        typedef std::vector<scharset> charsetlist;
-        typedef std::vector<stext> textlist;
+		/**
+		 * \brief Character set (ASCII)
+		 *
+		 * Only single page sets are supported for the time being.
+		 */
+		struct scharset
+		{
+			LPDIRECT3DTEXTURE9	texture;
+			unsigned short		lineheight;
+			unsigned short		base;
+			unsigned short		width, height;
+			unsigned short		pages;
+			schardesc			chars[256];
+		};
 
-        /**
-         * \brief Group of texts
-         *
-         * It is more efficient to organize texts into groups, since
-         * only the current form that has focus should be rendered.
-         */
-        struct stextgroup
-        {
-            size_t   fontid;
-            float    scale;
-            textlist texts;
+		/**
+		 * \brief A text object
+		 */
+		struct stext
+		{
+			D3DXVECTOR2		position;
+			std::string		text;
+			unsigned int	color;
+			unsigned int	alignment;
+			float			scale;
+			bool			visible;
+		};
 
-            stextgroup(size_t id) : fontid(id), scale(1.0f) {}
-        };
+		typedef std::vector<scharset> charsetlist;
+		typedef std::vector<stext> textlist;
 
-        typedef std::vector<stextgroup> grouplist;
+		/**
+		 * \brief Group of texts
+		 *
+		 * It is more efficient to organize texts into groups, since
+		 * only the current form that has focus should be rendered.
+		 */
+		struct stextgroup
+		{
+			size_t		fontid;
+			float		scale;
+			textlist	texts;
 
-    private:
-        CGame9*              game;
-        CDynamicQuadBuffer9  quad;
-        charsetlist          fonts;
-        grouplist            groups;
-        size_t               currentgroup;
-        bool                 initialized;
+			stextgroup(size_t id)
+				: fontid(id), scale(1.0f)
+			{
+			}
+		};
 
-    public:
-        CSpriteFont9();
+		typedef std::vector<stextgroup> grouplist;
+
+	private:
+		CGame9*				game;
+		CDynamicQuadBuffer9	quad;
+		charsetlist			fonts;
+		grouplist			groups;
+		size_t				currentgroup;
+		bool				initialized;
+
+	public:
+		CSpriteFont9();
 		~CSpriteFont9() {}
 
-        size_t AddFont(const std::string& file);
-        size_t AddGroup(size_t fontid);
-        size_t AddText(size_t groupid, const std::string& text);
+		size_t AddFont(const std::string& file);
+		size_t AddGroup(size_t fontid);
+		size_t AddText(size_t groupid, const std::string& text);
 
-        void Initialize(CGame9& mygame);
-        void SetText(size_t groupid, size_t textid, const std::string& text);
-        void SetTextPosition(size_t groupid, size_t textid, const D3DXVECTOR2& position);
-        void SetTextColor(size_t groupid, size_t textid, unsigned long color);
-        void SetTextAlignment(size_t groupid, size_t textid, unsigned long alignment);
-        void SetTextVisibility(size_t groupid, size_t textid, bool visible);
-        void SetTextScale(size_t groupid, size_t textid, float scale);
-        void Set(size_t groupid, size_t textid, const std::string& text, const D3DXVECTOR2& position, unsigned long alignment, unsigned long color);
-        void SetGroupScale(size_t groupid, float scale);
-        
-        D3DXVECTOR2& MeasureString(D3DXVECTOR2& out, size_t fontid, const std::string& str) const;
-        D3DXVECTOR2& MeasureText(D3DXVECTOR2& out, size_t groupid, size_t textid) const;
+		void Initialize(CGame9& mygame);
+		void SetText(size_t groupid, size_t textid, const std::string& text);
+		void SetTextPosition(size_t groupid, size_t textid, const D3DXVECTOR2& position);
+		void SetTextColor(size_t groupid, size_t textid, unsigned int color);
+		void SetTextAlignment(size_t groupid, size_t textid, unsigned int alignment);
+		void SetTextVisibility(size_t groupid, size_t textid, bool visible);
+		void SetTextScale(size_t groupid, size_t textid, float scale);
+		void Set(size_t groupid, size_t textid, const std::string& text, const D3DXVECTOR2& position, unsigned int alignment, unsigned int color);
+		void SetGroupScale(size_t groupid, float scale);
+
+		D3DXVECTOR2& MeasureString(D3DXVECTOR2& out, size_t fontid, const std::string& str) const;
+		D3DXVECTOR2& MeasureText(D3DXVECTOR2& out, size_t groupid, size_t textid) const;
 
 		float GetTextScale(size_t groupid, size_t textid);
 
-        size_t Draw(size_t groupid);
-        size_t DrawCurrent();
+		size_t Draw(size_t groupid);
+		size_t DrawCurrent();
 
-        inline void SetCurrentGroup(size_t group) {
-            currentgroup = group;
-        }
-    };
+		inline void SetCurrentGroup(size_t group) {
+			currentgroup = group;
+		}
+	};
 }
 
 #endif
 //=============================================================================================================
-
-

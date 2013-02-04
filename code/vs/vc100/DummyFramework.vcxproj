@@ -106,7 +106,6 @@ copy /Y "$(TargetDir)$(TargetFileName)" "$(SolutionDir)..\lib\$(Configuration)\$
     <ClCompile Include="..\..\source\dummyframework\camera\CFPSCamera.cpp" />
     <ClCompile Include="..\..\source\dummyframework\camera\CModelViewerCamera.cpp" />
     <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CBloomRenderer9.cpp" />
-    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CCausticsRenderer9.cpp" />
     <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CEnvironmentRenderer9.cpp" />
     <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CGodRayRenderer9.cpp" />
     <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CLensFlareRenderer9.cpp" />

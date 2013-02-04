@@ -13,18 +13,18 @@ namespace DummyFramework
 	/**
 	 * \brief Represents a mesh part
 	 */
-    class CSubset9
-    {
-    public:
-        LPD3DXEFFECT Material;
-        LPDIRECT3DBASETEXTURE9 Textures[8];
+	class CSubset9
+	{
+	public:
+		LPD3DXEFFECT Material;
+		LPDIRECT3DBASETEXTURE9 Textures[8];
 
-        CSubset9()
-        {
-            memset(Textures, 0, 8 * sizeof(LPDIRECT3DBASETEXTURE9));
-            Material = NULL;
-        }
-    };
+		CSubset9()
+		{
+			memset(Textures, 0, 8 * sizeof(LPDIRECT3DBASETEXTURE9));
+			Material = NULL;
+		}
+	};
 
 	/**
 	 * \brief Simple game object
@@ -33,41 +33,41 @@ namespace DummyFramework
 	 * of a game object (meshparts, materials, textures).
 	 */
 	class CObject9 : public CTransformable
-    {
-    protected:
-        typedef std::vector<CSubset9> subsetlist;
+	{
+	protected:
+		typedef std::vector<CSubset9> subsetlist;
 
 		LPDIRECT3DDEVICE9 device;
 		CStateManager9* manager;
-        subsetlist subsets;
+		subsetlist subsets;
 
-    public:
-        LPD3DXMESH Mesh;
-        bool Unique;
+	public:
+		LPD3DXMESH Mesh;
+		bool Unique;
 
-        CObject9();
-        ~CObject9() {}
+		CObject9();
+		~CObject9() {}
 
 		void Initialize(CGame9& mygame);
 		void ApplyMaterial(size_t id = 0);
 		void UnapplyMaterial(size_t id = 0);
-        void Draw();
-        void Draw(size_t index);
+		void Draw();
+		void Draw(size_t index);
 		void DrawOptimized();
 
-        inline LPD3DXEFFECT& Material(size_t id = 0) {
-            Unique = Unique && (id == 0);
-            return subsets[id].Material;
-        }
+		inline LPD3DXEFFECT& Material(size_t id = 0) {
+			Unique = Unique && (id == 0);
+			return subsets[id].Material;
+		}
 
-        inline LPDIRECT3DBASETEXTURE9& Textures(unsigned char stage, size_t id = 0) {
-            return subsets[id].Textures[stage];
-        }
+		inline LPDIRECT3DBASETEXTURE9& Textures(unsigned char stage, size_t id = 0) {
+			return subsets[id].Textures[stage];
+		}
 
-        inline void Resize(size_t newsize) {
-            subsets.resize(newsize);
-        }
-    };
+		inline void Resize(size_t newsize) {
+			subsets.resize(newsize);
+		}
+	};
 }
 
 #endif

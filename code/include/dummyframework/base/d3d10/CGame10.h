@@ -5,75 +5,75 @@
 #include "../CApplication.h"
 #include "../CGameLogicSynchronizer.h"
 
-#include <d3dx10.h>
+#include <d3d10.h>
 #include <list>
 
 namespace DummyFramework
 {
-    class CEffectRenderer10;
+	class CEffectRenderer10;
 
-    class CGame10 : public has_slots
-    {
-    private:
-        bool valid;
+	class CGame10 : public has_slots
+	{
+	private:
+		bool valid;
 
-        bool Lose();
-        bool Validate();
-        void ShutDown();
+		bool Lose();
+		bool Validate();
+		void ShutDown();
 
-    protected:
-        typedef std::list<CEffectRenderer10*> rendererlist;
-        
-        rendererlist            effects;
-        rendererlist            posteffects;
-        bool                    fixedtimestep;
-        bool                    devicelost;
-        unsigned long           resetcounter;
+	protected:
+		typedef std::list<CEffectRenderer10*> rendererlist;
 
-        virtual bool Initialize();
-        virtual bool LoadContent();
+		rendererlist			effects;
+		rendererlist			posteffects;
+		bool					fixedtimestep;
+		bool					devicelost;
+		unsigned int			resetcounter;
 
-        virtual void UnloadContent();
-        virtual void Update();
-        virtual void Draw();
-        virtual void ResetRenderStates();
+		virtual bool Initialize();
+		virtual bool LoadContent();
 
-    public:
-        DXGI_SWAP_CHAIN_DESC     SwapChainDesc;
-		DXGI_MODE_DESC           DisplayMode;
+		virtual void UnloadContent();
+		virtual void Update();
+		virtual void Draw();
+		virtual void ResetRenderStates();
 
-        ID3D10Device*            Graphics;
-		ID3D10RenderTargetView*  RenderTargetView;
-		ID3D10DepthStencilView*  DepthStencilView;
-		ID3D10Texture2D*         DepthStencil;
-		IDXGISwapChain*          SwapChain;
+	public:
+		DXGI_SWAP_CHAIN_DESC	SwapChainDesc;
+		DXGI_MODE_DESC			DisplayMode;
 
-        CApplication             Application;
-        CGameLogicSynchronizer   Sync;
-        bool                     FullScreen;
-        bool                     VSync;
-        bool                     ZBuffer;
-        bool                     Stencil;
+		ID3D10Device*			Graphics;
+		ID3D10RenderTargetView*	RenderTargetView;
+		ID3D10DepthStencilView*	DepthStencilView;
+		ID3D10Texture2D*		DepthStencil;
+		IDXGISwapChain*			SwapChain;
 
-        CGame10();
-        virtual ~CGame10();
+		CApplication			Application;
+		CGameLogicSynchronizer	Sync;
+		bool					FullScreen;
+		bool					VSync;
+		bool					ZBuffer;
+		bool					Stencil;
 
-        virtual void Run();
-       
-        inline bool IsDeviceLost() const {
-            return devicelost;
-        }
+		CGame10();
+		virtual ~CGame10();
 
-    events:
-        signal0 lost;
-        signal0 reset;
+		virtual void Run();
 
-    eventhandlers:
-        virtual void onactivate();
-        virtual void ondeactivate();
-        virtual void onlostdevice();
-        virtual void onresetdevice();
-    };
+		inline bool IsDeviceLost() const {
+			return devicelost;
+		}
+
+	_DUMMY_EVENTS:
+		signal0 lost;
+		signal0 reset;
+
+	_DUMMY_EVENTHANDLERS:
+		virtual void onactivate();
+		virtual void ondeactivate();
+		virtual void onlostdevice();
+		virtual void onresetdevice();
+	};
 }
 
 #endif

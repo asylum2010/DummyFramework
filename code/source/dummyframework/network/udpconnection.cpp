@@ -8,7 +8,7 @@ namespace DummyFramework
 		memset(&addr, 0, sizeof(sockaddr_in));
 		addr.sin_family = AF_INET;
 	}
-	//=============================================================================================================
+
 	ipv4address::ipv4address(const char* ip, unsigned short port)
 	{
 		memset(&addr, 0, sizeof(sockaddr_in));
@@ -21,7 +21,7 @@ namespace DummyFramework
 		addr.sin_family = AF_INET;
 		addr.sin_port = htons(port);
 	}
-	//*************************************************************************************************************
+
 	udpconnection::udpconnection()
 	{
 #ifdef _WIN32

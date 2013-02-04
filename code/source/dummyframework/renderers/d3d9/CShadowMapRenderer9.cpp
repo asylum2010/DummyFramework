@@ -71,10 +71,10 @@ namespace DummyFramework
 	{
 		UnloadContent();
 
-        shadowsurface = NULL;
-	    ShadowMap = NULL;
+		shadowsurface = NULL;
+		ShadowMap = NULL;
 
-        CEffectRenderer9::onlostdevice();
+		CEffectRenderer9::onlostdevice();
 	}
 	//=============================================================================================================
 	void CShadowMapRenderer9::onresetdevice()
@@ -87,7 +87,7 @@ namespace DummyFramework
 
 		dnassert(, "CShadowMapRenderer9::onresetdevice(): Could not create depth/stencil surface", FAILED(hr));
 
-        CEffectRenderer9::onresetdevice();
+		CEffectRenderer9::onresetdevice();
 	}
 	//=============================================================================================================
 }

@@ -93,9 +93,6 @@
     <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CBloomRenderer9.cpp">
       <Filter>renderers\d3d9</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CCausticsRenderer9.cpp">
-      <Filter>renderers\d3d9</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\dummyframework\renderers\d3d9\CEnvironmentRenderer9.cpp">
       <Filter>renderers\d3d9</Filter>
     </ClCompile>

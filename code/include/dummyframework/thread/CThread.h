@@ -25,7 +25,7 @@ namespace DummyFramework
 		HANDLE handle;
 		unsigned long id;
 		
-		static unsigned long CALLBACK Run(void* param);
+		static DWORD CALLBACK Run(void* param);
 
 	public:
 		CThread();

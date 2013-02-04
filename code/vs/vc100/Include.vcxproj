@@ -66,7 +66,6 @@
     <ClInclude Include="..\..\include\dummyframework\camera\CFPSCamera.h" />
     <ClInclude Include="..\..\include\dummyframework\camera\CModelViewerCamera.h" />
     <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CBloomRenderer9.h" />
-    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CCausticsRenderer9.h" />
     <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CEnvironmentRenderer9.h" />
     <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CGodRayRenderer9.h" />
     <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CLensFlareRenderer9.h" />

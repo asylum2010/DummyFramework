@@ -5,6 +5,7 @@ namespace DummyFramework
 {
 	CMotionBlurRenderer9::CMotionBlurRenderer9()
 	{
+		// TODO:
 	}
 	//=============================================================================================================
 	bool CMotionBlurRenderer9::Initialize(CGame9& mygame)
@@ -25,14 +26,17 @@ namespace DummyFramework
 	//=============================================================================================================
 	void CMotionBlurRenderer9::Draw()
 	{
+		// TODO:
 	}
 	//=============================================================================================================
 	void CMotionBlurRenderer9::onlostdevice()
 	{
+		// TODO:
 	}
 	//=============================================================================================================
-    void CMotionBlurRenderer9::onresetdevice()
+	void CMotionBlurRenderer9::onresetdevice()
 	{
+		// TODO:
 	}
 	//=============================================================================================================
 }

@@ -1,0 +1,26 @@
+var class_dummy_framework_1_1_c_transformable =
+[
+    [ "CTransformable", "class_dummy_framework_1_1_c_transformable.html#a1558ec931e313c17ee9ce5c2e10909f9", null ],
+    [ "~CTransformable", "class_dummy_framework_1_1_c_transformable.html#aa686644f58bcb27e80a7d3cce80d9d8d", null ],
+    [ "GetInvTransform", "class_dummy_framework_1_1_c_transformable.html#a04badfcef8d2097f8fead8d36164ea1a", null ],
+    [ "GetRotation", "class_dummy_framework_1_1_c_transformable.html#ad26b8cc18259d82311461eda772d5347", null ],
+    [ "GetTransform", "class_dummy_framework_1_1_c_transformable.html#a6ebaf205908cebbac57c33ec99356e63", null ],
+    [ "GetTranslation", "class_dummy_framework_1_1_c_transformable.html#a0ff4cb8ab4c6b3b8a48655a2ccbfc538", null ],
+    [ "Rotate", "class_dummy_framework_1_1_c_transformable.html#a6d28f2ea77596d5224d4da97233db370", null ],
+    [ "RotationCenter", "class_dummy_framework_1_1_c_transformable.html#acbba16e2fc7e882910446a1643e32e30", null ],
+    [ "Scale", "class_dummy_framework_1_1_c_transformable.html#a1023a340bb1aff5365505579d3f2f1db", null ],
+    [ "Scale", "class_dummy_framework_1_1_c_transformable.html#ac0cce3d247ad1a382dedd9dbac90c276", null ],
+    [ "Translate", "class_dummy_framework_1_1_c_transformable.html#a34bfea5eddf380c907deff373510eeb7", null ],
+    [ "Translate", "class_dummy_framework_1_1_c_transformable.html#a5d5b7fd00f20a1fb4500a1ec56eb0bcb", null ],
+    [ "bbmax", "class_dummy_framework_1_1_c_transformable.html#ac20afe2d644c406f956c640c407dbb50", null ],
+    [ "bmmin", "class_dummy_framework_1_1_c_transformable.html#ab9f82fbfb8b53af585b86ae71aaac005", null ],
+    [ "invtransform", "class_dummy_framework_1_1_c_transformable.html#abef9143fdd63971a02f754420e854c8d", null ],
+    [ "needupdate", "class_dummy_framework_1_1_c_transformable.html#a1cd0b20d78ff7fc46b9d7497eb6d8527", null ],
+    [ "rotation", "class_dummy_framework_1_1_c_transformable.html#a9d6e30d930908622b05fa41299d5fe8d", null ],
+    [ "rotationcenter", "class_dummy_framework_1_1_c_transformable.html#aa5fcb000e1a9f1b5da969aaf43189573", null ],
+    [ "scaling", "class_dummy_framework_1_1_c_transformable.html#a507de8d5c2281d6efeefc70a905e9acf", null ],
+    [ "scalingcenter", "class_dummy_framework_1_1_c_transformable.html#a669aa88976de062ff61b4417526c6028", null ],
+    [ "transform", "class_dummy_framework_1_1_c_transformable.html#ad317746957363da86b30d2b551106d15", null ],
+    [ "translation", "class_dummy_framework_1_1_c_transformable.html#a37cf8dbc732e5bf00d49f6eb52639fb9", null ],
+    [ "UserTransform", "class_dummy_framework_1_1_c_transformable.html#aec62e47db8d3a1586a97e76a5b2c34fd", null ]
+];

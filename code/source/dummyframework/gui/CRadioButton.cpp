@@ -61,15 +61,15 @@ namespace DummyFramework
 			NULL);
 		
 		derror(false, "CRadioButton::Initialize(): Could not create window", hwnd);
-        
+
 		if( !originalproc )
 		{
 			originalproc = (WNDPROC)GetWindowLong(hwnd, GWL_WNDPROC);
 			derror(false, "CRadioButton::Initialize(): Could not get window procedure", originalproc);
 		}
 
-        long ret = SetWindowLong(hwnd, GWL_WNDPROC, (LONG)&CRadioButton::WndProc);
-        derror(false, "CRadioButton::Initialize(): Could not set window procedure", ret);
+		int ret = SetWindowLong(hwnd, GWL_WNDPROC, (LONG)&CRadioButton::WndProc);
+		derror(false, "CRadioButton::Initialize(): Could not set window procedure", ret);
 
 		HFONT font = (HFONT)GetStockObject(DEFAULT_GUI_FONT);
 		SendMessage(hwnd, WM_SETFONT, (WPARAM)font, MAKELPARAM(TRUE, 0));

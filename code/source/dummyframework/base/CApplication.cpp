@@ -5,21 +5,21 @@
 
 namespace DummyFramework
 {
-    skeyboardstate  CApplication::KeyBoardState;
-    smousestate     CApplication::MouseState;
-    scommand        CApplication::Command;
-    CApplication*   CApplication::dummyinstance = NULL;
+	skeyboardstate  CApplication::KeyBoardState;
+	smousestate     CApplication::MouseState;
+	scommand        CApplication::Command;
+	CApplication*   CApplication::dummyinstance = NULL;
 
-    LRESULT WINAPI CApplication::WndProc(HWND hWnd, unsigned int msg, WPARAM wParam, LPARAM lParam)
-    {
-        dummyinstance->KeyBoardState.key = 0;
-        dummyinstance->KeyBoardState.virtualkey = 0;
-        dummyinstance->MouseState.button = 0;
+	LRESULT WINAPI CApplication::WndProc(HWND hWnd, unsigned int msg, WPARAM wParam, LPARAM lParam)
+	{
+		dummyinstance->KeyBoardState.key = 0;
+		dummyinstance->KeyBoardState.virtualkey = 0;
+		dummyinstance->MouseState.button = 0;
 
 		smessage Message;
 
 		Message.wparam = wParam;
-        Message.lparam = lParam;
+		Message.lparam = lParam;
 		Message.msg = msg;
 		Message.handled = false;
 
@@ -28,415 +28,413 @@ namespace DummyFramework
 		if( Message.handled )
 			return TRUE;
 
-        switch( msg )
-        {
-        case WM_MENUSELECT:
-            if( dummyinstance->active )
-            {
-                dummyinstance->paintsuspended();
-                dummyinstance->active = false;
-            }
-            else if( HIWORD(wParam) == 0xffff && lParam == NULL )
-            {
-                dummyinstance->paintcontinued();
-                dummyinstance->active = true;
-            }
-            break;
+		switch( msg )
+		{
+		case WM_MENUSELECT:
+			if( dummyinstance->active )
+			{
+				dummyinstance->paintsuspended();
+				dummyinstance->active = false;
+			}
+			else if( HIWORD(wParam) == 0xffff && lParam == NULL )
+			{
+				dummyinstance->paintcontinued();
+				dummyinstance->active = true;
+			}
+			break;
 
-        case WM_COMMAND:
-            Command.wparam = wParam;
-            Command.lparam = lParam;
+		case WM_COMMAND:
+			Command.wparam = wParam;
+			Command.lparam = lParam;
 
-            dummyinstance->command(Command);
-            break;
+			dummyinstance->command(Command);
+			break;
 
-        case WM_HSCROLL:
-            Command.wparam = wParam;
-            Command.lparam = lParam;
+		case WM_HSCROLL:
+			Command.wparam = wParam;
+			Command.lparam = lParam;
 
-            dummyinstance->command(Command);
-            break;
+			dummyinstance->command(Command);
+			break;
 
-        case WM_VSCROLL:
-            Command.wparam = wParam;
-            Command.lparam = lParam;
+		case WM_VSCROLL:
+			Command.wparam = wParam;
+			Command.lparam = lParam;
 
-            dummyinstance->command(Command);
-            break;
+			dummyinstance->command(Command);
+			break;
 
-        case WM_NOTIFY:
-            Command.wparam = wParam;
-            Command.lparam = lParam;
+		case WM_NOTIFY:
+			Command.wparam = wParam;
+			Command.lparam = lParam;
 
-            dummyinstance->notify(Command);
-            break;
+			dummyinstance->notify(Command);
+			break;
 		
-        case WM_CLOSE:
-            dummyinstance->closed();
-            dummyinstance->activated.disconnectall();
-            dummyinstance->deactivated.disconnectall();
-            dummyinstance->paintsuspended.disconnectall();
-            dummyinstance->paintcontinued.disconnectall();
+		case WM_CLOSE:
+			dummyinstance->closed();
+			dummyinstance->activated.disconnectall();
+			dummyinstance->deactivated.disconnectall();
+			dummyinstance->paintsuspended.disconnectall();
+			dummyinstance->paintcontinued.disconnectall();
 
-            ShowWindow(hWnd, SW_HIDE);
-            break;
+			ShowWindow(hWnd, SW_HIDE);
+			break;
 
-        case WM_DESTROY:
-            PostQuitMessage(0);
-            return 0;
+		case WM_DESTROY:
+			PostQuitMessage(0);
+			return 0;
         
-        case WM_ACTIVATE:
-        case WM_ACTIVATEAPP:
-            switch( wParam )
-            {
-            case WA_INACTIVE:
-                if( dummyinstance->active )
-                {
-                    dummyinstance->active = false;
-                    dummyinstance->deactivated();
+		case WM_ACTIVATE:
+		case WM_ACTIVATEAPP:
+			switch( wParam )
+			{
+			case WA_INACTIVE:
+				if( dummyinstance->active )
+				{
+					dummyinstance->active = false;
+					dummyinstance->deactivated();
 
-                    dsad("Application deactivated");
-                }
-                break;
+					dsad("Application deactivated");
+				}
+				break;
 
-            case WA_ACTIVE:
-            case WA_CLICKACTIVE:
-                if( !dummyinstance->active && dummyinstance->state != WS_Minimized )
-                {
-                    memset(&KeyBoardState, 0, sizeof(skeyboardstate));
-                    MouseState.button = 0;
+			case WA_ACTIVE:
+			case WA_CLICKACTIVE:
+				if( !dummyinstance->active && dummyinstance->state != WS_Minimized )
+				{
+					memset(&KeyBoardState, 0, sizeof(skeyboardstate));
+					MouseState.button = 0;
 
-                    dummyinstance->active = true;
-                    dummyinstance->activated();
+					dummyinstance->active = true;
+					dummyinstance->activated();
 
-                    dhappy("Application activated");
-                }
-                break;
+					dhappy("Application activated");
+				}
+				break;
 
-            default:
-                break;
-            }
+			default:
+				break;
+			}
 
-            break;
+			break;
 
-        case WM_SYSCOMMAND:
-            switch( wParam )
-            {
-            case SC_MINIMIZE:
-                dummyinstance->state = WS_Minimized;
-                break;
+		case WM_SYSCOMMAND:
+			switch( wParam )
+			{
+			case SC_MINIMIZE:
+				dummyinstance->state = WS_Minimized;
+				break;
 
-            case SC_MAXIMIZE:
-                dummyinstance->state = WS_Maximized;
-                break;
+			case SC_MAXIMIZE:
+				dummyinstance->state = WS_Maximized;
+				break;
 
-            case SC_RESTORE:
-                dummyinstance->state = WS_Normal;
-                break;
+			case SC_RESTORE:
+				dummyinstance->state = WS_Normal;
+				break;
 
-            default:
-                break;
-            }
+			default:
+				break;
+			}
         
-        case WM_MOUSEMOVE:
-            if( !dummyinstance->UseDirectInput )
-            {
-                short x = (short)(lParam & 0xffff);
-                short y = (short)((lParam >> 16) & 0xffff);
+		case WM_MOUSEMOVE:
+			if( !dummyinstance->UseDirectInput )
+			{
+				short x = (short)(lParam & 0xffff);
+				short y = (short)((lParam >> 16) & 0xffff);
 
-                dummyinstance->MouseState.dx = x - dummyinstance->MouseState.x;
-                dummyinstance->MouseState.dy = y - dummyinstance->MouseState.y;
+				dummyinstance->MouseState.dx = x - dummyinstance->MouseState.x;
+				dummyinstance->MouseState.dy = y - dummyinstance->MouseState.y;
 
-                dummyinstance->MouseState.x = x;
-                dummyinstance->MouseState.y = y;
+				dummyinstance->MouseState.x = x;
+				dummyinstance->MouseState.y = y;
 
-                dummyinstance->mousemove(dummyinstance->MouseState);
-            }
-            break;
+				dummyinstance->mousemove(dummyinstance->MouseState);
+			}
+			break;
 
-        case WM_LBUTTONDOWN:
-            if( !dummyinstance->UseDirectInput )
-            {
-                dummyinstance->MouseState.button |= MB_Left;
-                dummyinstance->KeyBoardState.virtualkey = (unsigned short)wParam;
+		case WM_LBUTTONDOWN:
+			if( !dummyinstance->UseDirectInput )
+			{
+				dummyinstance->MouseState.button |= MB_Left;
+				dummyinstance->KeyBoardState.virtualkey = (unsigned short)wParam;
 
-                dummyinstance->MouseState.x = (short)(lParam & 0xffff);
-                dummyinstance->MouseState.y = (short)((lParam >> 16) & 0xffff);
+				dummyinstance->MouseState.x = (short)(lParam & 0xffff);
+				dummyinstance->MouseState.y = (short)((lParam >> 16) & 0xffff);
 
-                dummyinstance->MouseState.dx = 0;
-                dummyinstance->MouseState.dy = 0;
+				dummyinstance->MouseState.dx = 0;
+				dummyinstance->MouseState.dy = 0;
 
-                dummyinstance->mousedown(dummyinstance->MouseState);
-            }
-            break;
+				dummyinstance->mousedown(dummyinstance->MouseState);
+			}
+			break;
 
-        case WM_LBUTTONUP:
-            if( !dummyinstance->UseDirectInput )
-            {
-                dummyinstance->MouseState.button |= MB_Left;
-                dummyinstance->KeyBoardState.virtualkey = (unsigned short)wParam;
+		case WM_LBUTTONUP:
+			if( !dummyinstance->UseDirectInput )
+			{
+				dummyinstance->MouseState.button |= MB_Left;
+				dummyinstance->KeyBoardState.virtualkey = (unsigned short)wParam;
 
-                dummyinstance->MouseState.x = (short)(lParam & 0xffff);
-                dummyinstance->MouseState.y = (short)((lParam >> 16) & 0xffff);
+				dummyinstance->MouseState.x = (short)(lParam & 0xffff);
+				dummyinstance->MouseState.y = (short)((lParam >> 16) & 0xffff);
 
-                dummyinstance->MouseState.dx = 0;
-                dummyinstance->MouseState.dy = 0;
+				dummyinstance->MouseState.dx = 0;
+				dummyinstance->MouseState.dy = 0;
 
-                dummyinstance->mouseup(dummyinstance->MouseState);
-            }
-            break;
+				dummyinstance->mouseup(dummyinstance->MouseState);
+			}
+			break;
 
-        case WM_RBUTTONDOWN:
-            if( !dummyinstance->UseDirectInput )
-            {
-                dummyinstance->MouseState.button |= MB_Right;
-                dummyinstance->KeyBoardState.virtualkey = (unsigned short)wParam;
-                dummyinstance->mousedown(dummyinstance->MouseState);
-            }
-            break;
+		case WM_RBUTTONDOWN:
+			if( !dummyinstance->UseDirectInput )
+			{
+				dummyinstance->MouseState.button |= MB_Right;
+				dummyinstance->KeyBoardState.virtualkey = (unsigned short)wParam;
+				dummyinstance->mousedown(dummyinstance->MouseState);
+			}
+			break;
 
-        case WM_RBUTTONUP:
-            if( !dummyinstance->UseDirectInput )
-            {
-                dummyinstance->MouseState.button |= MB_Right;
-                dummyinstance->KeyBoardState.virtualkey = (unsigned short)wParam;
-                dummyinstance->mouseup(dummyinstance->MouseState);
-            }
-            break;
+		case WM_RBUTTONUP:
+			if( !dummyinstance->UseDirectInput )
+			{
+				dummyinstance->MouseState.button |= MB_Right;
+				dummyinstance->KeyBoardState.virtualkey = (unsigned short)wParam;
+				dummyinstance->mouseup(dummyinstance->MouseState);
+			}
+			break;
 
-        case WM_KEYDOWN:
-            dummyinstance->KeyBoardState.key = (unsigned char)wParam;
-            dummyinstance->KeyBoardState.keytable[wParam] |= 0x80;
-            dummyinstance->keydown(dummyinstance->KeyBoardState);
-            break;
+		case WM_KEYDOWN:
+			dummyinstance->KeyBoardState.key = (unsigned char)wParam;
+			dummyinstance->KeyBoardState.keytable[wParam] |= 0x80;
+			dummyinstance->keydown(dummyinstance->KeyBoardState);
+			break;
 
-        case WM_KEYUP:
-            dummyinstance->KeyBoardState.key = (unsigned char)wParam;
-            dummyinstance->KeyBoardState.keytable[wParam] &= (~0x80);
-            dummyinstance->keyup(dummyinstance->KeyBoardState);
-            break;
+		case WM_KEYUP:
+			dummyinstance->KeyBoardState.key = (unsigned char)wParam;
+			dummyinstance->KeyBoardState.keytable[wParam] &= (~0x80);
+			dummyinstance->keyup(dummyinstance->KeyBoardState);
+			break;
 
-        case WM_SYSKEYDOWN:
-            return 0;
+		case WM_SYSKEYDOWN:
+			return 0;
 
-        default:
-            break;
-        }
+		default:
+			break;
+		}
 
-        return DefWindowProc(hWnd, msg, wParam, lParam);
-    }
-    //=============================================================================================================
-    CApplication::CApplication()
-    {
-        memset(&wc, 0, sizeof(WNDCLASSEXA));
-        memset(&KeyBoardState, 0, sizeof(skeyboardstate));
-        memset(&MouseState, 0, sizeof(smousestate));
+		return DefWindowProc(hWnd, msg, wParam, lParam);
+	}
 
-        memset(&mstate, 0, sizeof(DIMOUSESTATE));
-        memset(&mpstate, 0, sizeof(DIMOUSESTATE));
+	CApplication::CApplication()
+	{
+		memset(&wc, 0, sizeof(WNDCLASSEXA));
+		memset(&KeyBoardState, 0, sizeof(skeyboardstate));
+		memset(&MouseState, 0, sizeof(smousestate));
 
-        hwnd = NULL;
-        dinput = NULL;
-        mouse = NULL;
+		memset(&mstate, 0, sizeof(DIMOUSESTATE));
+		memset(&mpstate, 0, sizeof(DIMOUSESTATE));
 
-        running = false;
-        active = false;
-        windowed = true;
-        dummyinstance = this;
+		hwnd = NULL;
+		dinput = NULL;
+		mouse = NULL;
 
-        Title = "Dummy Application";
-        UseDirectInput = false;
+		running = false;
+		active = false;
+		windowed = true;
+		dummyinstance = this;
 
-        ExecutablePath.resize(256, ' ');
-        GetCurrentDirectoryA(256, &ExecutablePath[0]);
+		Title = "Dummy Application";
+		UseDirectInput = false;
 
-        CHelper::Crop(ExecutablePath, ExecutablePath, ' ');
-        CHelper::Crop(ExecutablePath, ExecutablePath, '\0');
+		ExecutablePath.resize(256, ' ');
+		GetCurrentDirectoryA(256, &ExecutablePath[0]);
 
-        if( ExecutablePath[ExecutablePath.length() - 1] != '/' ||
-            ExecutablePath[ExecutablePath.length() - 1] != '\\' )
-        {
-            ExecutablePath += "\\";
-        }
+		CHelper::Crop(ExecutablePath, ExecutablePath, ' ');
+		CHelper::Crop(ExecutablePath, ExecutablePath, '\0');
 
-        std::cout << 
-            "DummyFramework v1.2\n"
-            "(c) 2008-2012 Asylum\n\n";
-    }
-    //=============================================================================================================
-    CApplication::~CApplication()
-    {
-        if( mouse )
-        {
-            mouse->Unacquire();
-            mouse->Release();
-            mouse = NULL;
-        }
-        
-        if( dinput )
-        {
-            ULONG rc = dinput->Release();
+		if( ExecutablePath[ExecutablePath.length() - 1] != '/' ||
+			ExecutablePath[ExecutablePath.length() - 1] != '\\' )
+		{
+			ExecutablePath += "\\";
+		}
 
-            if( rc > 0 )
-            {
-                std::stringstream ss;
-                ss << "dinput refcount == " << rc;
-                dnassert(, ss.str(), true);
-            }
-            else
-            {
-                dhappy("DI device released successfully");
-                dinput = NULL;
-            }
-        }
+		std::cout << 
+			"DummyFramework v1.2\n"
+			"(c) 2008-2012 Asylum\n\n";
+	}
+	//=============================================================================================================
+	CApplication::~CApplication()
+	{
+		if( mouse )
+		{
+			mouse->Unacquire();
+			mouse->Release();
+			mouse = NULL;
+		}
 
-        UnregisterClass("DummyDXClass", NULL);
-    }
-    //=============================================================================================================
-    void CApplication::Adjust(tagRECT& out, long& width, long& height, DWORD style, DWORD exstyle, bool menu)
-    {
-        long w = workarea.right - workarea.left;
-        long h = workarea.bottom - workarea.top;
+		if( dinput )
+		{
+			ULONG rc = dinput->Release();
 
-        out.left = (w - width) / 2;
-        out.top = (h - height) / 2;
-        out.right = (w + width) / 2;
-        out.bottom = (h + height) / 2;
+			if( rc > 0 )
+			{
+				std::stringstream ss;
+				ss << "dinput refcount == " << rc;
+				dnassert(, ss.str(), true);
+			}
+			else
+			{
+				dhappy("DI device released successfully");
+				dinput = NULL;
+			}
+		}
 
-        AdjustWindowRectEx(&out, style, menu, 0);
+		UnregisterClass("DummyDXClass", NULL);
+	}
+	//=============================================================================================================
+	void CApplication::Adjust(tagRECT& out, int& width, int& height, DWORD style, DWORD exstyle, bool menu)
+	{
+		int w = workarea.right - workarea.left;
+		int h = workarea.bottom - workarea.top;
 
-        long windowwidth = out.right - out.left;
-        long windowheight = out.bottom - out.top;
+		out.left = (w - width) / 2;
+		out.top = (h - height) / 2;
+		out.right = (w + width) / 2;
+		out.bottom = (h + height) / 2;
 
-        long dw = windowwidth - width;
-        long dh = windowheight - height;
+		AdjustWindowRectEx(&out, style, menu, 0);
 
-        if( windowheight > h )
-        {
-            float ratio = (float)width / (float)height;
-            float realw = (float)(h - dh) * ratio + 0.5f;
-            
-            windowheight = h;
-            windowwidth = (long)floor(realw) + dw;
-        }
+		int windowwidth = out.right - out.left;
+		int windowheight = out.bottom - out.top;
 
-        if( windowwidth > w )
-        {
-            float ratio = (float)height / (float)width;
-            float realh = (float)(w - dw) * ratio + 0.5f;
-            
-            windowwidth = w;
-            windowheight = (long)floor(realh) + dh;
-        }
+		int dw = windowwidth - width;
+		int dh = windowheight - height;
 
-        out.left = workarea.left + (w - windowwidth) / 2;
-        out.top = workarea.top + (h - windowheight) / 2;
-        out.right = workarea.left + (w + windowwidth) / 2;
-        out.bottom = workarea.top + (h + windowheight) / 2;
+		if( windowheight > h )
+		{
+			float ratio = (float)width / (float)height;
+			float realw = (float)(h - dh) * ratio + 0.5f;
 
-        width = windowwidth - dw;
-        height = windowheight - dh;
-    }
-    //=============================================================================================================
-    bool CApplication::Initialize(long& width, long& height, bool fullscreen, bool menu)
-    {
-        RECT rect = { 0, 0, width, height };
-        DWORD style = WS_CLIPCHILDREN|WS_CLIPSIBLINGS;
+			windowheight = h;
+			windowwidth = (int)floor(realw) + dw;
+		}
+
+		if( windowwidth > w )
+		{
+			float ratio = (float)height / (float)width;
+			float realh = (float)(w - dw) * ratio + 0.5f;
+
+			windowwidth = w;
+			windowheight = (int)floor(realh) + dh;
+		}
+
+		out.left = workarea.left + (w - windowwidth) / 2;
+		out.top = workarea.top + (h - windowheight) / 2;
+		out.right = workarea.left + (w + windowwidth) / 2;
+		out.bottom = workarea.top + (h + windowheight) / 2;
+
+		width = windowwidth - dw;
+		height = windowheight - dh;
+	}
+	//=============================================================================================================
+	bool CApplication::Initialize(int& width, int& height, bool fullscreen, bool menu)
+	{
+		RECT rect = { 0, 0, width, height };
+		DWORD style = WS_CLIPCHILDREN|WS_CLIPSIBLINGS;
 		WCHAR szExePath[MAX_PATH];
 
-        if( hwnd )
-        {
-            GetClientRect(hwnd, &rect);
-            width = rect.right - rect.left;
-            height = rect.bottom - rect.top;
-            return true;
-        }
+		if( hwnd )
+		{
+			GetClientRect(hwnd, &rect);
+			width = rect.right - rect.left;
+			height = rect.bottom - rect.top;
+			return true;
+		}
 
-        GetModuleFileNameW(NULL, szExePath, MAX_PATH);
+		GetModuleFileNameW(NULL, szExePath, MAX_PATH);
 
-        wc.cbSize           = sizeof(WNDCLASSEXA);
-        wc.style            = CS_CLASSDC;
-        wc.lpfnWndProc      = (WNDPROC)WndProc;
-        wc.hInstance        = GetModuleHandle(NULL);
-        wc.lpszClassName    = "DummyDXClass";
-        wc.hbrBackground    = CreateSolidBrush(RGB(240, 240, 240));
-		wc.hIcon            = ExtractIconW(wc.hInstance, szExePath, 0);
+		wc.cbSize			= sizeof(WNDCLASSEXA);
+		wc.style			= CS_CLASSDC;
+		wc.lpfnWndProc		= (WNDPROC)WndProc;
+		wc.hInstance		= GetModuleHandle(NULL);
+		wc.lpszClassName	= "DummyDXClass";
+		wc.hbrBackground	= CreateSolidBrush(RGB(240, 240, 240));
+		wc.hIcon			= ExtractIconW(wc.hInstance, szExePath, 0);
 
-        if( !RegisterClassEx(&wc) )
-        {
-            dassert(false, "CApplication::Initialize(): Could not register class", true);
-        }
+		if( !RegisterClassEx(&wc) )
+			dassert(false, "CApplication::Initialize(): Could not register class", true);
 
-        windowed = !fullscreen;
-        SystemParametersInfo(SPI_GETWORKAREA, 0, &workarea, 0);
+		windowed = !fullscreen;
+		SystemParametersInfo(SPI_GETWORKAREA, 0, &workarea, 0);
 
-        if( windowed )
-        {
-            style |= (WS_SYSMENU|WS_BORDER|WS_CAPTION|WS_MINIMIZEBOX); // |WS_MAXIMIZEBOX
-            Adjust(rect, width, height, style, menu);
-        }
-        else
-            style |= (WS_POPUP|WS_EX_TOPMOST);
-                
-        hwnd = CreateWindowA("DummyDXClass", Title.c_str(), style,
-            rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top,
-            NULL, NULL, wc.hInstance, NULL);
+		if( windowed )
+		{
+			style |= (WS_SYSMENU|WS_BORDER|WS_CAPTION|WS_MINIMIZEBOX); // |WS_MAXIMIZEBOX
+			Adjust(rect, width, height, style, menu);
+		}
+		else
+			style |= (WS_POPUP|WS_EX_TOPMOST);
 
-        dassert(false, "CApplication::Initialize(): Could not create window", hwnd);
+		hwnd = CreateWindowA("DummyDXClass", Title.c_str(), style,
+			rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top,
+			NULL, NULL, wc.hInstance, NULL);
 
-        HFONT font = (HFONT)GetStockObject(DEFAULT_GUI_FONT);
-        HDC hdc = GetDC(hwnd);
-        SelectObject(hdc, font);
+		dassert(false, "CApplication::Initialize(): Could not create window", hwnd);
 
-        // directinput
-        if( UseDirectInput )
-        {
-            HRESULT hr = DirectInput8Create(GetModuleHandle(NULL), DIRECTINPUT_VERSION, IID_IDirectInput8A, (void**)&dinput, NULL);
-            dnassert(false, "CApplication::Initialize(): Could not create dinput device", FAILED(hr));
+		HFONT font = (HFONT)GetStockObject(DEFAULT_GUI_FONT);
+		HDC hdc = GetDC(hwnd);
+		SelectObject(hdc, font);
 
-            hr = dinput->CreateDevice(GUID_SysMouse, &mouse, NULL);
-            dnassert(false, "CApplication::Initialize(): Could not create mouse device", FAILED(hr));
+		// directinput
+		if( UseDirectInput )
+		{
+			HRESULT hr = DirectInput8Create(GetModuleHandle(NULL), DIRECTINPUT_VERSION, IID_IDirectInput8A, (void**)&dinput, NULL);
+			dnassert(false, "CApplication::Initialize(): Could not create dinput device", FAILED(hr));
 
-            hr = mouse->SetDataFormat(&c_dfDIMouse);
-            dnassert(false, "CApplication::Initialize(): Could not set mouse data format", FAILED(hr));
+			hr = dinput->CreateDevice(GUID_SysMouse, &mouse, NULL);
+			dnassert(false, "CApplication::Initialize(): Could not create mouse device", FAILED(hr));
 
-            hr = mouse->SetCooperativeLevel(hwnd, DISCL_NONEXCLUSIVE|DISCL_BACKGROUND);
-            dnassert(false, "CApplication::Initialize(): Could not set mouse coop level", FAILED(hr));
+			hr = mouse->SetDataFormat(&c_dfDIMouse);
+			dnassert(false, "CApplication::Initialize(): Could not set mouse data format", FAILED(hr));
 
-            mouse->Acquire();
-        }
+			hr = mouse->SetCooperativeLevel(hwnd, DISCL_NONEXCLUSIVE|DISCL_BACKGROUND);
+			dnassert(false, "CApplication::Initialize(): Could not set mouse coop level", FAILED(hr));
 
-        POINT p;
-        GetCursorPos(&p);
-        ScreenToClient(hwnd, &p);
+			mouse->Acquire();
+		}
 
-        MouseState.x = (short)p.x;
-        MouseState.y = (short)p.y;
+		POINT p;
+		GetCursorPos(&p);
+		ScreenToClient(hwnd, &p);
 
-        running = true;
-        active = true;
+		MouseState.x = (short)p.x;
+		MouseState.y = (short)p.y;
 
-        return true;
-    }
-    //=============================================================================================================
-    bool CApplication::Run()
-    {
-        if( !running )
-            return false;
+		running = true;
+		active = true;
 
-        MSG msg;
-        ZeroMemory(&msg, sizeof(msg));
+		return true;
+	}
+	//=============================================================================================================
+	bool CApplication::Run()
+	{
+		if( !running )
+			return false;
 
-        MouseState.dx = MouseState.dy = 0;
+		MSG msg;
+		ZeroMemory(&msg, sizeof(msg));
 
-        while( PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE) )
-        {
-            TranslateMessage(&msg);
-            DispatchMessageA(&msg);
+		MouseState.dx = MouseState.dy = 0;
 
-            if( msg.message == WM_QUIT )
-                running = false;
-        }
+		while( PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE) )
+		{
+			TranslateMessage(&msg);
+			DispatchMessageA(&msg);
+
+			if( msg.message == WM_QUIT )
+				running = false;
+		}
 
 		if( UseDirectInput && mouse )
 		{
@@ -495,61 +493,61 @@ namespace DummyFramework
 			}
 		}
 
-        return running;
-    }
-    //=============================================================================================================
-    void CApplication::Resize(long& width, long& height, bool fullscreen, bool menu)
-    {
-        RECT rect;
-        DWORD style = WS_VISIBLE|WS_CLIPCHILDREN|WS_CLIPSIBLINGS;
+		return running;
+	}
+	//=============================================================================================================
+	void CApplication::Resize(int& width, int& height, bool fullscreen, bool menu)
+	{
+		RECT rect;
+		DWORD style = WS_VISIBLE|WS_CLIPCHILDREN|WS_CLIPSIBLINGS;
 
-        if( fullscreen )
-            style |= WS_POPUP;
-        else
-            style |= WS_SYSMENU|WS_BORDER|WS_CAPTION|WS_MINIMIZEBOX; // |WS_MAXIMIZEBOX
+		if( fullscreen )
+			style |= WS_POPUP;
+		else
+			style |= WS_SYSMENU|WS_BORDER|WS_CAPTION|WS_MINIMIZEBOX; // |WS_MAXIMIZEBOX
 
-        if( !fullscreen )
-        {
-            if( !windowed )
-                ChangeDisplaySettings(NULL, 0);
+		if( !fullscreen )
+		{
+			if( !windowed )
+				ChangeDisplaySettings(NULL, 0);
 
-            // w/fs -> w
-            Adjust(rect, width, height, style, menu);
+			// w/fs -> w
+			Adjust(rect, width, height, style, menu);
 
-            SetWindowLong(hwnd, GWL_STYLE, style);
-            SetWindowPos(hwnd, HWND_NOTOPMOST, rect.left, rect.top, rect.right - rect.left,
-                rect.bottom - rect.top, SWP_FRAMECHANGED);
-        }
-        else
-        {
-            if( windowed )
-            {
-                // w -> fs
-                SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, width, height, SWP_NOACTIVATE);
-                SetWindowLong(hwnd, GWL_STYLE, style);
-                SetWindowPos(hwnd, NULL, 0, 0, 0, 0, SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_FRAMECHANGED);
-            }
-            else
-            {
-                // fs -> fs
-                SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, width, height, SWP_NOACTIVATE);
-            }
-        }
+			SetWindowLong(hwnd, GWL_STYLE, style);
+			SetWindowPos(hwnd, HWND_NOTOPMOST, rect.left, rect.top, rect.right - rect.left,
+				rect.bottom - rect.top, SWP_FRAMECHANGED);
+		}
+		else
+		{
+			if( windowed )
+			{
+				// w -> fs
+				SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, width, height, SWP_NOACTIVATE);
+				SetWindowLong(hwnd, GWL_STYLE, style);
+				SetWindowPos(hwnd, NULL, 0, 0, 0, 0, SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_FRAMECHANGED);
+			}
+			else
+			{
+				// fs -> fs
+				SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, width, height, SWP_NOACTIVATE);
+			}
+		}
 
-        windowed = !fullscreen;
-    }
-    //=============================================================================================================
-    void CApplication::Show()
-    {
-        SetActiveWindow(hwnd);
-        SetForegroundWindow(hwnd);
-        ShowWindow(hwnd, SW_SHOWDEFAULT);
-        UpdateWindow(hwnd);
-    }
-    //=============================================================================================================
-    void CApplication::Hide()
-    {
-        ShowWindow(hwnd, SW_HIDE);
-    }
-    //=============================================================================================================
+		windowed = !fullscreen;
+	}
+	//=============================================================================================================
+	void CApplication::Show()
+	{
+		SetActiveWindow(hwnd);
+		SetForegroundWindow(hwnd);
+		ShowWindow(hwnd, SW_SHOWDEFAULT);
+		UpdateWindow(hwnd);
+	}
+	//=============================================================================================================
+	void CApplication::Hide()
+	{
+		ShowWindow(hwnd, SW_HIDE);
+	}
+	//=============================================================================================================
 }

@@ -4,7 +4,7 @@
 
 namespace DummyFramework
 {
-	unsigned long WINAPI CThread::Run(void* param)
+	DWORD WINAPI CThread::Run(void* param)
 	{
 		CCallable* obj = reinterpret_cast<CCallable*>(param);
 		obj->operator()();
@@ -23,7 +23,8 @@ namespace DummyFramework
 	//=============================================================================================================
 	bool CThread::Attach(CCallable& obj)
 	{
-		handle = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)&CThread::Run,
+		handle = CreateThread(
+			NULL, 0, (LPTHREAD_START_ROUTINE)&CThread::Run,
 			&obj, CREATE_SUSPENDED, &id);
 
 		return (handle != INVALID_HANDLE_VALUE);

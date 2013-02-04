@@ -7,12 +7,12 @@
 #include "signal2.hpp"
 #include "unisignal.hpp"
 
-#ifndef events
-#   define events public
+#ifndef _DUMMY_EVENTS
+#	define _DUMMY_EVENTS public
 #endif
 
-#ifndef eventhandlers
-#   define eventhandlers public
+#ifndef _DUMMY_EVENTHANDLERS
+#	define _DUMMY_EVENTHANDLERS public
 #endif
 
 #endif

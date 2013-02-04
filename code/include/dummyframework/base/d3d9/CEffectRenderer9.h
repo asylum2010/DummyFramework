@@ -8,42 +8,42 @@
 
 namespace DummyFramework
 {
-    class CGame9;
+	class CGame9;
 	class CStateManager9;
 
 	/**
 	 * \brief Base class for effect renderers
 	 */
-    class CEffectRenderer9
-    {
-    protected:
+	class CEffectRenderer9
+	{
+	protected:
 		bool canbeapplied;
-        CGame9* game;
+		CGame9* game;
 		CStateManager9* manager;
-        
-    public:
-        bool Enabled;
-        std::string MediaDir;
 
-        CEffectRenderer9();
-        virtual ~CEffectRenderer9();
-        
-        virtual bool Initialize(CGame9& mygame);
-        virtual bool ResetRenderStates();
-        virtual bool LoadContent();
+	public:
+		bool Enabled;
+		std::string MediaDir;
 
-        virtual void UnloadContent();
-        virtual void Update() {}
-        virtual void Draw() {}
+		CEffectRenderer9();
+		virtual ~CEffectRenderer9();
+
+		virtual bool Initialize(CGame9& mygame);
+		virtual bool ResetRenderStates();
+		virtual bool LoadContent();
+
+		virtual void UnloadContent();
+		virtual void Update() {}
+		virtual void Draw() {}
 
 		inline bool CanBeApplied() const {
 			return (Enabled && canbeapplied);
 		}
 
-	eventhandlers:
+	_DUMMY_EVENTHANDLERS:
 		virtual void onlostdevice();
-        virtual void onresetdevice();
-    };
+		virtual void onresetdevice();
+	};
 }
 
 #endif

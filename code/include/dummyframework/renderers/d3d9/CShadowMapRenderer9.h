@@ -7,34 +7,33 @@
 
 namespace DummyFramework
 {
-    class CShadowMapRenderer9 : public CEffectRenderer9
-    {
-    private:
+	class CShadowMapRenderer9 : public CEffectRenderer9
+	{
+	private:
 		LPDIRECT3DSURFACE9 shadowsurface;
 		LPDIRECT3DSURFACE9 depthstencil;
-		unsigned long id;
+		unsigned int id;
 
-    public:
+	public:
 		LPDIRECT3DTEXTURE9 ShadowMap;
 		unsigned int Size;
 
-        CShadowMapRenderer9();
-        ~CShadowMapRenderer9() {}
-        
-        bool LoadContent();
+		CShadowMapRenderer9();
+		~CShadowMapRenderer9() {}
 
-        void UnloadContent();
-        void Draw();
+		bool LoadContent();
 
-	events:
+		void UnloadContent();
+		void Draw();
+
+	_DUMMY_EVENTS:
 		DummyFramework::unisignal0 rendershadow;
 
-	eventhandlers:
+	_DUMMY_EVENTHANDLERS:
 		void onlostdevice();
-        void onresetdevice();
-    };
+		void onresetdevice();
+	};
 }
 
 #endif
 //=============================================================================================================
- 

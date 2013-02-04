@@ -7,31 +7,30 @@
 
 namespace DummyFramework
 {
-    class CMotionBlurRenderer9 : public CEffectRenderer9
-    {
-    private:
-        LPD3DXEFFECT effect;
+	class CMotionBlurRenderer9 : public CEffectRenderer9
+	{
+	private:
+		LPD3DXEFFECT effect;
 
-    public:
-        CMotionBlurRenderer9();
-        ~CMotionBlurRenderer9() {}
+	public:
+		CMotionBlurRenderer9();
+		~CMotionBlurRenderer9() {}
 
-        bool Initialize(CGame9& mygame);
-        bool LoadContent();
+		bool Initialize(CGame9& mygame);
+		bool LoadContent();
 
-        void UnloadContent();
-        void Draw();
-        
+		void UnloadContent();
+		void Draw();
+
 		inline LPD3DXEFFECT GetEffect() {
 			return effect;
 		}
 
-	eventhandlers:
+	_DUMMY_EVENTHANDLERS:
 		void onlostdevice();
-        void onresetdevice();
-    };
+		void onresetdevice();
+	};
 }
 
 #endif
 //=============================================================================================================
- 

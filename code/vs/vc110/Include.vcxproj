@@ -44,8 +44,8 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\$(SolutionName)_$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\$(SolutionName)_$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\$(SolutionName)_$(Configuration)\$(ProjectName)\</IntDir>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../../extern/include;../../include;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../../../extern/include;../../include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../../extern/include/dx9;../../../extern/include;../../include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../../../extern/include/dx9;../../../extern/include;../../include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
@@ -69,7 +69,6 @@
     <ClInclude Include="..\..\include\dummyframework\camera\CFPSCamera.h" />
     <ClInclude Include="..\..\include\dummyframework\camera\CModelViewerCamera.h" />
     <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CBloomRenderer9.h" />
-    <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CCausticsRenderer9.h" />
     <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CEnvironmentRenderer9.h" />
     <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CGodRayRenderer9.h" />
     <ClInclude Include="..\..\include\dummyframework\renderers\d3d9\CLensFlareRenderer9.h" />

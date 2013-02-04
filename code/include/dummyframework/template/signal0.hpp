@@ -8,18 +8,18 @@
 namespace DummyFramework
 {
     /**
-     * \brief 0 argument signal
-     */
-    class signal0 : public signal_base
-    {
-    private:
-        typedef std::list<connection0_base*> slotlist;
-        typedef std::list<void (*)()> funclist;
+	 * \brief 0 argument signal
+	 */
+	class signal0 : public signal_base
+	{
+	private:
+		typedef std::list<connection0_base*> slotlist;
+		typedef std::list<void (*)()> funclist;
 
-        slotlist _slots;
-        funclist _funcs;
+		slotlist _slots;
+		funclist _funcs;
 
-    public:
+	public:
 		signal0() {
 		}
 
@@ -27,9 +27,9 @@ namespace DummyFramework
 			operator =(other);
 		}
 
-        ~signal0() {
-            disconnectall();
-        }
+		~signal0() {
+			disconnectall();
+		}
 
 		signal0& operator =(const signal0& other)
 		{
@@ -61,106 +61,104 @@ namespace DummyFramework
 			return *this;
 		}
 
-        void operator ()()
-        {
-            slotlist::iterator it = _slots.begin();
-            slotlist::iterator end = _slots.end();
-            slotlist::iterator next;
+		void operator ()()
+		{
+			slotlist::iterator it = _slots.begin();
+			slotlist::iterator end = _slots.end();
+			slotlist::iterator next;
 
-            while( it != end )
-            {
-                next = it;
-                ++next;
+			while( it != end )
+			{
+				next = it;
+				++next;
 
-                (*it)->emit();
-                it = next;
-            }
+				(*it)->emit();
+				it = next;
+			}
 
-            funclist::iterator fit = _funcs.begin();
-            funclist::iterator fend = _funcs.end();
-            funclist::iterator fnext = _funcs.end();
+			funclist::iterator fit = _funcs.begin();
+			funclist::iterator fend = _funcs.end();
+			funclist::iterator fnext = _funcs.end();
 
-            while( fit != fend )
-            {
-                fnext = fit;
-                ++fnext;
+			while( fit != fend )
+			{
+				fnext = fit;
+				++fnext;
 
-                (*fit)();
-                fit = fnext;
-            }
-        }
+				(*fit)();
+				fit = fnext;
+			}
+		}
 
-        void disconnect(has_slots* obj)
-        {
-            slotlist::iterator it = _slots.begin();
-            slotlist::iterator end = _slots.end();
-            slotlist::iterator next;
+		void disconnect(has_slots* obj)
+		{
+			slotlist::iterator it = _slots.begin();
+			slotlist::iterator end = _slots.end();
+			slotlist::iterator next;
 
-            while( it != end )
-            {
-                next = it;
-                ++next;
+			while( it != end )
+			{
+				next = it;
+				++next;
 
-                if( (*it)->getobj() == obj )
-                {
-                    (*it)->getobj()->signaldisconnect(this);
-                    delete (*it);
+				if( (*it)->getobj() == obj )
+				{
+					(*it)->getobj()->signaldisconnect(this);
+					delete (*it);
 
-                    _slots.erase(it);
-                }
+					_slots.erase(it);
+				}
 
-                it = next;
-            }
-        }
+				it = next;
+			}
+		}
 
-        void disconnect(void (*func)())
-        {
-            // TODO: és ha többször van benne?
+		void disconnect(void (*func)())
+		{
+			funclist::iterator it = _funcs.begin();
+			funclist::iterator end = _funcs.end();
 
-            funclist::iterator it = _funcs.begin();
-            funclist::iterator end = _funcs.end();
+			for( ; it != end; ++it )
+			{
+				if( (*it) == func )
+				{
+					_funcs.erase(it);
+					return;
+				}
+			}
+		}
 
-            for( ; it != end; ++it )
-            {
-                if( (*it) == func )
-                {
-                    _funcs.erase(it);
-                    return;
-                }
-            }
-        }
+		void disconnectall()
+		{
+			slotlist::iterator it = _slots.begin();
+			slotlist::iterator end = _slots.end();
 
-        void disconnectall()
-        {
-            slotlist::iterator it = _slots.begin();
-            slotlist::iterator end = _slots.end();
+			for( ; it != end; ++it )
+			{
+				(*it)->getobj()->signaldisconnect(this);
+				delete (*it);
+			}
+						
+			_slots.clear();
+			_funcs.clear();
+		}
+		
+		template <typename object_type>
+		void connect(object_type* obj, void (object_type::*memfunc)());
 
-            for( ; it != end; ++it )
-            {
-                (*it)->getobj()->signaldisconnect(this);
-                delete (*it);
-            }
-                        
-            _slots.clear();
-            _funcs.clear();
-        }
-        
-        template <typename object_type>
-        void connect(object_type* obj, void (object_type::*memfunc)());
+		inline void connect(void (*func)()) {
+			_funcs.push_back(func);
+		}
+	};
 
-        inline void connect(void (*func)()) {
-            _funcs.push_back(func);
-        }
-    };
+	template <typename object_type>
+	void signal0::connect(object_type* obj, void (object_type::*memfunc)())
+	{
+		connection0<object_type>* conn = new connection0<object_type>(obj, memfunc);
+		_slots.push_back(conn);
 
-    template <typename object_type>
-    void signal0::connect(object_type* obj, void (object_type::*memfunc)())
-    {
-        connection0<object_type>* conn = new connection0<object_type>(obj, memfunc);
-        _slots.push_back(conn);
-
-        obj->signalconnect(this);
-    }
+		obj->signalconnect(this);
+	}
 }
 
 #endif

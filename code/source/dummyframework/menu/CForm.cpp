@@ -5,21 +5,21 @@
 
 namespace DummyFramework
 {
-    CForm::CForm()
-        : CControl()
-    {
-        manager = NULL;
-        action = 0xffffffff;
-    }
-    //=============================================================================================================
-    CForm::~CForm()
-    {
+	CForm::CForm()
+		: CControl()
+	{
+		manager = NULL;
+		action = 0xffffffff;
+	}
+	//=============================================================================================================
+	CForm::~CForm()
+	{
 		controls.clear();
-    }
-    //=============================================================================================================
-    void CForm::AddControl(CControl& ctrl)
-    {
-        dnerror(, "CForm::AddControl(): Cannot add self", &ctrl == this);
+	}
+	//=============================================================================================================
+	void CForm::AddControl(CControl& ctrl)
+	{
+		dnerror(, "CForm::AddControl(): Cannot add self", &ctrl == this);
 
 		for( size_t i = 0; i < controls.size(); ++i )
 		{
@@ -27,89 +27,89 @@ namespace DummyFramework
 				return;
 		}
 
-        controls.push_back(&ctrl);
+		controls.push_back(&ctrl);
 
-        if( initialized )
+		if( initialized )
 		{
 			if( ctrl.GroupID == 0xffffffff )
 				ctrl.GroupID = GroupID;
 
 			ctrl.Initialize(*game, *spritefont);
 		}
-    }
-    //=============================================================================================================
-    void CForm::Draw()
-    {
-        for( size_t i = 0; i < controls.size(); ++i )
-        {
-            if( controls[i]->GetState() != CControl::Hidden )
-                controls[i]->Draw();
-        }
+	}
+	//=============================================================================================================
+	void CForm::Draw()
+	{
+		for( size_t i = 0; i < controls.size(); ++i )
+		{
+			if( controls[i]->GetState() != CControl::Hidden )
+				controls[i]->Draw();
+		}
 
-        CControl::Draw();
-    }
-    //=============================================================================================================
-    bool CForm::Initialize(CGame9& mygame, CSpriteFont9& font)
-    {
-        bool success = CControl::Initialize(mygame, font);
+		CControl::Draw();
+	}
+	//=============================================================================================================
+	bool CForm::Initialize(CGame9& mygame, CSpriteFont9& font)
+	{
+		bool success = CControl::Initialize(mygame, font);
 
-        for( size_t i = 0; i < controls.size(); ++i )
-        {
-            if( controls[i]->GroupID == 0xffffffff )
-                controls[i]->GroupID = GroupID;
+		for( size_t i = 0; i < controls.size(); ++i )
+		{
+			if( controls[i]->GroupID == 0xffffffff )
+				controls[i]->GroupID = GroupID;
 
-            success = (success && controls[i]->Initialize(mygame, font));
-        }
+			success = (success && controls[i]->Initialize(mygame, font));
+		}
 
-        return success;
-    }
-    //=============================================================================================================
-    bool CForm::LoadContent()
-    {
-        bool success = CControl::LoadContent();
+		return success;
+	}
+	//=============================================================================================================
+	bool CForm::LoadContent()
+	{
+		bool success = CControl::LoadContent();
 
-        for( size_t i = 0; i < controls.size(); ++i )
-        {
-            if( controls[i]->GroupID == 0xffffffff )
-                controls[i]->GroupID = GroupID;
+		for( size_t i = 0; i < controls.size(); ++i )
+		{
+			if( controls[i]->GroupID == 0xffffffff )
+				controls[i]->GroupID = GroupID;
 
-            success = (success && controls[i]->LoadContent());
-        }
+			success = (success && controls[i]->LoadContent());
+		}
 
-        return true;
-    }
-    //=============================================================================================================
-    void CForm::Update()
-    {
-        for( size_t i = 0; i < controls.size(); ++i )
-        {
-            if( controls[i]->GetState() != CControl::Hidden &&
-                controls[i]->GetState() != CControl::Inactive )
-            {
-                controls[i]->Update();
-            }
-        }
+		return true;
+	}
+	//=============================================================================================================
+	void CForm::Update()
+	{
+		for( size_t i = 0; i < controls.size(); ++i )
+		{
+			if( controls[i]->GetState() != CControl::Hidden &&
+				controls[i]->GetState() != CControl::Inactive )
+			{
+				controls[i]->Update();
+			}
+		}
 
-        CControl::Update();
-    }
-    //=============================================================================================================
-    void CForm::onlostdevice()
-    {
-        if( initialized && contentloaded )
-        {
-            for( size_t i = 0; i < controls.size(); ++i )
-                controls[i]->onlostdevice();
-        }
-    }
-    //=============================================================================================================
-    void CForm::onresetdevice()
-    {
-        if( initialized && contentloaded )
-        {
-            for( size_t i = 0; i < controls.size(); ++i )
-                controls[i]->onresetdevice();
-        }
-    }
-    //=============================================================================================================
+		CControl::Update();
+	}
+	//=============================================================================================================
+	void CForm::onlostdevice()
+	{
+		if( initialized && contentloaded )
+		{
+			for( size_t i = 0; i < controls.size(); ++i )
+				controls[i]->onlostdevice();
+		}
+	}
+	//=============================================================================================================
+	void CForm::onresetdevice()
+	{
+		if( initialized && contentloaded )
+		{
+			for( size_t i = 0; i < controls.size(); ++i )
+				controls[i]->onresetdevice();
+		}
+	}
+	//=============================================================================================================
 }
 

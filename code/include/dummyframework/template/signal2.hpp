@@ -8,19 +8,19 @@
 namespace DummyFramework
 {
     /**
-     * \brief 2 argument signal
-     */
-    template <typename t1, typename t2>
-    class signal2 : public signal_base
-    {
-    private:
-        typedef std::list<connection2_base<t1, t2>*> slotlist;
-        typedef std::list<void (*)(t1, t2)> funclist;
+	 * \brief 2 argument signal
+	 */
+	template <typename t1, typename t2>
+	class signal2 : public signal_base
+	{
+	private:
+		typedef std::list<connection2_base<t1, t2>*> slotlist;
+		typedef std::list<void (*)(t1, t2)> funclist;
 
-        slotlist _slots;
-        funclist _funcs;
+		slotlist _slots;
+		funclist _funcs;
 
-    public:
+	public:
 		signal2() {
 		}
 
@@ -28,24 +28,24 @@ namespace DummyFramework
 			operator =(other);
 		}
 
-        ~signal2() {
-            disconnectall();
-        }
+		~signal2() {
+			disconnectall();
+		}
 
 		signal2& operator =(const signal2& other);
 
-        void operator ()(t1 p1, t2 p2);
-        void disconnect(has_slots* obj);
-        void disconnect(void (*func)(t1, t2));
-        void disconnectall();
+		void operator ()(t1 p1, t2 p2);
+		void disconnect(has_slots* obj);
+		void disconnect(void (*func)(t1, t2));
+		void disconnectall();
 
-        template <typename object_type>
-        void connect(object_type* obj, void (object_type::*memfunc)(t1, t2));
+		template <typename object_type>
+		void connect(object_type* obj, void (object_type::*memfunc)(t1, t2));
 
-        inline void connect(void (*func)(t1, t2)) {
-            _funcs.push_back(func);
-        }
-    };
+		inline void connect(void (*func)(t1, t2)) {
+			_funcs.push_back(func);
+		}
+	};
 
 	template <typename t1, typename t2>
 	signal2<t1, t2>& signal2<t1, t2>::operator =(const signal2& other)
@@ -77,104 +77,102 @@ namespace DummyFramework
 
 		return *this;
 	}
-    //=============================================================================================================
-    template <typename t1, typename t2>
-    void signal2<t1, t2>::operator ()(t1 p1, t2 p2)
-    {
-        typename slotlist::iterator it = _slots.begin();
-        typename slotlist::iterator end = _slots.end();
-        typename slotlist::iterator next;
 
-        while( it != end )
-        {
-            next = it;
-            ++next;
+	template <typename t1, typename t2>
+	void signal2<t1, t2>::operator ()(t1 p1, t2 p2)
+	{
+		typename slotlist::iterator it = _slots.begin();
+		typename slotlist::iterator end = _slots.end();
+		typename slotlist::iterator next;
 
-            (*it)->emit(p1, p2);
-            it = next;
-        }
+		while( it != end )
+		{
+			next = it;
+			++next;
 
-        typename funclist::iterator fit = _funcs.begin();
-        typename funclist::iterator fend = _funcs.end();
-        typename funclist::iterator fnext = _funcs.end();
+			(*it)->emit(p1, p2);
+			it = next;
+		}
 
-        while( fit != fend )
-        {
-            fnext = fit;
-            ++fnext;
+		typename funclist::iterator fit = _funcs.begin();
+		typename funclist::iterator fend = _funcs.end();
+		typename funclist::iterator fnext = _funcs.end();
 
-            (*fit)(p1, p2);
-            fit = fnext;
-        }
-    }
-    //=============================================================================================================
-    template <typename t1, typename t2>
-    template <typename object_type>
-    void signal2<t1, t2>::connect(object_type* obj, void (object_type::*memfunc)(t1, t2))
-    {
-        connection2<object_type, t1, t2>* conn = new connection2<object_type, t1, t2>(obj, memfunc);
-        _slots.push_back(conn);
+		while( fit != fend )
+		{
+			fnext = fit;
+			++fnext;
 
-        obj->signalconnect(this);
-    }
-    //=============================================================================================================
-    template <typename t1, typename t2>
-    void signal2<t1, t2>::disconnect(has_slots* obj)
-    {
-        typename slotlist::iterator it = _slots.begin();
-        typename slotlist::iterator end = _slots.end();
-        typename slotlist::iterator next;
+			(*fit)(p1, p2);
+			fit = fnext;
+		}
+	}
 
-        while( it != end )
-        {
-            next = it;
-            ++next;
+	template <typename t1, typename t2>
+	template <typename object_type>
+	void signal2<t1, t2>::connect(object_type* obj, void (object_type::*memfunc)(t1, t2))
+	{
+		connection2<object_type, t1, t2>* conn = new connection2<object_type, t1, t2>(obj, memfunc);
+		_slots.push_back(conn);
 
-            if( (*it)->getobj() == obj )
-            {
-                (*it)->getobj()->signaldisconnect(this);
-                delete (*it);
+		obj->signalconnect(this);
+	}
 
-                _slots.erase(it);
-            }
+	template <typename t1, typename t2>
+	void signal2<t1, t2>::disconnect(has_slots* obj)
+	{
+		typename slotlist::iterator it = _slots.begin();
+		typename slotlist::iterator end = _slots.end();
+		typename slotlist::iterator next;
 
-            it = next;
-        }
-    }
-    //=============================================================================================================
-    template <typename t1, typename t2>
-    void signal2<t1, t2>::disconnect(void (*func)(t1, t2))
-    {
-        // TODO: és ha többször van benne?
+		while( it != end )
+		{
+			next = it;
+			++next;
 
-        typename funclist::iterator it = _funcs.begin();
-        typename funclist::iterator end = _funcs.end();
+			if( (*it)->getobj() == obj )
+			{
+				(*it)->getobj()->signaldisconnect(this);
+				delete (*it);
 
-        for( ; it != end; ++it )
-        {
-            if( (*it) == func )
-            {
-                _funcs.erase(it);
-                return;
-            }
-        }
-    }
-    //=============================================================================================================
-    template <typename t1, typename t2>
-    void signal2<t1, t2>::disconnectall()
-    {
-        typename slotlist::iterator it = _slots.begin();
-        typename slotlist::iterator end = _slots.end();
+				_slots.erase(it);
+			}
 
-        for( ; it != end; ++it )
-        {
-            (*it)->getobj()->signaldisconnect(this);
-            delete (*it);
-        }
+			it = next;
+		}
+	}
 
-        _slots.clear();
-        _funcs.clear();
-    }
+	template <typename t1, typename t2>
+	void signal2<t1, t2>::disconnect(void (*func)(t1, t2))
+	{
+		typename funclist::iterator it = _funcs.begin();
+		typename funclist::iterator end = _funcs.end();
+
+		for( ; it != end; ++it )
+		{
+			if( (*it) == func )
+			{
+				_funcs.erase(it);
+				return;
+			}
+		}
+	}
+
+	template <typename t1, typename t2>
+	void signal2<t1, t2>::disconnectall()
+	{
+		typename slotlist::iterator it = _slots.begin();
+		typename slotlist::iterator end = _slots.end();
+
+		for( ; it != end; ++it )
+		{
+			(*it)->getobj()->signaldisconnect(this);
+			delete (*it);
+		}
+
+		_slots.clear();
+		_funcs.clear();
+	}
 }
 
 #endif

@@ -64,15 +64,15 @@ namespace DummyFramework
 			NULL);
 
 		derror(false, "CTrackBar::Initialize(): Could not create window", hwnd);
-        
+
 		if( !originalproc )
 		{
 			originalproc = (WNDPROC)GetWindowLong(hwnd, GWL_WNDPROC);
 			derror(false, "CTrackBar::Initialize(): Could not get window procedure", originalproc);
 		}
 
-        long ret = SetWindowLong(hwnd, GWL_WNDPROC, (LONG)&CTrackBar::WndProc);
-        derror(false, "CTrackBar::Initialize(): Could not set window procedure", ret);
+		int ret = SetWindowLong(hwnd, GWL_WNDPROC, (LONG)&CTrackBar::WndProc);
+		derror(false, "CTrackBar::Initialize(): Could not set window procedure", ret);
 
 		SetRange(0, 10);
 

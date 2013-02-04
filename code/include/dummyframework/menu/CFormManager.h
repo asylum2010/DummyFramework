@@ -9,60 +9,59 @@
 
 namespace DummyFramework
 {
-    class CForm;
-    class CControl;
-    class CGame9;
-    class CSpriteFont9;
+	class CForm;
+	class CControl;
+	class CGame9;
+	class CSpriteFont9;
 
-    struct skeyboardstate;
-    struct smousestate;
+	struct skeyboardstate;
+	struct smousestate;
 
-    /**
-     * \brief Manages forms
-     */
-    class CFormManager : public has_slots
-    {
-    protected:
-        typedef std::vector<CForm*> formlist;
-        typedef std::map<CForm*, formlist> formmap;
-        
-        CGame9*        game;
-        CSpriteFont9*  spritefont;
-        CForm*         current;
-        formmap        forms;
-        size_t         ticks;
-        bool           initialized;
-        bool           contentloaded;
+	/**
+	 * \brief Manages forms
+	 */
+	class CFormManager : public has_slots
+	{
+	protected:
+		typedef std::vector<CForm*> formlist;
+		typedef std::map<CForm*, formlist> formmap;
 
-    public:
-        size_t InitialDelay;
+		CGame9*			game;
+		CSpriteFont9*	spritefont;
+		CForm*			current;
+		formmap			forms;
+		size_t			ticks;
+		bool			initialized;
+		bool			contentloaded;
 
-        CFormManager();
-        virtual ~CFormManager();
+	public:
+		size_t InitialDelay;
 
-        bool AddForm(CForm& form);
-        bool Initialize(CGame9& mygame, CSpriteFont9& font);
-        bool LoadContent();
+		CFormManager();
+		virtual ~CFormManager();
 
-        void Connect(CForm& from, size_t action, CForm& to);
+		bool AddForm(CForm& form);
+		bool Initialize(CGame9& mygame, CSpriteFont9& font);
+		bool LoadContent();
+
+		void Connect(CForm& from, size_t action, CForm& to);
 		void Disconnect(CForm& from, size_t action, CForm& to);
-        void Draw();
+		void Draw();
 		void RemoveForm(CForm& form);
-        void Update();
+		void Update();
 
-        inline void SetCurrent(CForm& form) {
-            current = &form;
-        }
+		inline void SetCurrent(CForm& form) {
+			current = &form;
+		}
 
-    eventhandlers:
-        void onfocuslost(CControl& sender);
-        void onkeyup(const skeyboardstate& kstate);
-        void onkeydown(const skeyboardstate& kstate);
-        void onlostdevice();
-        void onresetdevice();
-    };
+	_DUMMY_EVENTHANDLERS:
+		void onfocuslost(CControl& sender);
+		void onkeyup(const skeyboardstate& kstate);
+		void onkeydown(const skeyboardstate& kstate);
+		void onlostdevice();
+		void onresetdevice();
+	};
 }
 
 #endif
 //=============================================================================================================
- 

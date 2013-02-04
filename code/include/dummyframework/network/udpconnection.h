@@ -3,25 +3,25 @@
 #define _UDPCONNECTION_H_
 
 #ifdef _WIN32
-#    include <winsock2.h>
+#	include <winsock2.h>
 #else
-#    include <sys/socket.h>
-#    include <sys/types.h>
-#    include <unistd.h>
-#    include <netdb.h>
-#    include <fcntl.h>
-#    define SOCKET int
+#	include <sys/socket.h>
+#	include <sys/types.h>
+#	include <unistd.h>
+#	include <netdb.h>
+#	include <fcntl.h>
+#	define SOCKET int
 #endif
 
 #include <string>
 
 // TODO:
-// rtt számolás
-// flow control
+// - rtt count
+// - flow control
 
-#define _PACKET_SIZE_   256
-#define _PACKET_DATA_   (_PACKET_SIZE_ - 12)
-#define _INCOMING_SIZE  20
+#define _PACKET_SIZE_	256
+#define _PACKET_DATA_	(_PACKET_SIZE_ - 12)
+#define _INCOMING_SIZE	20
 
 #define networkdebug(x) { std::cout << "* NETWORK: " << x << ".\n"; }
 
@@ -54,7 +54,7 @@ namespace DummyFramework
 	class udppacket
 	{
 	public:
-		unsigned long  protocol_id;
+		unsigned int  protocol_id;
 		unsigned short connection_id;
 		unsigned short sequence_no;
 		unsigned short ack;

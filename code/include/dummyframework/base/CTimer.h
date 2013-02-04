@@ -9,32 +9,33 @@ namespace DummyFramework
 	/**
 	 * \brief Win32-based high resolution timer
 	 */
-    class CTimer
-    {
-    protected:
+	class CTimer
+	{
+	protected:
 		bool stopped;
-        LONGLONG tickspersec;
-        LONGLONG lastelapsedtime;
-        LONGLONG stoptime;
-        LONGLONG basetime;
-    
-        LARGE_INTEGER GetAdjustedCurrentTime();
+		LONGLONG tickspersec;
+		LONGLONG stoptime;
+		LONGLONG basetime;
 
-    public:
-        CTimer();
+	public:
+		CTimer();
 		~CTimer() {}
 
-        double ElapsedTime();
-        double Time();
+		double Time();
+		double TimeNano();
 
-        void Reset();
-        void Start();
-        void Stop();
+		void Reset();
+		void Start();
+		void Stop();
 
-        inline bool IsStopped() const {
+		inline bool IsStopped() const {
 			return stopped;
 		}
-    };
+
+		inline double Nano() const {
+			return 1.0 / (double)tickspersec;
+		}
+	};
 }
 
 #endif

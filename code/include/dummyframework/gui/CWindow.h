@@ -11,7 +11,7 @@
 #include <map>
 
 #define _DUMMY_INPUT_EVENTS \
-    case WM_KEYDOWN: \
+	case WM_KEYDOWN: \
 	case WM_KEYUP: \
 	case WM_LBUTTONDOWN: \
 	case WM_LBUTTONUP: \
