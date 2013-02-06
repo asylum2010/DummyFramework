@@ -6,10 +6,10 @@ void WinapiTest::InitializeGUI()
 	// load common controls
 	INITCOMMONCONTROLSEX iccs;
 
-    iccs.dwSize = sizeof(INITCOMMONCONTROLSEX);
-    iccs.dwICC = ICC_STANDARD_CLASSES|ICC_BAR_CLASSES|ICC_UPDOWN_CLASS;
+	iccs.dwSize = sizeof(INITCOMMONCONTROLSEX);
+	iccs.dwICC = ICC_STANDARD_CLASSES|ICC_BAR_CLASSES|ICC_UPDOWN_CLASS;
 
-    InitCommonControlsEx(&iccs);
+	InitCommonControlsEx(&iccs);
 
 	// initialize controls
 	picturebox1.Location.x = 10;
@@ -119,4 +119,3 @@ void WinapiTest::InitializeGUI()
 #endif
 }
 //=============================================================================================================
-

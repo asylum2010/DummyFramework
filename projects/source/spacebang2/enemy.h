@@ -44,6 +44,7 @@ protected:
 		bool		applied;		/*!< \brief Did-we apply it? */
 
 		hitinfo();
+		hitinfo(const hitinfo& other);
 	};
 	
 	typedef std::list<hitinfo> hitlist;

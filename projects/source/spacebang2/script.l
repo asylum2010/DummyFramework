@@ -22,7 +22,7 @@
 %}
 
 WHITESPACE		[ \t\n\r]
-IDSTART			 [a-zA-Z_]
+IDSTART			[a-zA-Z_]
 IDCHAR			[a-zA-Z_0-9]
 NUMBER			[0-9]|[1-9]([0-9]+)
 

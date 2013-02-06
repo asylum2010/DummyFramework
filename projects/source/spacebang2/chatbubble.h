@@ -12,29 +12,29 @@
 class ChatBubble : public DummyFramework::CLabel
 {
 protected:
-    int ticks;
-    DummyFramework::syncedanimator<float, 7> alpha;
+	int ticks;
+	DummyFramework::syncedanimator<float> alpha;
 
 public:
-    DummyFramework::CSprite9* Corner;
-    DummyFramework::CSprite9* Side;
-    DummyFramework::CSprite9* Inside;
-    size_t IdleDelay;                   /*!< \brief How int it should be visible */
+	DummyFramework::CSprite9* Corner;
+	DummyFramework::CSprite9* Side;
+	DummyFramework::CSprite9* Inside;
+	size_t IdleDelay;					/*!< \brief How int it should be visible */
 
-    ChatBubble();
-    ~ChatBubble() {}
+	ChatBubble();
+	~ChatBubble() {}
 
 	//! Render the bubble
-    void Draw();
+	void Draw();
 
 	//! Change the bubble's state
-    void SetState(unsigned int newstate);
+	void SetState(unsigned int newstate);
 
 	//! Update the bubble
-    void Update();
+	void Update();
 
 	//! Write into dynamic buffer
-    size_t Write(size_t start, quadbuffer& quad);
+	size_t Write(size_t start, quadbuffer& quad);
 };
 
 #endif

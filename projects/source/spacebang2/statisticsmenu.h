@@ -15,48 +15,47 @@
  */
 class StatisticsMenu : public DummyFramework::CForm
 {
-    struct entry
-    {
-        DummyFramework::CLabel key;
-        DummyFramework::CLabel value;
-    };
+	struct entry
+	{
+		DummyFramework::CLabel key;
+		DummyFramework::CLabel value;
+	};
 
 private:
-    DummyFramework::syncedanimator<float, MENU_TRANSITION> alpha;
-    DummyFramework::CLabel title;
+	DummyFramework::syncedanimator<float> alpha;
+	DummyFramework::CLabel title;
 
-    AnimatedButton  cont;
-    entry           entries[NUM_ROWS];
-    int             ticks;
+	AnimatedButton	cont;
+	entry			entries[NUM_ROWS];
+	int				ticks;
 
 public:
-    enum formaction
-    {
-        Continue
-    };
+	enum formaction
+	{
+		Continue
+	};
 
-    DummyFramework::CSprite9* Background;
+	DummyFramework::CSprite9* Background;
 
-    StatisticsMenu();
-    ~StatisticsMenu() {}
+	StatisticsMenu();
+	~StatisticsMenu() {}
 
-    bool Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpriteFont9& font);
-    bool LoadContent();
+	bool Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpriteFont9& font);
+	bool LoadContent();
 
-    void Draw();
-    void SetState(unsigned int newstate);
-    void Update();
+	void Draw();
+	void SetState(unsigned int newstate);
+	void Update();
 
 _DUMMY_EVENTS:
-    DummyFramework::signal1<size_t> selected;
+	DummyFramework::signal1<size_t> selected;
 
 _DUMMY_EVENTHANDLERS:
-    void onfocusgained();
-    void onfocuslost();
-    void onkeyup(const DummyFramework::skeyboardstate& kstate);
-    void onresetdevice();
+	void onfocusgained();
+	void onfocuslost();
+	void onkeyup(const DummyFramework::skeyboardstate& kstate);
+	void onresetdevice();
 };
 
 #endif
 //=============================================================================================================
- 

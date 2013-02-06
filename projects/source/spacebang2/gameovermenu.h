@@ -14,47 +14,47 @@
 class GameOverMenu : public DummyFramework::CForm
 {
 private:
-    DummyFramework::syncedanimator<float, MENU_TRANSITION> alpha;
-    DummyFramework::CLabel title;
+	DummyFramework::syncedanimator<float> alpha;
+	DummyFramework::CLabel title;
 
-    AnimatedButton  buttons[2];
-    size_t          selectedindex;
-    int             ticks;
+	AnimatedButton	buttons[2];
+	size_t			selectedindex;
+	int				ticks;
 
-    void SelectedIndexChanged(size_t prev);
+	void SelectedIndexChanged(size_t prev);
 
 public:
-    enum formaction
-    {
-        Restart,
-        MainMenu
-    };
+	enum formaction
+	{
+		Restart,
+		MainMenu
+	};
 
-    DummyFramework::CSprite9* Background;
+	DummyFramework::CSprite9* Background;
 
-    GameOverMenu();
-    ~GameOverMenu() {}
+	GameOverMenu();
+	~GameOverMenu() {}
 
 	//! Initialize
-    bool Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpriteFont9& font);
+	bool Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpriteFont9& font);
 
 	//! Render
-    void Draw();
+	void Draw();
 
 	//! Changse state
-    void SetState(unsigned int newstate);
+	void SetState(unsigned int newstate);
 
 	//! Fixed update
-    void Update();
+	void Update();
 
 _DUMMY_EVENTS:
-    DummyFramework::signal1<size_t> selected;
+	DummyFramework::signal1<size_t> selected;
 
 _DUMMY_EVENTHANDLERS:
-    void onfocusgained();
-    void onfocuslost();
-    void onkeyup(const DummyFramework::skeyboardstate& kstate);
-    void onresetdevice();
+	void onfocusgained();
+	void onfocuslost();
+	void onkeyup(const DummyFramework::skeyboardstate& kstate);
+	void onresetdevice();
 };
 
 #endif

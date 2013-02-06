@@ -11,7 +11,7 @@
 class ExitGame : public DummyFramework::CForm
 {
 private:
-	DummyFramework::syncedanimator<float, 3> blink;
+	DummyFramework::syncedanimator<float> blink;
 	DummyFramework::CDynamicQuadBuffer9 quads;
 
 public:

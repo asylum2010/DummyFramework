@@ -2,123 +2,123 @@
 #include "loadingmenu.h"
 
 LoadingMenu::LoadingMenu()
-    : CForm()
+	: CForm()
 {
-    alpha.direction = -1;
-    alpha = 0;
-    alpha.set(0, 1.0f);
-    ticks = 0;
-        
-    AddControl(title);
+	alpha.direction = -1;
+	alpha.set(MENU_TRANSITION, 0, 1.0f);
+
+	alpha = 0;
+	ticks = 0;
+
+	AddControl(title);
 }
 //=============================================================================================================
 void LoadingMenu::Draw()
 {
-    D3DXCOLOR color(0xffffffff);
+	D3DXCOLOR color(0xffffffff);
 
-    alpha.smooth((float)game->Sync.Alpha());
-    color.a = title.Color.a = alpha.value;
-    
-    CForm::Draw();
-    spritefont->Draw(GroupID);
+	alpha.smooth((float)game->Sync.Alpha());
+	color.a = title.Color.a = alpha.value;
+
+	CForm::Draw();
+	spritefont->Draw(GroupID);
 }
 //=============================================================================================================
 bool LoadingMenu::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpriteFont9& font)
 {
-    onresetdevice();
-    title.Text = "Loading";
+	onresetdevice();
+	title.Text = "Loading";
 
-    return CForm::Initialize(mygame, font);
+	return CForm::Initialize(mygame, font);
 }
 //=============================================================================================================
 void LoadingMenu::SetState(unsigned int newstate)
 {
-    switch( newstate )
-    {
-    case TransitionIn:
-        alpha = 0;
-        ticks = 0;
-        alpha.direction = 1;
-        title.SetState(Idle);
-        break;
+	switch( newstate )
+	{
+	case TransitionIn:
+		alpha = 0;
+		ticks = 0;
+		alpha.direction = 1;
+		title.SetState(Idle);
+		break;
 
-    case Idle:
-        startload();
-        newstate = OneMoreTick;
-        break;
+	case Idle:
+		startload();
+		newstate = OneMoreTick;
+		break;
 
-    case TransitionOut:
-        alpha = alpha.count() - 1;
-        ticks = 0;
-        alpha.direction = -1;
-        break;
-    
-    default:
-        break;
-    }
+	case TransitionOut:
+		alpha = alpha.count() - 1;
+		ticks = 0;
+		alpha.direction = -1;
+		break;
 
-    CControl::SetState(newstate);
+	default:
+		break;
+	}
+
+	CControl::SetState(newstate);
 }
 //=============================================================================================================
 void LoadingMenu::Update()
 {
-    switch( state )
-    {
-    case TransitionIn:
-        if( ticks > alpha.count() + 1 )
-        {
-            SetState(Idle);
-        }
-        else
-        {
-            ++ticks;
-            alpha.step();
-        }
-        break;
+	switch( state )
+	{
+	case TransitionIn:
+		if( ticks > alpha.count() + 1 )
+		{
+			SetState(Idle);
+		}
+		else
+		{
+			++ticks;
+			alpha.step();
+		}
+		break;
 
-    case TransitionOut:
-        if( ticks > alpha.count() + 1 )
-        {
-            action = Loaded;
-            focuslost(*this);
-        }
-        else
-        {
-            ++ticks;
-            alpha.step();
-        }
-        break;
+	case TransitionOut:
+		if( ticks > alpha.count() + 1 )
+		{
+			action = Loaded;
+			focuslost(*this);
+		}
+		else
+		{
+			++ticks;
+			alpha.step();
+		}
+		break;
 
-    case OneMoreTick:
-        SetState(TransitionOut);
-        break;
-                
-    default:
-        break;
-    }
-    
-    CForm::Update();
+	case OneMoreTick:
+		SetState(TransitionOut);
+		break;
+
+	default:
+		break;
+	}
+
+	CForm::Update();
 }
 //=============================================================================================================
 void LoadingMenu::onfocusgained()
 {
-    CForm::onfocusgained();
-    SetState(TransitionIn);
+	CForm::onfocusgained();
+	SetState(TransitionIn);
 }
 //=============================================================================================================
 void LoadingMenu::onfocuslost()
 {
-    CForm::onfocuslost();
-    SetState(Hidden);
-    title.SetState(Hidden);
+	CForm::onfocuslost();
+	SetState(Hidden);
+	title.SetState(Hidden);
 }
 //=============================================================================================================
 void LoadingMenu::onresetdevice()
 {
-    title.Position.x = GameVariables::ScreenWidth * 0.5f;
-    title.Position.y = GameVariables::ScreenHeight * 0.5f;
+	title.Position.x = GameVariables::ScreenWidth * 0.5f;
+	title.Position.y = GameVariables::ScreenHeight * 0.5f;
 
-    CForm::onresetdevice();
+	CForm::onresetdevice();
 }
 //=============================================================================================================
-

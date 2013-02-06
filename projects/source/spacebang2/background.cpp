@@ -24,8 +24,8 @@ void Background::AddElement(size_t index, const DummyFramework::CSprite9& sprite
 		instance_rit& last = lr.visible.rbegin();
 
 		// a többit csak akkor ha láthatoak
-		if( last->x.current() + sprite.Size.x < GameVariables::ScreenWidth )
-			lr.visible.push_back(instance(lr.elements.size(), last->x.current() + sprite.Size.x));
+		if( last->x.current + sprite.Size.x < GameVariables::ScreenWidth )
+			lr.visible.push_back(instance(lr.elements.size(), last->x.current + sprite.Size.x));
 	}
 
 	lr.elements.push_back(sprite);
@@ -122,20 +122,20 @@ void Background::Update()
 			DummyFramework::CSprite9& sfirst = lr.elements[first->index];
 
 			// feltételezi, hogy a textura legalább akkora mint a képernyö szélessége
-			tmp = last->x.current() + slast.Size.x;
+			tmp = last->x.current + slast.Size.x;
 
 			if( tmp < GameVariables::ScreenWidth )
 			{
 				instance inst;
 
 				inst.index = (last->index + 1) % lr.elements.size();
-				inst.x.current() = tmp;
-				inst.x.previous() = last->x.previous() + slast.Size.x;
+				inst.x.current = tmp;
+				inst.x.previous = last->x.previous + slast.Size.x;
 
 				lr.visible.push_back(inst);
 			}
 
-			if( first->x.current() < -sfirst.Size.x )
+			if( first->x.current < -sfirst.Size.x )
 			{
 				if( first->countdown == 0 )
 					lr.visible.pop_front();

@@ -23,7 +23,7 @@
 #ifdef __cplusplus
 
 #include <stdlib.h>
-//#include <unistd.h>
+#include <unistd.h>
 
 /* Use prototypes in function declarations. */
 #define YY_USE_PROTOS
@@ -412,13 +412,13 @@ char *yytext;
 #define YY_DECL int yyflex YY_PROTO(( void ))
 
 #ifdef _MSC_VER
-#    pragma warning( push )
-#    pragma warning (disable : 4102)
-#    pragma warning (disable : 4273)
-#    pragma warning (disable : 4065)
-#    pragma warning (disable : 4267)
-#    pragma warning (disable : 4244)
-#    pragma warning (disable : 4996)
+#	pragma warning( push )
+#	pragma warning (disable : 4102)
+#	pragma warning (disable : 4273)
+#	pragma warning (disable : 4065)
+#	pragma warning (disable : 4267)
+#	pragma warning (disable : 4244)
+#	pragma warning (disable : 4996)
 #endif
 
 #define str 1
@@ -1654,5 +1654,5 @@ int main()
 
 
 #ifdef _MSC_VER
-#    pragma warning(pop)
+#	pragma warning(pop)
 #endif

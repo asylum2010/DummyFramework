@@ -13,7 +13,7 @@
 class MainMenu : public DummyFramework::CForm
 {
 private:
-	DummyFramework::syncedanimator<float, MENU_TRANSITION> alpha;
+	DummyFramework::syncedanimator<float> alpha;
 	DummyFramework::CLabel title;
 	DummyFramework::CButton buttons[NUM_BUTTONS];
 

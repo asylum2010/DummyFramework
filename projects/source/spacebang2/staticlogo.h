@@ -12,30 +12,29 @@
 class StaticLogo : public DummyFramework::CForm
 {
 private:
-    DummyFramework::syncedanimator<float, MENU_TRANSITION> alpha;
-    int ticks;
+	DummyFramework::syncedanimator<float> alpha;
+	int ticks;
 
 public:
 	size_t IdleDelay;
 
-    enum formaction
-    {
-        Exit
-    };
+	enum formaction
+	{
+		Exit
+	};
 
-    DummyFramework::CSprite9* Background;
+	DummyFramework::CSprite9* Background;
 
-    StaticLogo();
-    ~StaticLogo() {}
+	StaticLogo();
+	~StaticLogo() {}
 
-    void Draw();
-    void SetState(unsigned int newstate);
-    void Update();
+	void Draw();
+	void SetState(unsigned int newstate);
+	void Update();
 
 _DUMMY_EVENTHANDLERS:
-    void onfocusgained();
+	void onfocusgained();
 };
 
 #endif
 //=============================================================================================================
- 

@@ -38,7 +38,7 @@ void Game::avatar_explode()
 
 	explosions.push_front(ex);
 	UnapplyPowerup();
-    
+
 	GameVariables::Deaths++;
 }
 //=============================================================================================================
@@ -48,9 +48,9 @@ void Game::enemy_explode(Explosion& ex)
 	ex.Initialize(*game);
 	ex.Speed = background.Speed * 1.2f;
 
-	AddPowerup(ex.Position.current());
+	AddPowerup(ex.Position.current);
 
-	ex.Position = ex.Position.current() - ex.Image->Size * ex.Scale * 0.5f;
+	ex.Position = ex.Position.current - ex.Image->Size * ex.Scale * 0.5f;
 	explosions.push_front(ex);
 	
 	// van olyan ellenfél ami robbanáskor is ad pontot
@@ -73,12 +73,12 @@ void Game::enemy_shoot1(Projectile& p)
 	p.Image = &atlas1["projectile"];
 
 	D3DXVECTOR2 pos(
-		p.Position.current().x - p.Image->Size.x,
-		p.Position.current().y - p.Image->Size.y * 0.5f);
+		p.Position.current.x - p.Image->Size.x,
+		p.Position.current.y - p.Image->Size.y * 0.5f);
 
 	p.Speed += GameVariables::CorrelateW(60.0f);
-	p.Position.previous() = pos - p.Direction * p.Speed;
-	p.Position.current() = pos;
+	p.Position.previous = pos - p.Direction * p.Speed;
+	p.Position.current = pos;
 
 	enemyprojectiles.push_back(p);
 }
@@ -88,12 +88,12 @@ void Game::enemy_shoot2(Projectile& p)
 	p.Image = &atlas1["plasma"];
 
 	D3DXVECTOR2 pos(
-		p.Position.current().x - p.Image->Size.x * 0.5f,
-		p.Position.current().y - p.Image->Size.y * 0.5f);
+		p.Position.current.x - p.Image->Size.x * 0.5f,
+		p.Position.current.y - p.Image->Size.y * 0.5f);
 
 	p.Speed = GameVariables::CorrelateH(p.Speed);
-	p.Position.previous() = pos - p.Direction * p.Speed;
-	p.Position.current() = pos;
+	p.Position.previous = pos - p.Direction * p.Speed;
+	p.Position.current = pos;
 
 	enemyprojectiles.push_back(p);
 }

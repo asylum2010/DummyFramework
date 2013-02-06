@@ -8,8 +8,19 @@ Powerup::Powerup()
 
 	offset.set(10, 1.0f, -1.0f);
 	offset.direction = 1;
+
 	offset = 0;
 	ticks = 0;
+}
+//=============================================================================================================
+Powerup::Powerup(const Powerup& other)
+{
+	Image = other.Image;
+	Position = other.Position;
+	Speed = other.Speed;
+
+	offset = other.offset;
+	ticks = other.ticks;
 }
 //=============================================================================================================
 void Powerup::GetPositionWithOffset(D3DXVECTOR2& out)

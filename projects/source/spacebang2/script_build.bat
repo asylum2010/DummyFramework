@@ -1,6 +1,10 @@
 @echo off
-flex\bin\flex -olexer.cpp script.l
-cd bison\bin
-bison -o ../../parser.cpp -d ../../script.y
+call flex\bin\flex -olexer.cpp script.l
 
-pause
+set CURR_DIR=%CD%
+
+cd bison\bin
+call bison -o %CURR_DIR%/parser.cpp -d %CURR_DIR%/script.y
+
+cd %CURR_DIR%
+

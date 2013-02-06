@@ -9,32 +9,32 @@
  */
 class AnimatedButton : public DummyFramework::CButton
 {
-    functor triangle
-    {
-        inline static float y(float x) {
-            return (0.5f - fabs(x - 0.5f)) * 2;
-        }
-    };
+	functor triangle
+	{
+		inline static float y(float x) {
+			return (0.5f - fabs(x - 0.5f)) * 2;
+		}
+	};
 
 protected:
-    DummyFramework::syncedanimator<float, 12, triangle> alpha;
-    float scale;
+	DummyFramework::syncedanimator<float, triangle> alpha;
+	float scale;
 
 public:
-    AnimatedButton();
-    ~AnimatedButton() {}
+	AnimatedButton();
+	~AnimatedButton() {}
 
 	//! Initialize content 
-    bool LoadContent();
+	bool LoadContent();
 
 	//! Set the button's state
-    void SetState(unsigned int newstate);
+	void SetState(unsigned int newstate);
 
 	//! Update the button
-    void Update();
+	void Update();
 
 	//! Render the button
-    void Draw();
+	void Draw();
 
 _DUMMY_EVENTHANDLERS:
 	void onresetdevice();

@@ -14,6 +14,15 @@ Enemy::hitinfo::hitinfo()
 	applied = 0;
 }
 
+Enemy::hitinfo::hitinfo(const hitinfo& other)
+{
+	alpha = other.alpha;
+	ticks = other.ticks;
+	applied = other.applied;
+	hitpos = other.hitpos;
+	position = other.position;
+}
+
 Enemy::Enemy()
 	: GameElement()
 {

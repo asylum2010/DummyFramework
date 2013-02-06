@@ -70,9 +70,6 @@ bool ConvertX2OBJ::LoadContent()
 	bool success = Content.CreateObject(object, "meshes/knot.x");
 	dassert(false, "ConvertX2OBJ::LoadContent(): Could not load object", success);
 	
-	//object.Mesh = Content.LoadMesh("meshes/airplane.X");
-	//dassert(false, "ConvertX2OBJ::LoadContent(): Could not load mesh", object.Mesh);
-	
 	LPD3DXMESH mesh = object.Mesh;
 
 	// look for vertex attributes
@@ -213,7 +210,7 @@ bool ConvertX2OBJ::LoadContent()
 			for( DWORD k = 0; k < mesh->GetNumVertices(); ++k )
 			{
 				index = k;
-							
+
 				x = *((float*)(vdata + stride * index + posoff));
 				y = *((float*)(vdata + stride * index + posoff + sizeof(float)));
 				z = *((float*)(vdata + stride * index + posoff + 2 * sizeof(float)));

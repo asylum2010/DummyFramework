@@ -219,10 +219,10 @@ void Avatar::Update()
 	Position.extend(velocity);
 
 	// ne menjen ki a képernyöröl
-	if( DummyFramework::CHelper::Clamp2<float>(Position.current().x, Bounds.x, Bounds.z - Image->Size.x) )
+	if( DummyFramework::CHelper::Clamp2<float>(Position.current.x, Bounds.x, Bounds.z - Image->Size.x) )
 		velocity.x = 0;
 
-	if( DummyFramework::CHelper::Clamp2<float>(Position.current().y, Bounds.y, Bounds.w - Image->Size.y) )
+	if( DummyFramework::CHelper::Clamp2<float>(Position.current.y, Bounds.y, Bounds.w - Image->Size.y) )
 		velocity.y = 0;
 
 	if( cooldown > 0 )

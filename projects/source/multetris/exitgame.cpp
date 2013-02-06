@@ -33,7 +33,7 @@ ExitGame::ExitGame()
 	Atlas = NULL;
 	Cell = Glow = NULL;
 	
-	blink.set(0, 1);
+	blink.set(3, 0, 1);
 	blink = blink.count() - 1;
 	blink.direction = 1;
 }

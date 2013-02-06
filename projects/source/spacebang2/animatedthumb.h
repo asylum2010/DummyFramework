@@ -10,18 +10,18 @@
 class AnimatedThumb : public AnimatedButton
 {
 public:
-    float Texcoords[4];  /*!< \brief Texture coordinates in atlas */
-    D3DXVECTOR2 Size;
-    DummyFramework::CSprite9* Image;
+	float Texcoords[4];		/*!< \brief Texture coordinates in atlas */
+	D3DXVECTOR2 Size;
+	DummyFramework::CSprite9* Image;
 
-    AnimatedThumb();
-    ~AnimatedThumb() {}
+	AnimatedThumb();
+	~AnimatedThumb() {}
 
 	//! Render the thumbnail
-    void Draw();
+	void Draw();
 
 _DUMMY_EVENTHANDLERS:
-    void onresetdevice();
+	void onresetdevice();
 };
 
 #endif

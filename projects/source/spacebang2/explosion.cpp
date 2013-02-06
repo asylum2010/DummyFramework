@@ -20,6 +20,20 @@ Explosion::Explosion()
 	Value = 0;
 }
 //=============================================================================================================
+Explosion::Explosion(const Explosion& other)
+{
+	ticks = other.ticks;
+	state = other.state;
+	alpha = other.alpha;
+	scale = other.scale;
+
+	Speed = other.Speed;
+	Scale = other.Scale;
+	Value = other.Value;
+	Image = other.Image;
+	Position = other.Position;
+}
+//=============================================================================================================
 void Explosion::Update()
 {
 	++ticks;

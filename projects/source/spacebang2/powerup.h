@@ -6,7 +6,7 @@
 #include <dummyframework/base/d3d9/CSprite9.h>
 
 /**
- * \brief A powerup
+ * \brief Improves avatar abilities
  *
  * Theres no need for inheritance since the game handles powerups,
  * so it can use the signal/slot system.
@@ -30,6 +30,7 @@ public:
 	float Speed;
 
 	Powerup();
+	Powerup(const Powerup& other);
 	~Powerup() {}
 
 	//! Returns the powerup's position with its current offset

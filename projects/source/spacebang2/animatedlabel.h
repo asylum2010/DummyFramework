@@ -10,23 +10,23 @@
 class AnimatedLabel : public DummyFramework::CLabel
 {
 protected:
-    int ticks;
-    DummyFramework::syncedanimator<float, 7> alpha;
+	int ticks;
+	DummyFramework::syncedanimator<float> alpha;
 
 public:
-    size_t IdleDelay;   /*!< \brief How int should it be visible */
+	size_t IdleDelay;		/*!< \brief How int should it be visible */
 
-    AnimatedLabel();
-    ~AnimatedLabel();
+	AnimatedLabel();
+	~AnimatedLabel();
 
 	//! Change the label's state
-    void SetState(unsigned int newstate);
+	void SetState(unsigned int newstate);
 
 	//! Update the label
-    void Update();
+	void Update();
 
 	//! Render the label
-    void Draw();
+	void Draw();
 };
 
 #endif

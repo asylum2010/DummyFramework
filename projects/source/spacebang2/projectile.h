@@ -15,6 +15,9 @@ public:
 	D3DXVECTOR2					Direction;
 	syncedvector				Position;
 	float						Speed;
+
+	Projectile();
+	Projectile(const Projectile& other);
 };
 
 #endif

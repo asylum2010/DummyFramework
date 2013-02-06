@@ -7,9 +7,9 @@ MainMenu::MainMenu()
 	Background = NULL;
 	selectedindex = 0;
 
+	alpha.set(MENU_TRANSITION, 0, 1.0f);
 	alpha.direction = -1;
 	alpha = 0;
-	alpha.set(0, 1.0f);
 
 	for( size_t i = 0; i < NUM_BUTTONS; ++i )
 		AddControl(buttons[i]);
@@ -147,7 +147,7 @@ void MainMenu::onfocusgained()
 //=============================================================================================================
 void MainMenu::onfocuslost()
 {
-    CForm::onfocuslost();
+	CForm::onfocuslost();
 	SetState(Hidden);
 
 	for( size_t i = 0; i < NUM_BUTTONS; ++i )

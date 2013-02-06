@@ -27,7 +27,7 @@ SingleGame::SingleGame()
 	Atlas = NULL;
 	Cell = Glow = NULL;
 	
-	blink.set(0, 1);
+	blink.set(3, 0, 1);
 	blink = blink.count() - 1;
 	blink.direction = 1;
 	
@@ -275,7 +275,7 @@ void SingleGame::Update()
 		break;
 	
 	case BlinkOut:
-		if( blink.previous() == 0 )
+		if( blink.previous == 0 )
 			Reset(true);
 		break;
 	
@@ -380,7 +380,7 @@ void SingleGame::onresetdevice()
 {
 	quads.onresetdevice();
 
-	ResetGUI();	
+	ResetGUI();
 	CForm::onresetdevice();
 }
 //=============================================================================================================

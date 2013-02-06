@@ -65,16 +65,16 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 24 "../../script.y"
+#line 24 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
 
-    std::string*      text_t;
-    parameter_desc*   param_t;
-    parameterlist*    param_list;
+	std::string*		text_t;
+	parameter_desc*		param_t;
+	parameterlist*		param_list;
 
 
 
 /* Line 1676 of yacc.c  */
-#line 78 "../../parser.hpp"
+#line 78 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/parser.hpp"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

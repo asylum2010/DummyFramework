@@ -34,11 +34,11 @@ void MulTetris::menu_hover(size_t action)
 //=============================================================================================================
 void MulTetris::menu_selected(size_t action)
 {
-    switch( action )
-    {
-    case MainMenu::Quit:
-        Application.Close();
-        break;
+	switch( action )
+	{
+	case MainMenu::Quit:
+		Application.Close();
+		break;
 
 	case MainMenu::SinglePlayer:
 		currentgame = 0;
@@ -55,9 +55,9 @@ void MulTetris::menu_selected(size_t action)
 		formmanager.Connect(pausemenu, PauseMenu::Continue, coop);
 		break;
 
-    default:
-        break;
-    }
+	default:
+		break;
+	}
 }
 //=============================================================================================================
 void MulTetris::pause_selected(size_t action)

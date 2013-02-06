@@ -20,8 +20,8 @@ void AirPlane::MakeState(unsigned int& input, D3DXVECTOR3& pos, D3DXQUATERNION& 
 {
 	input = state;
 
-	pos = position.current();
-	q = rotation.current();
+	pos = position.current;
+	q = rotation.current;
 }
 //=============================================================================================================
 void AirPlane::UpdateState(unsigned int input, const D3DXVECTOR3& pos, const D3DXQUATERNION& q, double time)
@@ -32,12 +32,12 @@ void AirPlane::UpdateState(unsigned int input, const D3DXVECTOR3& pos, const D3D
 	state = input;
 
 	// szinkronizácio
-	pd = pos - position.current();
+	pd = pos - position.current;
 
 	//if( D3DXVec3Length(&pd) > 6 )
 		position = pos;
 	
-	qd = q - rotation.current();
+	qd = q - rotation.current;
 
 	//if( D3DXQuaternionLength(&qd) > 1.5f )
 		rotation = q;
@@ -69,23 +69,23 @@ void AirPlane::Update(double time)
 	if( state & AirPlane::Move )
 		move = -2;
 	
-	D3DXVECTOR3& p = position.current();
-	D3DXQUATERNION& q = rotation.current();
+	D3DXVECTOR3& p = position.current;
+	D3DXQUATERNION& q = rotation.current;
 
 	D3DXVECTOR3 x, y, z;
 	D3DXQUATERNION t, u, v, w;
 	
 	x.x = q.w * q.w + q.x * q.x - q.y * q.y - q.z * q.z;
-    x.y = 2.0f * (q.z * q.w + q.x * q.y);
-    x.z = 2.0f * (q.x * q.z - q.y * q.w);
+	x.y = 2.0f * (q.z * q.w + q.x * q.y);
+	x.z = 2.0f * (q.x * q.z - q.y * q.w);
 
 	y.x = 2.0f * (q.y * q.x - q.z * q.w);
-    y.y = q.w * q.w + q.y * q.y - q.z * q.z - q.x * q.x;
-    y.z = 2.0f * (q.x * q.w + q.y * q.z);
+	y.y = q.w * q.w + q.y * q.y - q.z * q.z - q.x * q.x;
+	y.z = 2.0f * (q.x * q.w + q.y * q.z);
 
 	z.x = 2.0f * (q.y * q.w + q.z * q.x);
-    z.y = 2.0f * (q.z * q.y - q.x * q.w);
-    z.z = q.w * q.w + q.z * q.z - q.x * q.x - q.y * q.y;
+	z.y = 2.0f * (q.z * q.y - q.x * q.w);
+	z.z = q.w * q.w + q.z * q.z - q.x * q.x - q.y * q.y;
 
 	D3DXQuaternionRotationAxis(&u, &z, roll);
 	D3DXQuaternionRotationAxis(&v, &x, pitch);
@@ -94,11 +94,11 @@ void AirPlane::Update(double time)
 	D3DXQuaternionMultiply(&w, &u, &v);
 	D3DXQuaternionMultiply(&w, &w, &t);
 
-	rotation.previous() = q;
+	rotation.previous = q;
 	D3DXQuaternionMultiply(&q, &q, &w);
 
 	D3DXVec3Normalize(&z, &z);
-	position.previous() = p;
+	position.previous = p;
 
 	p += z * move;
 }

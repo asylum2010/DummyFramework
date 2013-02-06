@@ -14,10 +14,10 @@ animation
 
 game
 {
-	tutorial("Pick up powerups to gain advantages!");
+	tutorial("Pick up powerups to gain advantage!");
 
 	enemy(bomb, 2, 3, center, 15);
-	message("These guys don't look\nvery stable...");
+	message("These guys don't look stable...");
 	wait(enemyonscreen);
 
 	enemy(regular, 3, 1, center, 20);
@@ -45,6 +45,6 @@ game
 	wait(enemyonscreen);
 
 	message("Hate to say cliches, but I have\n a bad feeling about this...");
-	message("I have to go to the planet immediately...");
+	message("I must get to the planet immediately...");
 }
 

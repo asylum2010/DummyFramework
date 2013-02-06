@@ -114,7 +114,9 @@ namespace DummyFramework
 	syncedanimator<value_type, poly>& syncedanimator<value_type, poly>::operator =(int i)
 	{
 		previous = current = i;
-		value = subdivision[i];
+
+		if( subdivision )
+			value = subdivision[i];
 
 		return *this;
 	}
@@ -124,7 +126,6 @@ namespace DummyFramework
 	{
 		if( &other != this )
 		{
-			qsafe_delete_array(subdivision);
 			cnt = 0;
 
 			previous	= other.previous;

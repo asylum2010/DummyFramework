@@ -12,39 +12,38 @@
 class LoadingMenu : public DummyFramework::CForm
 {
 private:
-    DummyFramework::syncedanimator<float, MENU_TRANSITION> alpha;
-    DummyFramework::CLabel title;
-    int ticks;
-    
+	DummyFramework::syncedanimator<float> alpha;
+	DummyFramework::CLabel title;
+	int ticks;
+
 public:
-    enum stateex
-    {
-        OneMoreTick = Inactive + 1
-    };
+	enum stateex
+	{
+		OneMoreTick = Inactive + 1
+	};
 
-    enum formaction
-    {
-        Loaded
-    };
+	enum formaction
+	{
+		Loaded
+	};
 
-    LoadingMenu();
-    ~LoadingMenu() {}
+	LoadingMenu();
+	~LoadingMenu() {}
 
-    bool Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpriteFont9& font);
+	bool Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpriteFont9& font);
 
-    void Draw();
-    void SetState(unsigned int newstate);
-    void Update();
+	void Draw();
+	void SetState(unsigned int newstate);
+	void Update();
 
 _DUMMY_EVENTS:
-    DummyFramework::signal0 startload;
+	DummyFramework::signal0 startload;
 
 _DUMMY_EVENTHANDLERS:
-    void onfocusgained();
-    void onfocuslost();
-    void onresetdevice();
+	void onfocusgained();
+	void onfocuslost();
+	void onresetdevice();
 };
 
 #endif
 //=============================================================================================================
- 

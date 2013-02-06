@@ -8,9 +8,10 @@ StaticBackground::StaticBackground()
 	Background = NULL;
 	Panel = NULL;
 
+	alpha.set(MENU_TRANSITION, 0, 1.0f);
 	alpha.direction = -1;
+
 	alpha = 0;
-	alpha.set(0, 1.0f);
 	ticks = 0;
 }
 //=============================================================================================================

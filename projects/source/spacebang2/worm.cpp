@@ -112,12 +112,12 @@ void Worm::Hit(unsigned short damage)
 				if( it->segment > 0 )
 				{
 					ex.Scale = min(scale + 0.1f, 1.0f);
-					ex.Position = s.position.current() + Image->Size * scale * 0.5f;
+					ex.Position = s.position.current + Image->Size * scale * 0.5f;
 				}
 				else
 				{
 					ex.Scale = 1.0f;
-					ex.Position = s.position.current() + Image->Size * 0.5f;
+					ex.Position = s.position.current + Image->Size * 0.5f;
 				}
 
 				explode(ex);
@@ -125,7 +125,7 @@ void Worm::Hit(unsigned short damage)
 			}
 			else
 			{
-				it->position = it->hitpos - Hurt->Size * 0.5f - s.position.current();
+				it->position = it->hitpos - Hurt->Size * 0.5f - s.position.current;
 				it->ticks = 0;
 				it->alpha = 0;
 

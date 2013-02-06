@@ -68,19 +68,19 @@
 /* Copy the first part of user declarations.  */
 
 /* Line 189 of yacc.c  */
-#line 3 "../../script.y"
+#line 3 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
 
 
 #include "script.h"
 
 #ifdef _MSC_VER
-#    pragma warning( push )
-#    pragma warning (disable : 4102)
-#    pragma warning (disable : 4273)
-#    pragma warning (disable : 4065)
-#    pragma warning (disable : 4267)
-#    pragma warning (disable : 4244)
-#    pragma warning (disable : 4996)
+#	pragma warning(push)
+#	pragma warning (disable : 4102)
+#	pragma warning (disable : 4273)
+#	pragma warning (disable : 4065)
+#	pragma warning (disable : 4267)
+#	pragma warning (disable : 4244)
+#	pragma warning (disable : 4996)
 #endif
 
 int yylex();
@@ -90,7 +90,7 @@ Script* interpreter = 0;
 
 
 /* Line 189 of yacc.c  */
-#line 94 "../../parser.cpp"
+#line 94 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/parser.cpp"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -143,16 +143,16 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 24 "../../script.y"
+#line 24 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
 
-    std::string*      text_t;
-    parameter_desc*   param_t;
-    parameterlist*    param_list;
+	std::string*		text_t;
+	parameter_desc*		param_t;
+	parameterlist*		param_list;
 
 
 
 /* Line 214 of yacc.c  */
-#line 156 "../../parser.cpp"
+#line 156 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/parser.cpp"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -177,7 +177,7 @@ typedef struct YYLTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 181 "../../parser.cpp"
+#line 181 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/parser.cpp"
 
 #ifdef short
 # undef short
@@ -475,10 +475,10 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    57,    57,    63,    64,    67,    68,    71,    72,    76,
-      79,    85,    90,   105,   108,   114,   119,   126,   134,   142,
-     152,   153,   156,   171,   174,   180,   185,   192,   199,   206,
-     213
+       0,    57,    57,    63,    65,    69,    72,    77,    79,    84,
+      87,    92,    96,   110,   113,   118,   123,   129,   137,   145,
+     155,   157,   161,   175,   178,   183,   188,   194,   201,   208,
+     215
 };
 #endif
 
@@ -1447,239 +1447,303 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 58 "../../script.y"
+#line 58 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-             scriptdebug("program -> block_list misc_list");
-         ;}
+		scriptdebug("program -> block_list misc_list");
+	;}
+    break;
+
+  case 3:
+
+/* Line 1455 of yacc.c  */
+#line 63 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
+    {
+	;}
+    break;
+
+  case 4:
+
+/* Line 1455 of yacc.c  */
+#line 66 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
+    {
+	;}
+    break;
+
+  case 5:
+
+/* Line 1455 of yacc.c  */
+#line 70 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
+    {
+	;}
+    break;
+
+  case 6:
+
+/* Line 1455 of yacc.c  */
+#line 73 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
+    {
+	;}
+    break;
+
+  case 7:
+
+/* Line 1455 of yacc.c  */
+#line 77 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
+    {
+	;}
+    break;
+
+  case 8:
+
+/* Line 1455 of yacc.c  */
+#line 80 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
+    {
+	;}
     break;
 
   case 9:
 
 /* Line 1455 of yacc.c  */
-#line 76 "../../script.y"
+#line 84 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-                scriptdebug("block_list -> empty");
-            ;}
+		scriptdebug("block_list -> empty");
+	;}
     break;
 
   case 10:
 
 /* Line 1455 of yacc.c  */
-#line 80 "../../script.y"
+#line 88 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-                scriptdebug("block_list -> block misc_list block_list");
-            ;}
+		scriptdebug("block_list -> block misc_list block_list");
+	;}
     break;
 
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 86 "../../script.y"
+#line 93 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-       ;}
+	;}
     break;
 
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 91 "../../script.y"
+#line 97 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-                interpreter->ProcessStatement((yyvsp[(1) - (3)].text_t), (yyvsp[(3) - (3)].param_list));
-                
-                if( (yyvsp[(3) - (3)].param_list) )
-                {
-                    for( parameterlist::iterator it = (yyvsp[(3) - (3)].param_list)->begin(); it != (yyvsp[(3) - (3)].param_list)->end(); ++it )
-                        delete (*it);
-                }
-               
-                delete (yyvsp[(3) - (3)].param_list);
-            ;}
+		interpreter->ProcessStatement((yyvsp[(1) - (3)].text_t), (yyvsp[(3) - (3)].param_list));
+
+		if( (yyvsp[(3) - (3)].param_list) )
+		{
+			for( parameterlist::iterator it = (yyvsp[(3) - (3)].param_list)->begin(); it != (yyvsp[(3) - (3)].param_list)->end(); ++it )
+				delete (*it);
+		}
+
+		delete (yyvsp[(3) - (3)].param_list);
+	;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 105 "../../script.y"
+#line 110 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-                (yyval.param_list) = NULL;
-            ;}
+		(yyval.param_list) = NULL;
+	;}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 109 "../../script.y"
+#line 114 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-                (yyval.param_list) = (yyvsp[(3) - (5)].param_list);
-            ;}
+		(yyval.param_list) = (yyvsp[(3) - (5)].param_list);
+	;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 115 "../../script.y"
+#line 119 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-                    (yyval.param_list) = new parameterlist();
-                    (yyval.param_list)->push_back((yyvsp[(1) - (1)].param_t));
-                ;}
+		(yyval.param_list) = new parameterlist();
+		(yyval.param_list)->push_back((yyvsp[(1) - (1)].param_t));
+	;}
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 120 "../../script.y"
+#line 124 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-                    (yyval.param_list) = (yyvsp[(1) - (5)].param_list);
-                    (yyval.param_list)->push_back((yyvsp[(5) - (5)].param_t));
-                ;}
+		(yyval.param_list) = (yyvsp[(1) - (5)].param_list);
+		(yyval.param_list)->push_back((yyvsp[(5) - (5)].param_t));
+	;}
     break;
 
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 127 "../../script.y"
+#line 130 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-               (yyval.param_t) = new parameter_desc();
-               
-               (yyval.param_t)->name = (yyvsp[(1) - (5)].text_t);
-               (yyval.param_t)->value = (yyvsp[(5) - (5)].text_t);
-               (yyval.param_t)->type = TYPE_NUMBER;
-           ;}
+		(yyval.param_t) = new parameter_desc();
+
+		(yyval.param_t)->name = (yyvsp[(1) - (5)].text_t);
+		(yyval.param_t)->value = (yyvsp[(5) - (5)].text_t);
+		(yyval.param_t)->type = TYPE_NUMBER;
+	;}
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 135 "../../script.y"
+#line 138 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-               (yyval.param_t) = new parameter_desc();
-               
-               (yyval.param_t)->name = (yyvsp[(1) - (5)].text_t);
-               (yyval.param_t)->value = (yyvsp[(5) - (5)].text_t);
-               (yyval.param_t)->type = TYPE_STRING;
-           ;}
+		(yyval.param_t) = new parameter_desc();
+
+		(yyval.param_t)->name = (yyvsp[(1) - (5)].text_t);
+		(yyval.param_t)->value = (yyvsp[(5) - (5)].text_t);
+		(yyval.param_t)->type = TYPE_STRING;
+	;}
     break;
 
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 143 "../../script.y"
+#line 146 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-               (yyval.param_t) = new parameter_desc();
-               
-               (yyval.param_t)->name = (yyvsp[(1) - (5)].text_t);
-               (yyval.param_t)->value = (yyvsp[(5) - (5)].text_t);
-               (yyval.param_t)->type = TYPE_IDENTIFIER;
-           ;}
+		(yyval.param_t) = new parameter_desc();
+
+		(yyval.param_t)->name = (yyvsp[(1) - (5)].text_t);
+		(yyval.param_t)->value = (yyvsp[(5) - (5)].text_t);
+		(yyval.param_t)->type = TYPE_IDENTIFIER;
+	;}
+    break;
+
+  case 20:
+
+/* Line 1455 of yacc.c  */
+#line 155 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
+    {
+	;}
+    break;
+
+  case 21:
+
+/* Line 1455 of yacc.c  */
+#line 158 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
+    {
+	;}
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 157 "../../script.y"
+#line 162 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-               interpreter->ProcessStatement((yyvsp[(1) - (8)].text_t), (yyvsp[(5) - (8)].param_list));
-               
-               if( (yyvsp[(5) - (8)].param_list) )
-               {
-                   for( parameterlist::iterator it = (yyvsp[(5) - (8)].param_list)->begin(); it != (yyvsp[(5) - (8)].param_list)->end(); ++it )
-                       delete (*it);
-               }
-               
-               delete (yyvsp[(5) - (8)].param_list);
-           ;}
+		interpreter->ProcessStatement((yyvsp[(1) - (8)].text_t), (yyvsp[(5) - (8)].param_list));
+
+		if( (yyvsp[(5) - (8)].param_list) )
+		{
+			for( parameterlist::iterator it = (yyvsp[(5) - (8)].param_list)->begin(); it != (yyvsp[(5) - (8)].param_list)->end(); ++it )
+				delete (*it);
+		}
+
+		delete (yyvsp[(5) - (8)].param_list);
+	;}
     break;
 
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 171 "../../script.y"
+#line 175 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-                    (yyval.param_list) = NULL;
-                ;}
+		(yyval.param_list) = NULL;
+	;}
     break;
 
   case 24:
 
 /* Line 1455 of yacc.c  */
-#line 175 "../../script.y"
+#line 179 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-                    (yyval.param_list) = (yyvsp[(1) - (1)].param_list);
-                ;}
+		(yyval.param_list) = (yyvsp[(1) - (1)].param_list);
+	;}
     break;
 
   case 25:
 
 /* Line 1455 of yacc.c  */
-#line 181 "../../script.y"
+#line 184 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-                     (yyval.param_list) = new parameterlist();
-                     (yyval.param_list)->push_back((yyvsp[(1) - (1)].param_t));
-                 ;}
+		(yyval.param_list) = new parameterlist();
+		(yyval.param_list)->push_back((yyvsp[(1) - (1)].param_t));
+	;}
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 186 "../../script.y"
+#line 189 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-                     (yyval.param_list) = (yyvsp[(1) - (5)].param_list);
-                     (yyval.param_list)->push_back((yyvsp[(5) - (5)].param_t));
-                 ;}
+		(yyval.param_list) = (yyvsp[(1) - (5)].param_list);
+		(yyval.param_list)->push_back((yyvsp[(5) - (5)].param_t));
+	;}
     break;
 
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 193 "../../script.y"
+#line 195 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-               (yyval.param_t) = new parameter_desc();
-               
-               (yyval.param_t)->type = TYPE_STRING;
-               (yyval.param_t)->value = (yyvsp[(2) - (3)].text_t);
-           ;}
+		(yyval.param_t) = new parameter_desc();
+
+		(yyval.param_t)->type = TYPE_STRING;
+		(yyval.param_t)->value = (yyvsp[(2) - (3)].text_t);
+	;}
     break;
 
   case 28:
 
 /* Line 1455 of yacc.c  */
-#line 200 "../../script.y"
+#line 202 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-               (yyval.param_t) = new parameter_desc();
-               
-               (yyval.param_t)->type = TYPE_NUMBER;
-               (yyval.param_t)->value = (yyvsp[(1) - (1)].text_t);
-           ;}
+		(yyval.param_t) = new parameter_desc();
+
+		(yyval.param_t)->type = TYPE_NUMBER;
+		(yyval.param_t)->value = (yyvsp[(1) - (1)].text_t);
+	;}
     break;
 
   case 29:
 
 /* Line 1455 of yacc.c  */
-#line 207 "../../script.y"
+#line 209 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-               (yyval.param_t) = new parameter_desc();
-               
-               (yyval.param_t)->type = TYPE_PERCENT;
-               (yyval.param_t)->value = (yyvsp[(1) - (2)].text_t);
-           ;}
+		(yyval.param_t) = new parameter_desc();
+
+		(yyval.param_t)->type = TYPE_PERCENT;
+		(yyval.param_t)->value = (yyvsp[(1) - (2)].text_t);
+	;}
     break;
 
   case 30:
 
 /* Line 1455 of yacc.c  */
-#line 214 "../../script.y"
+#line 216 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
     {
-               (yyval.param_t) = new parameter_desc();
-               
-               (yyval.param_t)->type = TYPE_IDENTIFIER;
-               (yyval.param_t)->value = (yyvsp[(1) - (1)].text_t);
-           ;}
+		(yyval.param_t) = new parameter_desc();
+
+		(yyval.param_t)->type = TYPE_IDENTIFIER;
+		(yyval.param_t)->value = (yyvsp[(1) - (1)].text_t);
+	;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1683 "../../parser.cpp"
+#line 1747 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/parser.cpp"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1898,10 +1962,10 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 224 "../../script.y"
+#line 223 "C:\\Windows.old\\Users\\Asylum\\Documents\\Save\\Projects\\DummyFramework\\projects\\source\\spacebang2/script.y"
 
 
 #ifdef _MSC_VER
-#    pragma warning(pop)
+#	pragma warning(pop)
 #endif
 

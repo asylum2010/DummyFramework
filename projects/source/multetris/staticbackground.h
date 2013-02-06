@@ -16,7 +16,7 @@
 class StaticBackground : public DummyFramework::CForm
 {
 private:
-	DummyFramework::syncedanimator<float, MENU_TRANSITION> alpha;
+	DummyFramework::syncedanimator<float> alpha;
 	int ticks;
 
 public:

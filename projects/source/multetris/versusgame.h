@@ -44,8 +44,8 @@ private:
 	bool	swapped;
 	bool	juststarted;
 
-	DummyFramework::syncedanimator<float, 3> blink;
-	DummyFramework::syncedanimator<float, 10, sine> swap;
+	DummyFramework::syncedanimator<float> blink;
+	DummyFramework::syncedanimator<float, sine> swap;
 	DummyFramework::CDynamicQuadBuffer9 quads;
 	DummyFramework::CLabel labels[9];
 

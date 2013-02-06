@@ -34,7 +34,7 @@ private:
 	int		gametime;
 	bool	juststarted;
 
-	DummyFramework::syncedanimator<float, 3> blink;
+	DummyFramework::syncedanimator<float> blink;
 	DummyFramework::CDynamicQuadBuffer9 quads;
 	DummyFramework::CLabel labels[5];
 
