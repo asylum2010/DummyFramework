@@ -17,7 +17,6 @@ public:
 	float						Speed;
 
 	Projectile();
-	Projectile(const Projectile& other);
 };
 
 #endif

@@ -42,7 +42,6 @@ public:
 	unsigned int				Value;		/*!< \brief Some explosions worth points */
 
 	Explosion();
-	Explosion(const Explosion& other);
 	~Explosion() {}
 
 	//! Fixed timestep update

@@ -80,6 +80,13 @@ namespace DummyFramework
 		}
 
 		syncedanimator(const syncedanimator& other) {
+			previous		= 0;
+			current			= 0;
+			direction		= 1;
+			continous		= false;
+			subdivision		= 0;
+			cnt				= 0;
+
 			operator =(other);
 		}
 

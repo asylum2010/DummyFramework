@@ -30,7 +30,6 @@ public:
 	float Speed;
 
 	Powerup();
-	Powerup(const Powerup& other);
 	~Powerup() {}
 
 	//! Returns the powerup's position with its current offset

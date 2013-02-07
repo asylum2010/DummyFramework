@@ -61,7 +61,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>../../../extern/include;../../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../extern/include/dx10;../../../extern/include/dx9;../../../extern/include;../../include</AdditionalIncludeDirectories>
     </ClCompile>
     <PostBuildEvent>
       <Command>md "$(SolutionDir)..\lib\$(Configuration)"
@@ -79,7 +79,7 @@ copy /Y "$(TargetDir)$(TargetFileName)" "$(SolutionDir)..\lib\$(Configuration)\$
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>../../../extern/include;../../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../extern/include/dx10;../../../extern/include/dx9;../../../extern/include;../../include</AdditionalIncludeDirectories>
     </ClCompile>
     <PostBuildEvent>
       <Command>md "$(SolutionDir)..\lib\$(Configuration)"

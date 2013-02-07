@@ -13,16 +13,6 @@ Powerup::Powerup()
 	ticks = 0;
 }
 //=============================================================================================================
-Powerup::Powerup(const Powerup& other)
-{
-	Image = other.Image;
-	Position = other.Position;
-	Speed = other.Speed;
-
-	offset = other.offset;
-	ticks = other.ticks;
-}
-//=============================================================================================================
 void Powerup::GetPositionWithOffset(D3DXVECTOR2& out)
 {
 	float syncalpha = GameVariables::GetAlpha();
