@@ -6,7 +6,7 @@ namespace DummyFramework
 	CLabel::CLabel()
 		: CControl()
 	{
-		Text = "Label";
+		text = "Label";
 		Color = 0xffffffff;
 		Position.x = Position.y = 0;
 	}
@@ -18,7 +18,7 @@ namespace DummyFramework
 	//=============================================================================================================
 	bool CLabel::LoadContent()
 	{
-		textid = spritefont->AddText(GroupID, Text);
+		textid = spritefont->AddText(GroupID, text);
 		spritefont->SetTextVisibility(GroupID, textid, false);
 
 		return CControl::LoadContent();
@@ -46,10 +46,18 @@ namespace DummyFramework
 		CControl::SetState(newstate);
 	}
 	//=============================================================================================================
+	void CLabel::SetText(const std::string& newtext)
+	{
+		text = newtext;
+
+		if( spritefont )
+			spritefont->Set(GroupID, textid, text, Position, Alignment, (DWORD)Color);
+	}
+	//=============================================================================================================
 	void CLabel::Draw()
 	{
 		if( state != Hidden )
-			spritefont->Set(GroupID, textid, Text, Position, Alignment, (DWORD)Color);
+			spritefont->Set(GroupID, textid, text, Position, Alignment, (DWORD)Color);
 	}
 	//=============================================================================================================
 }

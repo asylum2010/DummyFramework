@@ -13,11 +13,13 @@
  */
 class PauseMenu : public DummyFramework::CForm
 {
+	static const int NUM_BUTTONS = 3;
+
 private:
 	DummyFramework::syncedanimator<float> alpha;
 	DummyFramework::CLabel title;
 
-	AnimatedButton	buttons[3];
+	AnimatedButton	buttons[NUM_BUTTONS];
 	size_t			selectedindex;
 	int				ticks;
 
@@ -48,8 +50,11 @@ _DUMMY_EVENTS:
 _DUMMY_EVENTHANDLERS:
 	void onfocusgained();
 	void onfocuslost();
-	void onkeyup(const DummyFramework::skeyboardstate& kstate);
 	void onresetdevice();
+
+	void onkeyup(const DummyFramework::skeyboardstate& kstate);
+	void onmouseup(const DummyFramework::smousestate& mstate);
+	void onmousemove(const DummyFramework::smousestate& mstate);
 };
 
 #endif

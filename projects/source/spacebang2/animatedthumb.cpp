@@ -6,7 +6,30 @@ AnimatedThumb::AnimatedThumb()
 	: AnimatedButton()
 {
 	Size.x = Size.y = 0;
-	Alignment = DT_CENTER|DT_TOP;
+	Alignment = DT_CENTER|DT_TOP; // for text
+}
+//=============================================================================================================
+void AnimatedThumb::UpdateBounds()
+{
+	if( Alignment & DT_RIGHT )
+	{
+		bounds.x = Position.x - Size.x;
+		bounds.z = Position.x;
+	}
+	else if( Alignment & DT_CENTER )
+	{
+		bounds.x = Position.x - Size.x * 0.5f;
+		bounds.z = Position.x + Size.x * 0.5f;
+	}
+	else
+	{
+		bounds.x = Position.x;
+		bounds.z = Position.x + Size.x;
+	}
+
+	// always VCENTER
+	bounds.y = Position.y - Size.y * 0.5f;
+	bounds.w = Position.y + Size.y * 0.5f;
 }
 //=============================================================================================================
 void AnimatedThumb::Draw()
@@ -14,6 +37,7 @@ void AnimatedThumb::Draw()
 	if( state != Hidden )
 	{
 		alpha.smooth((float)game->Sync.Alpha());
+
 		float tmp = Position.y;
 		float offset = GameVariables::CorrelateH(20) * alpha.value;
 

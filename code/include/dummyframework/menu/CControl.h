@@ -37,6 +37,7 @@ namespace DummyFramework
 
 		virtual void Draw() {}
 		virtual void SetState(unsigned int newstate) { state = newstate; }
+		virtual void SetText(const std::string& newtext) {}
 		virtual void Update() {}
 
 		inline unsigned int GetState() const {

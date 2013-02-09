@@ -58,6 +58,9 @@ namespace DummyFramework
 		void onfocuslost(CControl& sender);
 		void onkeyup(const skeyboardstate& kstate);
 		void onkeydown(const skeyboardstate& kstate);
+		void onmouseup(const smousestate& mstate);
+		void onmousedown(const smousestate& mstate);
+		void onmousemove(const smousestate& mstate);
 		void onlostdevice();
 		void onresetdevice();
 	};

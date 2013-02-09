@@ -21,7 +21,7 @@ void Script::stm_Message(char* params)
 
 	std::string* str = reinterpret_cast<std::string*>(ptr);
 
-	game->avatarbubble.Text = *str;
+	game->avatarbubble.SetText(*str);
 	game->avatarbubble.IdleDelay = GameVariables::ReadLength(*str);
 	game->avatarbubble.SetState(DummyFramework::CControl::TransitionIn);
 	game->execdelay = (int)((length == 0 ? (game->avatarbubble.IdleDelay + 10) : length));

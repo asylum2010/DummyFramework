@@ -108,7 +108,7 @@ void ChatBubble::Draw()
 			position.y = Position.y + Corner->Size.y + textsize.y * 0.5f;
 
 		spritefont->SetTextScale(GroupID, textid, GameVariables::CorrelateH(0.5f));
-		spritefont->Set(GroupID, textid, Text, position, DT_CENTER|DT_VCENTER, (DWORD)Color);
+		spritefont->Set(GroupID, textid, text, position, DT_CENTER|DT_VCENTER, (DWORD)Color);
 	}
 }
 //=============================================================================================================

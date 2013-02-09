@@ -9,6 +9,9 @@
  */
 class AnimatedThumb : public AnimatedButton
 {
+private:
+	void UpdateBounds();
+
 public:
 	float Texcoords[4];		/*!< \brief Texture coordinates in atlas */
 	D3DXVECTOR2 Size;
@@ -17,7 +20,7 @@ public:
 	AnimatedThumb();
 	~AnimatedThumb() {}
 
-	//! Render the thumbnail
+	//! Render the thumb
 	void Draw();
 
 _DUMMY_EVENTHANDLERS:

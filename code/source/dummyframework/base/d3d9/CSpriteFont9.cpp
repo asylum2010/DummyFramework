@@ -152,11 +152,11 @@ namespace DummyFramework
 		stextgroup& group = groups[groupid];
 		stext t;
 
-		t.alignment = DT_LEFT|DT_TOP;
-		t.color = 0xffffffff;
-		t.text = text;
-		t.position.x = t.position.y = 0;
-		t.scale = group.scale;
+		t.alignment		= DT_LEFT|DT_TOP;
+		t.color			= 0xffffffff;
+		t.text			= text;
+		t.position.x	= t.position.y = 0;
+		t.scale			= group.scale;
 
 		group.texts.push_back(t);
 		return group.texts.size() - 1;
@@ -437,6 +437,15 @@ namespace DummyFramework
 
 		dnerror(0, "CSpriteFont9::GetTextScale(): Invalid text id", group.texts.size() <= textid);
 		return group.texts[textid].scale;
+	}
+	//=============================================================================================================
+	unsigned int CSpriteFont9::GetTextAlignment(size_t groupid, size_t textid)
+	{
+		dnerror(0, "CSpriteFont9::GetTextAlignment(): Invalid group id", groups.size() <= groupid);
+		stextgroup& group = groups[groupid];
+
+		dnerror(0, "CSpriteFont9::GetTextAlignment(): Invalid text id", group.texts.size() <= textid);
+		return group.texts[textid].alignment;
 	}
 	//=============================================================================================================
 }

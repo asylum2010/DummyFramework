@@ -11,9 +11,9 @@ PauseMenu::PauseMenu()
 	alpha.set(MENU_TRANSITION, 0, 1.0f);
 	alpha = 0;
 
-	AddControl(buttons[0]);
-	AddControl(buttons[1]);
-	AddControl(buttons[2]);
+	for( int i = 0; i < NUM_BUTTONS; ++i )
+		AddControl(buttons[i]);
+
 	AddControl(title);
 }
 //=============================================================================================================
@@ -42,10 +42,10 @@ bool PauseMenu::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpri
 {
 	onresetdevice();
 
-	buttons[0].Text = "Continue";
-	buttons[1].Text = "Restart level";
-	buttons[2].Text = "Exit to main menu";
-	title.Text = "Game paused";
+	buttons[0].SetText("Continue");
+	buttons[1].SetText("Restart level");
+	buttons[2].SetText("Exit to main menu");
+	title.SetText("Game paused");
 
 	return CForm::Initialize(mygame, font);
 }
@@ -147,38 +147,6 @@ void PauseMenu::onfocuslost()
 	title.SetState(Hidden);
 }
 //=============================================================================================================
-void PauseMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
-{
-	switch( kstate.key )
-	{
-	case VK_RETURN:
-	case VK_SPACE:
-		SetState(TransitionOut);
-		break;
-
-	case VK_DOWN:
-	case 0x53:
-		{
-			size_t prev = selectedindex;
-			selectedindex = (selectedindex + 1) % 3;
-			SelectedIndexChanged(prev);
-		}
-		break;
-
-	case VK_UP:
-	case 0x57:
-		{
-			size_t prev = selectedindex;
-			selectedindex = (3 + selectedindex - 1) % 3;
-			SelectedIndexChanged(prev);
-		}
-		break;
-
-	default:
-		break;
-	}
-}
-//=============================================================================================================
 void PauseMenu::onresetdevice()
 {
 	float spacing = GameVariables::ScreenHeight * 0.08f;
@@ -194,5 +162,73 @@ void PauseMenu::onresetdevice()
 	title.Position.y = spacing * 1.6f;
 
 	CForm::onresetdevice();
+}
+//=============================================================================================================
+void PauseMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
+{
+	if( state == TransitionIn || state == TransitionOut )
+		return;
+
+	switch( kstate.key )
+	{
+	case VK_RETURN:
+	case VK_SPACE:
+		SetState(TransitionOut);
+		break;
+
+	case VK_DOWN:
+	case 0x53:
+		{
+			size_t prev = selectedindex;
+			selectedindex = (selectedindex + 1) % NUM_BUTTONS;
+			SelectedIndexChanged(prev);
+		}
+		break;
+
+	case VK_UP:
+	case 0x57:
+		{
+			size_t prev = selectedindex;
+			selectedindex = (NUM_BUTTONS + selectedindex - 1) % NUM_BUTTONS;
+			SelectedIndexChanged(prev);
+		}
+		break;
+
+	default:
+		break;
+	}
+}
+//=============================================================================================================
+void PauseMenu::onmouseup(const DummyFramework::smousestate& mstate)
+{
+	if( state == TransitionIn || state == TransitionOut )
+		return;
+
+	if( selectedindex < NUM_BUTTONS )
+	{
+		if( buttons[selectedindex].MouseOver(mstate.x, mstate.y) )
+			SetState(TransitionOut);
+	}
+}
+//=============================================================================================================
+void PauseMenu::onmousemove(const DummyFramework::smousestate& mstate)
+{
+	if( state == TransitionOut )
+		return;
+
+	size_t current = NUM_BUTTONS;
+
+	// intentionally don't stop (consider low framerate)
+	for( int i = 0; i < NUM_BUTTONS; ++i )
+	{
+		if( buttons[i].MouseOver(mstate.x, mstate.y) )
+			current = i;
+	}
+
+	if( current < NUM_BUTTONS && selectedindex != current )
+	{
+		std::swap(selectedindex, current);
+		SelectedIndexChanged(current);
+	}
 }
 //=============================================================================================================

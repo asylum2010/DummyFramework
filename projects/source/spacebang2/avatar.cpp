@@ -8,8 +8,8 @@ Avatar::Avatar()
 	Image				= NULL;
 	WeaponCooldown		= 10;
 	Cannons				= 1;
-	Speed				= 45;
-	Acceleration		= 20;
+	Speed				= 50;
+	Acceleration		= 25;
 	Resistance			= 6;
 	ProjectileSpeed		= 100.0f;
 	ProjectileOrigin	= D3DXVECTOR2(0.95f, 0.7f);

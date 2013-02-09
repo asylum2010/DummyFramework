@@ -8,8 +8,6 @@
 #include "animatedbutton.h"
 #include "gameelement.h"
 
-#define NUM_ROWS 5
-
 /**
  * \brief Displays some statistics
  */
@@ -20,6 +18,8 @@ class StatisticsMenu : public DummyFramework::CForm
 		DummyFramework::CLabel key;
 		DummyFramework::CLabel value;
 	};
+
+	static const int NUM_ROWS = 5;
 
 private:
 	DummyFramework::syncedanimator<float> alpha;
@@ -53,8 +53,10 @@ _DUMMY_EVENTS:
 _DUMMY_EVENTHANDLERS:
 	void onfocusgained();
 	void onfocuslost();
-	void onkeyup(const DummyFramework::skeyboardstate& kstate);
 	void onresetdevice();
+
+	void onkeyup(const DummyFramework::skeyboardstate& kstate);
+	void onmouseup(const DummyFramework::smousestate& mstate);
 };
 
 #endif

@@ -41,11 +41,11 @@ bool MainMenu::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSprit
 {
 	onresetdevice();
 
-	buttons[0].Text = "New game";
-	buttons[1].Text = "Load chapter";
-	buttons[2].Text = "Options";
-	buttons[3].Text = "Exit";
-	title.Text = "Main menu";
+	buttons[0].SetText("New game");
+	buttons[1].SetText("Load chapter");
+	buttons[2].SetText("Options");
+	buttons[3].SetText("Exit");
+	title.SetText("Main menu");
 
 	return CForm::Initialize(mygame, font);
 }
@@ -154,8 +154,30 @@ void MainMenu::onfocuslost()
 	title.SetState(Hidden);
 }
 //=============================================================================================================
+void MainMenu::onresetdevice()
+{
+	float spacing = GameVariables::ScreenHeight * 0.08f;
+
+	buttons[1].Position.x = GameVariables::ScreenWidth * 0.5f;
+	buttons[1].Position.y = (GameVariables::ScreenHeight - spacing) * 0.5f;
+	buttons[0].Position.x = buttons[1].Position.x;
+	buttons[0].Position.y = buttons[1].Position.y - spacing;
+	buttons[2].Position.x = buttons[1].Position.x;
+	buttons[2].Position.y = buttons[1].Position.y + spacing;
+	buttons[3].Position.x = buttons[1].Position.x;
+	buttons[3].Position.y = buttons[1].Position.y + 2 * spacing;
+
+	title.Position.x = buttons[1].Position.x;
+	title.Position.y = spacing * 1.6f;
+
+	CForm::onresetdevice();
+}
+//=============================================================================================================
 void MainMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
 {
+	if( state == TransitionIn || state == TransitionOut )
+		return;
+
 	switch( kstate.key )
 	{
 	case VK_RETURN:
@@ -186,22 +208,36 @@ void MainMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
 	}
 }
 //=============================================================================================================
-void MainMenu::onresetdevice()
+void MainMenu::onmouseup(const DummyFramework::smousestate& mstate)
 {
-	float spacing = GameVariables::ScreenHeight * 0.08f;
+	if( state == TransitionIn || state == TransitionOut )
+		return;
 
-	buttons[1].Position.x = GameVariables::ScreenWidth * 0.5f;
-	buttons[1].Position.y = (GameVariables::ScreenHeight - spacing) * 0.5f;
-	buttons[0].Position.x = buttons[1].Position.x;
-	buttons[0].Position.y = buttons[1].Position.y - spacing;
-	buttons[2].Position.x = buttons[1].Position.x;
-	buttons[2].Position.y = buttons[1].Position.y + spacing;
-	buttons[3].Position.x = buttons[1].Position.x;
-	buttons[3].Position.y = buttons[1].Position.y + 2 * spacing;
+	if( selectedindex < NUM_BUTTONS )
+	{
+		if( buttons[selectedindex].MouseOver(mstate.x, mstate.y) )
+			SetState(TransitionOut);
+	}
+}
+//=============================================================================================================
+void MainMenu::onmousemove(const DummyFramework::smousestate& mstate)
+{
+	if( state == TransitionOut )
+		return;
 
-	title.Position.x = buttons[1].Position.x;
-	title.Position.y = spacing * 1.6f;
+	size_t current = NUM_BUTTONS;
 
-	CForm::onresetdevice();
+	// intentionally don't stop (consider low framerate)
+	for( int i = 0; i < NUM_BUTTONS; ++i )
+	{
+		if( buttons[i].MouseOver(mstate.x, mstate.y) )
+			current = i;
+	}
+
+	if( current < NUM_BUTTONS && selectedindex != current )
+	{
+		std::swap(selectedindex, current);
+		SelectedIndexChanged(current);
+	}
 }
 //=============================================================================================================

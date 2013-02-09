@@ -21,15 +21,15 @@ Hud::Hud()
 bool Hud::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpriteFont9& font)
 {
 	score.Alignment = DT_LEFT|DT_VCENTER;
-	score.Text = "Your score: " + DummyFramework::CHelper::DiscreteToString(Score);
+	score.SetText("Your score: " + DummyFramework::CHelper::DiscreteToString(Score));
 	score.Color = 0xffffffdd;
 
 	message.Alignment = DT_CENTER|DT_TOP;
-	message.Text = "Hello";
+	message.SetText("Hello");
 	message.Color = 0xffffffdd;
 
 	warning.Alignment = DT_CENTER|DT_VCENTER;
-	warning.Text = "Hello";
+	warning.SetText("Hello");
 	warning.Color = 0xffffaaaa;
 
 	onresetdevice();
@@ -39,7 +39,7 @@ bool Hud::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpriteFont
 void Hud::Announce(const std::string& str)
 {
 	message.Color = 0xffffffdd;
-	message.Text = str;
+	message.SetText(str);
 	message.IdleDelay = GameVariables::ReadLength(str);
 	message.SetState(TransitionIn);
 }
@@ -47,7 +47,7 @@ void Hud::Announce(const std::string& str)
 void Hud::Tutorial(const std::string& str)
 {
 	message.Color = 0xffaaffaa;
-	message.Text = str;
+	message.SetText(str);
 	message.IdleDelay = GameVariables::ReadLength(str);
 	message.SetState(TransitionIn);
 }
@@ -55,7 +55,7 @@ void Hud::Tutorial(const std::string& str)
 void Hud::Warn(const std::string& str, size_t delay)
 {
 	warning.Color = 0xffffaaaa;
-	warning.Text = str;
+	warning.SetText(str);
 	warning.IdleDelay = delay;
 	warning.SetState(TransitionIn);
 }
@@ -63,7 +63,7 @@ void Hud::Warn(const std::string& str, size_t delay)
 void Hud::Title(const std::string& str)
 {
 	warning.Color = 0xffFFDFC6;
-	warning.Text = str;
+	warning.SetText(str);
 	warning.IdleDelay = GameVariables::ReadLength(str) + 10;
 	warning.SetState(TransitionIn);
 }
@@ -243,7 +243,7 @@ size_t Hud::Write(size_t start, quadbuffer& quad)
 		score.Position.x = barpos.x;
 		score.Position.y = GameVariables::ScreenHeight - Panel->Size.y * (alpha.value - 0.5f);
 		score.Color.a = alpha.value;
-		score.Text = "Your score: " + DummyFramework::CHelper::DiscreteToString(Score);
+		score.SetText("Your score: " + DummyFramework::CHelper::DiscreteToString(Score));
 
 		count += 6;
 	}

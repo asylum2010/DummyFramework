@@ -3,8 +3,8 @@
 #include <dummyframework/base/CHelper.h>
 
 #define ENTRY(i, k, v) \
-	labels[i].Text = k;\
-	buttons[i].Text = v;\
+	labels[i].SetText(k);\
+	buttons[i].SetText(v);\
 	labels[i].Alignment = DT_LEFT|DT_VCENTER;\
 	buttons[i].Alignment = DT_RIGHT|DT_VCENTER;
 
@@ -66,9 +66,9 @@ bool OptionsMenu::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSp
 	ENTRY(3, "Fullscreen", "off");
 	ENTRY(4, "Vertical sync", "off");
 
-	title.Text = "Options";
-	buttons[NUM_ROWS].Text = "Apply";
-	buttons[NUM_ROWS + 1].Text = "Back";
+	title.SetText("Options");
+	buttons[NUM_ROWS].SetText("Apply");
+	buttons[NUM_ROWS + 1].SetText("Back");
 
 	return CForm::Initialize(mygame, font);
 }
@@ -177,14 +177,14 @@ void OptionsMenu::QuerySettings()
 	if( game->DeviceCaps.PixelShaderVersion < D3DPS_VERSION(2, 0) )
 	{
 		GameVariables::EnableShaders = false;
-		buttons[2].Text = "off";
+		buttons[2].SetText("off");
 	}
 
-	current.resolution = (*resolution);
-	current.shaders = GameVariables::EnableShaders;
-	current.fullscreen = game->FullScreen;
-	current.vsync = game->VSync;
-	current.quality = GameVariables::Quality;
+	current.resolution	= (*resolution);
+	current.shaders		= GameVariables::EnableShaders;
+	current.fullscreen	= game->FullScreen;
+	current.vsync		= game->VSync;
+	current.quality		= GameVariables::Quality;
 }
 //=============================================================================================================
 void OptionsMenu::onfocusgained()
@@ -194,11 +194,11 @@ void OptionsMenu::onfocusgained()
 
 	QuerySettings();
 
-	buttons[0].Text = (*resolution);
-	buttons[1].Text = GameVariables::Quality;
-	buttons[2].Text = (GameVariables::EnableShaders ? "on" : "off");
-	buttons[3].Text = (game->FullScreen ? "on" : "off");
-	buttons[4].Text = (game->VSync ? "on" : "off");
+	buttons[0].SetText(*resolution);
+	buttons[1].SetText(GameVariables::Quality);
+	buttons[2].SetText(GameVariables::EnableShaders ? "on" : "off");
+	buttons[3].SetText(game->FullScreen ? "on" : "off");
+	buttons[4].SetText(game->VSync ? "on" : "off");
 
 	SetState(TransitionIn);
 }
@@ -221,6 +221,9 @@ void OptionsMenu::onfocuslost()
 //=============================================================================================================
 void OptionsMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
 {
+	if( state == TransitionIn || state == TransitionOut )
+		return;
+
 	switch( kstate.key )
 	{
 	case VK_RETURN:
@@ -309,7 +312,7 @@ void OptionsMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
 			else
 				--resolution;
 
-			buttons[0].Text = (*resolution);
+			buttons[0].SetText(*resolution);
 
 			if( (*resolution) == current.resolution )
 				--modified;
@@ -319,7 +322,7 @@ void OptionsMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
 		else if( selectedindex == 2 )
 		{
 			GameVariables::EnableShaders = !GameVariables::EnableShaders;
-			buttons[2].Text = (GameVariables::EnableShaders ? "on" : "off");
+			buttons[2].SetText(GameVariables::EnableShaders ? "on" : "off");
 
 			if( GameVariables::EnableShaders == current.shaders )
 				--modified;
@@ -329,7 +332,7 @@ void OptionsMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
 		else if( selectedindex == 3 )
 		{
 			game->FullScreen = !game->FullScreen;
-			buttons[3].Text = (game->FullScreen ? "on" : "off");
+			buttons[3].SetText(game->FullScreen ? "on" : "off");
 
 			if( game->FullScreen == current.fullscreen )
 				--modified;
@@ -339,7 +342,7 @@ void OptionsMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
 		else if( selectedindex == 4 )
 		{
 			game->VSync = !game->VSync;
-			buttons[4].Text = (game->VSync ? "on" : "off");
+			buttons[4].SetText(game->VSync ? "on" : "off");
 
 			if( game->VSync == current.vsync )
 				--modified;
@@ -367,7 +370,7 @@ void OptionsMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
 			if( resolution == resolutions.end() )
 				resolution = resolutions.begin();
 
-			buttons[0].Text = (*resolution);
+			buttons[0].SetText(*resolution);
 
 			if( (*resolution) == current.resolution )
 				--modified;
@@ -377,7 +380,7 @@ void OptionsMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
 		else if( selectedindex == 2 )
 		{
 			GameVariables::EnableShaders = !GameVariables::EnableShaders;
-			buttons[2].Text = (GameVariables::EnableShaders ? "on" : "off");
+			buttons[2].SetText(GameVariables::EnableShaders ? "on" : "off");
 
 			if( GameVariables::EnableShaders == current.shaders )
 				--modified;
@@ -387,7 +390,7 @@ void OptionsMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
 		else if( selectedindex == 3 )
 		{
 			game->FullScreen = !game->FullScreen;
-			buttons[3].Text = (game->FullScreen ? "on" : "off");
+			buttons[3].SetText(game->FullScreen ? "on" : "off");
 
 			if( game->FullScreen == current.fullscreen )
 				--modified;
@@ -397,7 +400,7 @@ void OptionsMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
 		else if( selectedindex == 4 )
 		{
 			game->VSync = !game->VSync;
-			buttons[4].Text = (game->VSync ? "on" : "off");
+			buttons[4].SetText(game->VSync ? "on" : "off");
 
 			if( game->VSync == current.vsync )
 				--modified;
@@ -421,6 +424,55 @@ void OptionsMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
 	}
 }
 //=============================================================================================================
+void OptionsMenu::onmouseup(const DummyFramework::smousestate& mstate)
+{
+	if( state == TransitionIn || state == TransitionOut )
+		return;
+
+	if( selectedindex < NUM_ROWS )
+	{
+		if( mstate.button & DummyFramework::MB_Left )
+		{
+			DummyFramework::CApplication::KeyBoardState.key = VK_RIGHT;
+			onkeyup(DummyFramework::CApplication::KeyBoardState);
+			DummyFramework::CApplication::KeyBoardState.key = 0;
+		}
+		else if( mstate.button & DummyFramework::MB_Right )
+		{
+			DummyFramework::CApplication::KeyBoardState.key = VK_LEFT;
+			onkeyup(DummyFramework::CApplication::KeyBoardState);
+			DummyFramework::CApplication::KeyBoardState.key = 0;
+		}
+	}
+	else if( selectedindex < NUM_BUTTONS )
+	{
+		DummyFramework::CApplication::KeyBoardState.key = VK_RETURN;
+		onkeyup(DummyFramework::CApplication::KeyBoardState);
+		DummyFramework::CApplication::KeyBoardState.key = 0;
+	}
+}
+//=============================================================================================================
+void OptionsMenu::onmousemove(const DummyFramework::smousestate& mstate)
+{
+	if( state == TransitionOut )
+		return;
+
+	size_t current = NUM_BUTTONS;
+
+	// intentionally don't stop (consider low framerate)
+	for( int i = 0; i < NUM_BUTTONS; ++i )
+	{
+		if( buttons[i].MouseOver(mstate.x, mstate.y) )
+			current = i;
+	}
+
+	if( current < NUM_BUTTONS && selectedindex != current )
+	{
+		std::swap(selectedindex, current);
+		SelectedIndexChanged(current);
+	}
+}
+//=============================================================================================================
 void OptionsMenu::onresetdevice()
 {
 	D3DXVECTOR2 size;
@@ -429,11 +481,11 @@ void OptionsMenu::onresetdevice()
 	title.Position.y = GameVariables::ScreenHeight * 0.08f * 1.6f;
 	title.GetSize(size);
 
-	buttons[NUM_ROWS].Alignment = DT_RIGHT|DT_VCENTER;
-	buttons[NUM_ROWS].Position.x = title.Position.x - GameVariables::ScreenHeight * 0.04f;
-	buttons[NUM_ROWS + 1].Alignment = DT_LEFT|DT_VCENTER;
-	buttons[NUM_ROWS + 1].Position.x = title.Position.x + GameVariables::ScreenHeight * 0.04f;
-	buttons[NUM_ROWS].Position.y = buttons[NUM_ROWS + 1].Position.y = GameVariables::ScreenHeight - title.Position.y * 1.2f;
+	buttons[NUM_ROWS].Alignment			= DT_RIGHT|DT_VCENTER;
+	buttons[NUM_ROWS].Position.x		= title.Position.x - GameVariables::ScreenHeight * 0.04f;
+	buttons[NUM_ROWS + 1].Alignment		= DT_LEFT|DT_VCENTER;
+	buttons[NUM_ROWS + 1].Position.x	= title.Position.x + GameVariables::ScreenHeight * 0.04f;
+	buttons[NUM_ROWS].Position.y		= buttons[NUM_ROWS + 1].Position.y = GameVariables::ScreenHeight - title.Position.y * 1.2f;
 
 	float spacing = GameVariables::ScreenHeight * 0.08f;
 	float height = (NUM_ROWS - 1) * spacing;

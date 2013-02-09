@@ -19,14 +19,12 @@ ChapterMenu::ChapterMenu()
 //=============================================================================================================
 void ChapterMenu::Fill(gamedesc& desc)
 {
-	// TODO: régieket kitörölni
-
 	Thumbs = desc.texture;
 	thumbs.resize(desc.levels.size());
 
 	for( size_t i = 0; i < desc.levels.size(); ++i )
 	{
-		thumbs[i].Text = desc.levels[i].title;
+		thumbs[i].SetText(desc.levels[i].title);
 
 		memcpy(thumbs[i].Texcoords, desc.levels[i].texcoords, 4 * sizeof(float));
 		AddControl(thumbs[i]);
@@ -62,8 +60,8 @@ bool ChapterMenu::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSp
 {
 	onresetdevice();
 
-	back.Text = "Back to main menu";
-	title.Text = "Load chapter";
+	back.SetText("Back to main menu");
+	title.SetText("Load chapter");
 
 	return CForm::Initialize(mygame, font);
 }
@@ -175,8 +173,47 @@ void ChapterMenu::onfocuslost()
 		thumbs[i].SetState(Hidden);
 }
 //=============================================================================================================
+void ChapterMenu::onresetdevice()
+{
+	title.Position.x = GameVariables::ScreenWidth * 0.5f;
+	title.Position.y = GameVariables::ScreenHeight * 0.08f * 1.6f;
+
+	back.Position.x = title.Position.x;
+	back.Position.y = GameVariables::ScreenHeight - title.Position.y * 1.2f;
+
+	D3DXVECTOR2 size(
+		GameVariables::CorrelateH(1130),
+		GameVariables::CorrelateH(554));
+
+	D3DXVECTOR2 thumbsize(
+		GameVariables::CorrelateH(260),
+		GameVariables::CorrelateH(195));
+
+	D3DXVECTOR2 spacing(
+		GameVariables::CorrelateH(30),
+		GameVariables::CorrelateH(94));
+
+	for( size_t i = 0; i < thumbs.size(); ++i )
+	{
+		thumbs[i].Position.x =
+			(GameVariables::ScreenWidth - size.x) * 0.5f +
+			(i % 4) * (thumbsize.x + spacing.x) + thumbsize.x * 0.5f;
+
+		thumbs[i].Position.y =
+			(GameVariables::ScreenHeight - size.y) * 0.5f +
+			(i / 4) * (thumbsize.y + spacing.y) + thumbsize.y * 0.5f;
+
+		thumbs[i].Size = thumbsize;
+	}
+
+	CForm::onresetdevice();
+}
+//=============================================================================================================
 void ChapterMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
 {
+	if( state == TransitionIn || state == TransitionOut )
+		return;
+
 	switch( kstate.key )
 	{
 	case VK_RETURN:
@@ -259,40 +296,44 @@ void ChapterMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
 	}
 }
 //=============================================================================================================
-void ChapterMenu::onresetdevice()
+void ChapterMenu::onmouseup(const DummyFramework::smousestate& mstate)
 {
-	title.Position.x = GameVariables::ScreenWidth * 0.5f;
-	title.Position.y = GameVariables::ScreenHeight * 0.08f * 1.6f;
+	if( state == TransitionIn || state == TransitionOut )
+		return;
 
-	back.Position.x = title.Position.x;
-	back.Position.y = GameVariables::ScreenHeight - title.Position.y * 1.2f;
-
-	D3DXVECTOR2 size(
-		GameVariables::CorrelateH(1130),
-		GameVariables::CorrelateH(554));
-
-	D3DXVECTOR2 thumbsize(
-		GameVariables::CorrelateH(260),
-		GameVariables::CorrelateH(195));
-
-	D3DXVECTOR2 spacing(
-		GameVariables::CorrelateH(30),
-		GameVariables::CorrelateH(94));
-
-	for( size_t i = 0; i < thumbs.size(); ++i )
+	if( selectedindex < thumbs.size() )
 	{
-		thumbs[i].Position.x =
-			(GameVariables::ScreenWidth - size.x) * 0.5f +
-			(i % 4) * (thumbsize.x + spacing.x) + thumbsize.x * 0.5f;
-
-		thumbs[i].Position.y =
-			(GameVariables::ScreenHeight - size.y) * 0.5f +
-			(i / 4) * (thumbsize.y + spacing.y) + thumbsize.y * 0.5f;
-
-		thumbs[i].Size = thumbsize;
+		if( thumbs[selectedindex].MouseOver(mstate.x, mstate.y) )
+			SetState(TransitionOut);
 	}
-
-	CForm::onresetdevice();
+	else if( back.MouseOver(mstate.x, mstate.y) )
+		SetState(TransitionOut);
 }
 //=============================================================================================================
+void ChapterMenu::onmousemove(const DummyFramework::smousestate& mstate)
+{
+	if( state == TransitionOut )
+		return;
 
+	size_t current = thumbs.size() + 1;
+
+	// intentionally don't stop (consider low framerate)
+	for( size_t i = 0; i < thumbs.size(); ++i )
+	{
+		if( thumbs[i].MouseOver(mstate.x, mstate.y) )
+			current = i;
+	}
+
+	if( current > thumbs.size() )
+	{
+		if( back.MouseOver(mstate.x, mstate.y) )
+			current = thumbs.size();
+	}
+
+	if( current < thumbs.size() + 1 && selectedindex != current )
+	{
+		std::swap(selectedindex, current);
+		SelectedIndexChanged(current);
+	}
+}
+//=============================================================================================================

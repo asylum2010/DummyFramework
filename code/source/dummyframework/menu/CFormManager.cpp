@@ -192,6 +192,33 @@ namespace DummyFramework
 		}
 	}
 	//=============================================================================================================
+	void CFormManager::onmouseup(const smousestate& mstate)
+	{
+		if( current )
+		{
+			if( current->GetState() != CControl::Hidden && current->GetState() != CControl::Inactive )
+				current->onmouseup(mstate);
+		}
+	}
+	//=============================================================================================================
+	void CFormManager::onmousedown(const smousestate& mstate)
+	{
+		if( current )
+		{
+			if( current->GetState() != CControl::Hidden && current->GetState() != CControl::Inactive )
+				current->onmousedown(mstate);
+		}
+	}
+	//=============================================================================================================
+	void CFormManager::onmousemove(const smousestate& mstate)
+	{
+		if( current )
+		{
+			if( current->GetState() != CControl::Hidden && current->GetState() != CControl::Inactive )
+				current->onmousemove(mstate);
+		}
+	}
+	//=============================================================================================================
 	void CFormManager::onlostdevice()
 	{
 		if( initialized && contentloaded )

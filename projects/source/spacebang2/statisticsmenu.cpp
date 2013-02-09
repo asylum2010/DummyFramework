@@ -3,8 +3,8 @@
 #include "statisticsmenu.h"
 
 #define ENTRY(i, k, v) \
-	entries[i].key.Text = k;\
-	entries[i].value.Text = v;\
+	entries[i].key.SetText(k);\
+	entries[i].value.SetText(v);\
 	entries[i].key.Alignment = DT_LEFT|DT_VCENTER;\
 	entries[i].value.Alignment = DT_RIGHT|DT_VCENTER;
 
@@ -59,8 +59,8 @@ bool StatisticsMenu::Initialize(DummyFramework::CGame9& mygame, DummyFramework::
 	ENTRY(3, "Score", "0");
 	ENTRY(4, "Total score", "0");
 
-	title.Text = "Stage complete";
-	cont.Text = "Continue";
+	title.SetText("Stage complete");
+	cont.SetText("Continue");
 
 	return CForm::Initialize(mygame, font);
 }
@@ -149,11 +149,11 @@ void StatisticsMenu::onfocusgained()
 	CForm::onfocusgained();
 	SetState(TransitionIn);
 
-	entries[0].value.Text = DummyFramework::CHelper::DiscreteToString(GameVariables::EnemiesKilled);
-	entries[1].value.Text = DummyFramework::CHelper::DiscreteToString(GameVariables::PowerupsAcquired);
-	entries[2].value.Text = DummyFramework::CHelper::DiscreteToString(GameVariables::Deaths);
-	entries[3].value.Text = DummyFramework::CHelper::DiscreteToString(GameVariables::Score);
-	entries[4].value.Text = DummyFramework::CHelper::DiscreteToString(GameVariables::TotalScore);
+	entries[0].value.SetText(DummyFramework::CHelper::DiscreteToString(GameVariables::EnemiesKilled));
+	entries[1].value.SetText(DummyFramework::CHelper::DiscreteToString(GameVariables::PowerupsAcquired));
+	entries[2].value.SetText(DummyFramework::CHelper::DiscreteToString(GameVariables::Deaths));
+	entries[3].value.SetText(DummyFramework::CHelper::DiscreteToString(GameVariables::Score));
+	entries[4].value.SetText(DummyFramework::CHelper::DiscreteToString(GameVariables::TotalScore));
 }
 //=============================================================================================================
 void StatisticsMenu::onfocuslost()
@@ -169,21 +169,6 @@ void StatisticsMenu::onfocuslost()
 
 	title.SetState(Hidden);
 	cont.SetState(Hidden);
-}
-//=============================================================================================================
-void StatisticsMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
-{
-	switch( kstate.key )
-	{
-	case VK_RETURN:
-	case VK_SPACE:
-		action = Continue;
-		SetState(TransitionOut);
-		break;
-
-	default:
-		break;
-	}
 }
 //=============================================================================================================
 void StatisticsMenu::onresetdevice()
@@ -210,5 +195,35 @@ void StatisticsMenu::onresetdevice()
 	}
 
 	CForm::onresetdevice();
+}
+//=============================================================================================================
+void StatisticsMenu::onkeyup(const DummyFramework::skeyboardstate& kstate)
+{
+	if( state == TransitionIn || state == TransitionOut )
+		return;
+
+	switch( kstate.key )
+	{
+	case VK_RETURN:
+	case VK_SPACE:
+		action = Continue;
+		SetState(TransitionOut);
+		break;
+
+	default:
+		break;
+	}
+}
+//=============================================================================================================
+void StatisticsMenu::onmouseup(const DummyFramework::smousestate& mstate)
+{
+	if( state == TransitionIn || state == TransitionOut )
+		return;
+
+	if( cont.MouseOver(mstate.x, mstate.y) )
+	{
+		action = Continue;
+		SetState(TransitionOut);
+	}
 }
 //=============================================================================================================

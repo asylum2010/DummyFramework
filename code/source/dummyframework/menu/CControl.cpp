@@ -10,6 +10,7 @@ namespace DummyFramework
 		initialized		= false;
 		contentloaded	= false;
 		game			= NULL;
+		spritefont		= NULL;
 		state			= Hidden;
 
 		GroupID			= 0xffffffff;

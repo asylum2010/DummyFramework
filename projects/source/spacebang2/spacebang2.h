@@ -19,18 +19,11 @@
 #include "staticlogo.h"
 
 // TODO:
-// - texkoordokat javitani atlasban
-// - menükben -0.5 + 1
-
-// - egér és elrejtés
-// - creditscreen
 // - shoot(Projectile&) helyett shoot(const Projectile&) söt, érték szerint is lehetne
 // - worm is haljon meg
-// - packfile
 // - CForm-ba a controloknak nem lenne jo inkább set?
 // - selectedindex helyett is lehetne iterator (CControl-ra mutatva)
 // - titlepos uaz legyen mindenhol (statmenu-beli)
-// - signalnál ha már bennevan akkor ne rakja bele
 // - chatbubble lent vagy fent; kup az avatárhoz; invertkor?
 // - visszamenjen a helyére
 // - animatedbuttonban scale-t hogy kérni el? (felujitani a spritefontot)
@@ -38,8 +31,8 @@
 // - enemybe a Hit() nézze meg hogy valid-e
 // - élet tünjön el halálkor; hud szövegek is
 
-	class SpaceBang2 : public DummyFramework::CGame9
-	{
+class SpaceBang2 : public DummyFramework::CGame9
+{
 	typedef std::vector<gamedesc> gamelist;
 
 	public:
@@ -94,7 +87,7 @@
 	void gameover_selected(size_t action);
 	void chapter_selected(size_t action);
 	void options_settingschanged();
-	};
+};
 
 #endif
 //=============================================================================================================

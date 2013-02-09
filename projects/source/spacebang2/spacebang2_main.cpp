@@ -57,6 +57,8 @@ SpaceBang2::SpaceBang2()
 
 	Application.keyup.connect(&formmanager, &DummyFramework::CFormManager::onkeyup);
 	Application.keydown.connect(&formmanager, &DummyFramework::CFormManager::onkeydown);
+	Application.mouseup.connect(&formmanager, &DummyFramework::CFormManager::onmouseup);
+	Application.mousemove.connect(&formmanager, &DummyFramework::CFormManager::onmousemove);
 
 	logo.focuslost.connect(this, &SpaceBang2::logo_focuslost);
 	mainmenu.selected.connect(this, &SpaceBang2::menu_selected);

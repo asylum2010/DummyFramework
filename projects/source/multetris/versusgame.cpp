@@ -73,15 +73,15 @@ bool VersusGame::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpr
 {
 	ResetGUI();
 
-	labels[0].Text = "Game time: 0";
-	labels[1].Text = "Next swap: 0";
-	labels[2].Text = "Player A";
-	labels[3].Text = "Score: 0";
-	labels[4].Text = "Player B";
-	labels[5].Text = "Score: 0";
-	labels[6].Text = "Game over";
-	labels[7].Text = "Game over";
-	labels[8].Text = "Player A won!\nPress any key to continue";
+	labels[0].SetText("Game time: 0");
+	labels[1].SetText("Next swap: 0");
+	labels[2].SetText("Player A");
+	labels[3].SetText("Score: 0");
+	labels[4].SetText("Player B");
+	labels[5].SetText("Score: 0");
+	labels[6].SetText("Game over");
+	labels[7].SetText("Game over");
+	labels[8].SetText("Player A won!\nPress any key to continue");
 
 	CForm::Initialize(mygame, font);
 	quads.Initialize(mygame.Graphics, 1500);
@@ -164,7 +164,7 @@ void VersusGame::Draw()
 	ss << "Game time: " << (mins < 10 ? "0" : "") <<
 		mins << ":" << (secs < 10 ? "0" : "") << secs;
 
-	labels[0].Text = ss.str();
+	labels[0].SetText(ss.str());
 
 	mins = (size_t)((double)swaptime * game->Sync.UpdateInterval);
 	secs = mins % 60;
@@ -174,15 +174,15 @@ void VersusGame::Draw()
 	ss << "Next swap: " << (mins < 10 ? "0" : "") <<
 		mins << ":" << (secs < 10 ? "0" : "") << secs;
 
-	labels[1].Text = ss.str();
+	labels[1].SetText(ss.str());
 
 	ss.str("");
 	ss << "Score: " << players[i].table.Score;
-	labels[3].Text = ss.str();
+	labels[3].SetText(ss.str());
 
 	ss.str("");
 	ss << "Score: " << players[j].table.Score;
-	labels[5].Text = ss.str();
+	labels[5].SetText(ss.str());
 
 	labels[0].Color.a = labels[1].Color.a = labels[2].Color.a =
 		labels[3].Color.a = labels[4].Color.a = labels[5].Color.a =
@@ -422,19 +422,19 @@ void VersusGame::Update()
 			if( players[0].table.Score > players[1].table.Score )
 			{
 				if( swapped )
-					labels[8].Text = "Player B won!\nPress any key to continue";
+					labels[8].SetText("Player B won!\nPress any key to continue");
 				else
-					labels[8].Text = "Player A won!\nPress any key to continue";
+					labels[8].SetText("Player A won!\nPress any key to continue");
 			}
 			else if( players[0].table.Score < players[1].table.Score )
 			{
 				if( swapped )
-					labels[8].Text = "Player A won!\nPress any key to continue";
+					labels[8].SetText("Player A won!\nPress any key to continue");
 				else
-					labels[8].Text = "Player B won!\nPress any key to continue";
+					labels[8].SetText("Player B won!\nPress any key to continue");
 			}
 			else
-				labels[8].Text = "Draw!\nPress any key to continue";
+				labels[8].SetText("Draw!\nPress any key to continue");
 
 			labels[8].SetState(Idle);
 		}

@@ -238,8 +238,7 @@ void Game::onfocuslost()
 //=============================================================================================================
 void Game::onkeyup(const DummyFramework::skeyboardstate& kstate)
 {
-	// ez valamiért automatikusan teljesül, de ne hagyjunk helyet a bugoknak
-	if( state == FlyOff )
+	if( state == FlyOff || state == TransitionHalf )
 		return;
 
 	switch( kstate.key )

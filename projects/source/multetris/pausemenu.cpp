@@ -41,9 +41,9 @@ bool PauseMenu::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpri
 {
 	onresetdevice();
 
-	buttons[0].Text = "Continue";
-	buttons[1].Text = "Exit to main menu";
-	title.Text = "Game paused";
+	buttons[0].SetText("Continue");
+	buttons[1].SetText("Exit to main menu");
+	title.SetText("Game paused");
 
 	return CForm::Initialize(mygame, font);
 }

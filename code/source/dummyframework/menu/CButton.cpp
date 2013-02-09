@@ -34,7 +34,7 @@ namespace DummyFramework
 		currentcolor.a = Color.a;
 
 		if( state != Hidden )
-			spritefont->Set(GroupID, textid, Text, Position, Alignment, (DWORD)currentcolor);
+			spritefont->Set(GroupID, textid, text, Position, Alignment, (DWORD)currentcolor);
 	}
 	//=============================================================================================================
 }

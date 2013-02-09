@@ -18,7 +18,10 @@ class AnimatedButton : public DummyFramework::CButton
 
 protected:
 	DummyFramework::syncedanimator<float, triangle> alpha;
+	D3DXVECTOR4 bounds;
 	float scale;
+
+	virtual void UpdateBounds();
 
 public:
 	AnimatedButton();
@@ -26,6 +29,9 @@ public:
 
 	//! Initialize content 
 	bool LoadContent();
+
+	//! Returns true if the point is over the button
+	bool MouseOver(short mx, short my);
 
 	//! Set the button's state
 	void SetState(unsigned int newstate);
@@ -35,6 +41,11 @@ public:
 
 	//! Render the button
 	void Draw();
+
+	inline void SetText(const std::string& newtext) {
+		CButton::SetText(newtext);
+		UpdateBounds();
+	}
 
 _DUMMY_EVENTHANDLERS:
 	void onresetdevice();

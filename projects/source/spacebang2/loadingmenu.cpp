@@ -27,7 +27,7 @@ void LoadingMenu::Draw()
 bool LoadingMenu::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpriteFont9& font)
 {
 	onresetdevice();
-	title.Text = "Loading";
+	title.SetText("Loading");
 
 	return CForm::Initialize(mygame, font);
 }

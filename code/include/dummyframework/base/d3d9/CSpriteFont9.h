@@ -124,6 +124,7 @@ namespace DummyFramework
 		D3DXVECTOR2& MeasureText(D3DXVECTOR2& out, size_t groupid, size_t textid) const;
 
 		float GetTextScale(size_t groupid, size_t textid);
+		unsigned int GetTextAlignment(size_t groupid, size_t textid);
 
 		size_t Draw(size_t groupid);
 		size_t DrawCurrent();

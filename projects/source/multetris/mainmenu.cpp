@@ -41,11 +41,11 @@ bool MainMenu::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSprit
 {
 	onresetdevice();
 
-	buttons[0].Text = "Single Player";
-	buttons[1].Text = "Multiplayer Versus";
-	buttons[2].Text = "Multiplayer Coop";
-	buttons[3].Text = "Exit";
-	title.Text = "Main menu";
+	buttons[0].SetText("Single Player");
+	buttons[1].SetText("Multiplayer Versus");
+	buttons[2].SetText("Multiplayer Coop");
+	buttons[3].SetText("Exit");
+	title.SetText("Main menu");
 
 	return CForm::Initialize(mygame, font);
 }

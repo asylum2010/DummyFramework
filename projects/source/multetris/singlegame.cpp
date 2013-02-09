@@ -50,11 +50,11 @@ bool SingleGame::Initialize(DummyFramework::CGame9& mygame, DummyFramework::CSpr
 {
 	ResetGUI();
 
-	labels[0].Text = "Game time: 0";
-	labels[1].Text = "Player";
-	labels[2].Text = "Score: 0";
-	labels[3].Text = "Game over";
-	labels[4].Text = "Press any key to continue";
+	labels[0].SetText("Game time: 0");
+	labels[1].SetText("Player");
+	labels[2].SetText("Score: 0");
+	labels[3].SetText("Game over");
+	labels[4].SetText("Press any key to continue");
 
 	CForm::Initialize(mygame, font);
 	quads.Initialize(mygame.Graphics, 800);
@@ -121,11 +121,11 @@ void SingleGame::Draw()
 	ss << "Game time: " << (mins < 10 ? "0" : "") <<
 		mins << ":" << (secs < 10 ? "0" : "") << secs;
 
-	labels[0].Text = ss.str();
+	labels[0].SetText(ss.str());
 	
 	ss.str("");
 	ss << "Score: " << player1.table.Score;
-	labels[2].Text = ss.str();
+	labels[2].SetText(ss.str());
 	
 	labels[0].Color.a = labels[1].Color.a = labels[2].Color.a =
 		labels[3].Color.a = labels[4].Color.a = blink.value;

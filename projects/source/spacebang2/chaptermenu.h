@@ -84,11 +84,12 @@ _DUMMY_EVENTS:
 _DUMMY_EVENTHANDLERS:
 	void onfocusgained();
 	void onfocuslost();
-	void onkeyup(const DummyFramework::skeyboardstate& kstate);
 	void onresetdevice();
+
+	void onkeyup(const DummyFramework::skeyboardstate& kstate);
+	void onmouseup(const DummyFramework::smousestate& mstate);
+	void onmousemove(const DummyFramework::smousestate& mstate);
 };
 
 #endif
 //=============================================================================================================
- 
- 

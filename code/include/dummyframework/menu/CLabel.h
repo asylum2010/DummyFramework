@@ -11,20 +11,22 @@ namespace DummyFramework
 	class CLabel : public CControl
 	{
 	protected:
-		size_t textid;
+		std::string	text;
+		size_t		textid;
 
 	public:
 		D3DXVECTOR2		Position;
 		D3DXCOLOR		Color;
-		std::string		Text;
 
 		CLabel();
 		~CLabel() {}
 
 		bool Initialize(CGame9& mygame, CSpriteFont9& font);
 		bool LoadContent();
+
 		void Draw();
 		void SetState(unsigned int newstate);
+		void SetText(const std::string& newtext);
 
 		inline void GetSize(D3DXVECTOR2& out) const {
 			spritefont->MeasureText(out, GroupID, textid);

@@ -84,7 +84,7 @@ namespace DummyFramework
 		case WM_DESTROY:
 			PostQuitMessage(0);
 			return 0;
-        
+
 		case WM_ACTIVATE:
 		case WM_ACTIVATEAPP:
 			switch( wParam )
@@ -137,7 +137,7 @@ namespace DummyFramework
 			default:
 				break;
 			}
-        
+
 		case WM_MOUSEMOVE:
 			if( !dummyinstance->UseDirectInput )
 			{
