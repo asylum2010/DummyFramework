@@ -4,22 +4,23 @@ Requirements
 ============
 
 - Windows XP/Vista/7 32 bit
-- Visual Studio 2008/2010
+- DirectX 9.0c compatible graphics card
+- Visual Studio 2010/2012
 
-
-Compilation with VS 2008
-========================
-
-- add the framework's include folder in Tools -> Options -> Projects and Solutions -> VC++ Directories -> Include
-- open code/vs/DummyFramework_VCXX
-- click Rebuild Solution
-- open projects/Projects_VCXX
-- similarly Rebuild Solution
 
 Compilation with VS 2010
 ========================
 
-- same as above, but no need to set directories
+- open code/vs/DummyFramework_VC100
+- click Rebuild Solution
+- open projects/Projects_VC100
+- click Rebuild Solution
+
+
+Compilation with VS 2012
+========================
+
+- same as above (_VC110)
 
 
 
